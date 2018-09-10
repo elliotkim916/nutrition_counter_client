@@ -1,5 +1,12 @@
- language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: Eu40GkbxgbNNwnNYTMfIAmD2SsCxrZqCB1Dyg3KInyK7D7gzS+3KUi2JGN7oETFaqyv//H3ZD8Ux9JiNzb5MCVV89jWIpKxXLLJgSjRdeeFZaHLE7PhIx/WEpB5bbreCxFynkRXBdGmzl09f5ZVHfLgRd0QBKEypNDmAm3IzhbsKYIwxepzvmkUkWMJAH8RtSV2f9s0e8oyIAkhFmgEmHmQF2EB7txoUgc6ekQoMGl8uOkTnpiL7ToBmk9Z0mpovDtuGkHXn/I2i29UvuVY0/o3aqw9zUZtIltaubMI3uy30ipn1F2x7oc4K9dYEVl+h05ILAN+CviaodjorWFpxN85RYKeTTjDj4whYOY+QKsag3+q6GlpOq4PeN2gZCqtkzRvLKcvDkr7pBk8Y/N9GyXjoeo/hF65xrULfLD/WXHTwBhMGLGYxSHsBc79Im5JguaBErFEYKYYF97mwvzorMp+xMV51q0XX0Nw1epusNOTu46/tkXgxQE04BkA5Uy4A6BOdZB5FXumgVJrSJway7ef4MpouO18kZfK0ZS0xobBSdS4wcGrU8HcFWzkRDdb1gTB+HG3XLtzVhd2USzWbaDjr5CbxjP5Ou7v81DnLXcQNbJeWPQYrewwI8xMnMe+Nm7BS4fKxBrp0mobA+EPWEI9SPQ2Y5RwTNXkOPVk5Og4=
+  app: dry-coast-64207
+  on:
+    repo: elliotkim916/nutrition_counter_client
