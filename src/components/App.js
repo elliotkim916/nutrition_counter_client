@@ -1,36 +1,18 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import './App.css';
 import LandingPage from './landing-page';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show_landing_page: true,
-      show_nutrition_search_page: false,
-      show_nutrition_results: false,
-      show_exercise_search_page: false,
-      show_exercise_results: false,
-      stay_on_search_page: false
-    }
-  }
-
-  toSearchPage() {
-    this.setState({
-      show_landing_page: false,
-      show_nutrition_search_page: true,
-      show_exercise_search_page: true
-    });
-  }
-
+export class App extends Component {
   render() {
+    console.log(this.props);
     const connect = [];
 
-    if (this.state.show_landing_page) {
-      connect.push(<LandingPage toSearchPage={() => this.toSearchPage()} key="LandingPage"/>);
-    } else if (this.state.show_nutrition_search_page && this.state.show_exercise_search_page) {
+    if (this.props.start.show_landing_page) {
+      connect.push(<LandingPage key="LandingPage"/>);
+    } else if (this.props.start.show_nutrition_search_page && this.props.start.show_exercise_search_page) {
       connect.push(
         <NutritionSearchPage key="NutritionSearchPage"/>, 
         <ExerciseSearchPage key="ExerciseSearchPage"/>
@@ -47,4 +29,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  start: state
+});
+
+export default connect(mapStateToProps)(App);
