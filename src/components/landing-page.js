@@ -1,7 +1,13 @@
 import React from 'react';
 import './landing-page.css';
+import {connect} from 'react-redux';
+import {beginApp} from '../actions/begin-now';
 
-export default class LandingPage extends React.Component {
+export class LandingPage extends React.Component {
+  startApp() {
+    this.props.dispatch(beginApp());
+  }
+
   render() {
     return (
       <div className="landing-page">
@@ -15,7 +21,7 @@ export default class LandingPage extends React.Component {
 
         <button 
           type="submit" 
-          onClick={() => this.props.toSearchPage()}
+          onClick={() => this.startApp()}
         >
         Begin Now
         </button>
@@ -23,3 +29,5 @@ export default class LandingPage extends React.Component {
     );
   }
 }
+
+export default connect()(LandingPage);
