@@ -1,7 +1,14 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import {beginNowReducer} from './reducers/begin-now';
+import {nutritionSearchReducer} from './reducers/nutrition-search';
 
-const store = createStore(beginNowReducer, applyMiddleware(thunk));
+const store = createStore(
+  combineReducers({
+    begin: beginNowReducer, 
+    nutrition: nutritionSearchReducer
+  }),
+  applyMiddleware(thunk)
+);
 
 export default store;
