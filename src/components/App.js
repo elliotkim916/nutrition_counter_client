@@ -30,7 +30,8 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  start: state
+  start: state.begin,
+  nutrition: state.nutrition
 });
 
 export default connect(mapStateToProps)(App);
