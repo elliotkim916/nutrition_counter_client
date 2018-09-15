@@ -1,10 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import './nutrition-search-page.css';
+import {get_nutrition} from '../actions/nutrition-search';
 
-export default class NutritionSearchPage extends React.Component {
+export class NutritionSearchPage extends React.Component {
   calculateMeal(e) {
     e.preventDefault();
     console.log('clicked');
+    this.props.dispatch(get_nutrition(this.input.value));
+    console.log(this.input.value);
   }
 
   render() {
@@ -16,6 +20,7 @@ export default class NutritionSearchPage extends React.Component {
             id="meal" 
             type="text" 
             placeholder="1 cup mashed potatoes and 2 tbsp gravy"
+            ref={input => this.input = input}
           >
           </textarea><br/>
           <button type="submit" onClick={(e) => this.calculateMeal(e)}>Calculate Meal</button>
@@ -24,3 +29,5 @@ export default class NutritionSearchPage extends React.Component {
     );
   }
 }
+
+export default connect()(NutritionSearchPage);
