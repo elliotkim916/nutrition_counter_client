@@ -6,15 +6,14 @@ import {get_nutrition} from '../actions/nutrition-search';
 export class NutritionSearchPage extends React.Component {
   calculateMeal(e) {
     e.preventDefault();
-    console.log('clicked');
     this.props.dispatch(get_nutrition(this.input.value));
-    console.log(this.input.value);
+    this.input.value = '';
   }
 
   render() {
     return (
       <div className="nutrition-page">
-        <form>
+        <form onSubmit = {(e) => this.calculateMeal(e)}>
           <label htmlFor="meal">Enter your meal, snack, or anything you consumed to see the total nutrition breakdown.</label><br/>
           <textarea
             id="meal" 
@@ -23,7 +22,7 @@ export class NutritionSearchPage extends React.Component {
             ref={input => this.input = input}
           >
           </textarea><br/>
-          <button type="submit" onClick={(e) => this.calculateMeal(e)}>Calculate Meal</button>
+          <button type="submit">Calculate Meal</button>
         </form>
       </div>
     );
