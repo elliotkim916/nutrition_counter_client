@@ -28,14 +28,14 @@ function fetch_nutrition(meal) {
     'x-app-key': `${APP_KEY}`
   }
 
-  const body = {
+  const body = JSON.stringify({
     'query': meal,
-    'timezone': 'US/Eastern'
-  }
+    'timezone': 'US/Western'
+  });
 
   return fetch(`${NUTRITIONIX_BASE_URL}`, {
     method: 'POST',
-    body: JSON.stringify(meal),
+    body: body,
     headers: headers
   }).then(res => {
     if (!res.ok) {
@@ -43,7 +43,7 @@ function fetch_nutrition(meal) {
     }
     return res.json();
   }).then(data => {
-    console.log(data);
+    console.log(data.foods[0]);
   });
 }
 
