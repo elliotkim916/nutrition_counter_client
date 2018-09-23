@@ -1,5 +1,5 @@
 import {
-  NUTRITIONIX_BASE_URL,
+  EXERCISE_BASE_URL,
   APP_ID,
   APP_KEY
 } from '../config';
@@ -20,3 +20,37 @@ export const exerciseSearchError = error => ({
   type: EXERCISE_SEARCH_ERROR,
   error
 });
+
+function fetch_exercise(exercise) {
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-app-id': `${APP_ID}`,
+    'x-app-key': `${APP_KEY}`
+  }
+
+  const body = JSON.stringify({
+    'query': exercise
+  });
+
+  return fetch (`${EXERCISE_BASE_URL}`, {
+    method: 'POST',
+    body: body,
+    headers: headers
+  }).then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json()
+  }).then(data => {
+    console.log(data);
+  });
+}
+
+export const get_exercise = exercise => dispatch => {
+  dispatch(exerciseSearchRequest())
+  fetch_exercise(exercise).then(exercise => {
+    dispatch(exerciseSearchSuccess(exercise))
+  }).catch(error => {
+    dispatch(exerciseSearchError(error));
+  });
+}
