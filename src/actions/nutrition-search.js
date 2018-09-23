@@ -43,7 +43,7 @@ function fetch_nutrition(meal) {
     }
     return res.json();
   }).then(data => {
-    console.log(data.foods[0]);
+    console.log(data.foods);
   });
 }
 
