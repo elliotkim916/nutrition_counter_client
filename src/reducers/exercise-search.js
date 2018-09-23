@@ -10,7 +10,7 @@ const initialState = {
   error: null
 };
 
-export default function exerciseSearchReducer(state=initialState, action) {
+export function exerciseSearchReducer(state=initialState, action) {
   if (action.type === EXERCISE_SEARCH_REQUEST) {
     return Object.assign({}, state, {
       loading: true
