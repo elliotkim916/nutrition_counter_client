@@ -42,9 +42,7 @@ function fetch_nutrition(meal) {
       return Promise.reject(res.statusText);
     }
     return res.json();
-  }).then(data => {
-    console.log(data.foods);
-  });
+  }).then(data => data.foods);
 }
 
 export const get_nutrition = meal => dispatch => {
