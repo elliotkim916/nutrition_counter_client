@@ -37,19 +37,23 @@ function fetch_nutrition(meal) {
     method: 'POST',
     body: body,
     headers: headers
-  }).then(res => {
+  })
+  .then(res => {
     if (!res.ok) {
       return Promise.reject(res.statusText);
     }
     return res.json();
-  }).then(data => data.foods);
+  })
+  .then(data => data.foods);
 }
 
 export const get_nutrition = meal => dispatch => {
   dispatch(nutrtionSearchRequest());
-  fetch_nutrition(meal).then(meal => {
+  fetch_nutrition(meal)
+  .then(meal => {
     dispatch(nutritionSearchSuccess(meal))
-  }).catch(error => {
+  })
+  .catch(error => {
     dispatch(nutritionSearchError(error));
   });
 } 
