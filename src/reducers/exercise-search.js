@@ -18,7 +18,7 @@ export function exerciseSearchReducer(state=initialState, action) {
   } else if (action.type === EXERCISE_SEARCH_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      results: action.exercise_results
+      exercise_results: action.exercise_data
     });
   } else if (action.type === EXERCISE_SEARCH_ERROR) {
     return Object.assign({}, state, {
