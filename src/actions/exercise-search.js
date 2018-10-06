@@ -36,21 +36,23 @@ function fetch_exercise(exercise) {
     method: 'POST',
     body: body,
     headers: headers
-  }).then(res => {
+  })
+  .then(res => {
     if (!res.ok) {
       return Promise.reject(res.statusText);
     }
-    return res.json()
-  }).then(data => {
-    console.log(data);
-  });
+    return res.json();
+  })
+  .then(data => data.exercises);
 }
 
 export const get_exercise = exercise => dispatch => {
   dispatch(exerciseSearchRequest())
-  fetch_exercise(exercise).then(exercise => {
+  fetch_exercise(exercise)
+  .then(exercise => {
     dispatch(exerciseSearchSuccess(exercise))
-  }).catch(error => {
+  })
+  .catch(error => {
     dispatch(exerciseSearchError(error));
   });
 }
