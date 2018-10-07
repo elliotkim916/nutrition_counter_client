@@ -1,3 +1,7 @@
+.nutrition-search-results {
+  text-align: center;
+}
+
 .nutrition-results {
   display: flex;
   flex-direction: row;
@@ -12,6 +16,7 @@ li {
 
 .nutrition-facts {
   padding: 0;
+  margin-top: 25px;
 }
 
 .nutrition-list-item {
