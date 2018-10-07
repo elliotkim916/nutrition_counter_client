@@ -3,11 +3,30 @@ import './nutrition-search-results.css';
 import {connect} from 'react-redux';
 
 class NutritionSearchResults extends Component {
+  renderResult() {
+    let sum;
+    let nutrition_results_array = this.props.nutritionResults;
+    
+    let total_calories = nutrition_results_array.map(cal => {
+      return cal.nf_calories;
+    });
+  
+    if (total_calories.length > 0) {
+      sum = total_calories.reduce((acc, currentVal) => {
+        return acc + currentVal;
+      });    
+
+      return (
+        <h3 className="calories-sum">Total Calories Consumed: {sum}</h3>  
+      );
+    }
+  }
+
   render() {
     let nutrition_results_array = this.props.nutritionResults;
-    let nutrition_result = '';
+    let nutrition_result = '';  
     console.log(nutrition_results_array);
-
+  
     nutrition_result = nutrition_results_array.map((result, index) => 
       <li key={index} className="nutrition-list-item">
         <h3 className="food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
@@ -32,6 +51,7 @@ class NutritionSearchResults extends Component {
         <ul className="nutrition-results">
           {nutrition_result}
         </ul>
+        {this.renderResult()}
       </section>
     );
   }
