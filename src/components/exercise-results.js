@@ -3,6 +3,24 @@ import './exercise-results.css';
 import {connect} from 'react-redux';
 
 class ExerciseResults extends Component {
+  renderResult() {
+    let sum;
+    let exercise_results_array = this.props.exerciseResults;
+    let calories_burned_array = exercise_results_array.map(cal => {
+      return cal.nf_calories;
+    });
+
+    if (calories_burned_array.length > 0) {
+      sum = calories_burned_array.reduce((acc, currentVal) => {
+        return acc + currentVal;
+      });
+
+      return (
+        <h3 className="cal-burned-sum">Total Calories Burned : {sum}</h3>
+      )
+    }
+  }
+
   render() {
     let exercise_results_array = this.props.exerciseResults;
     let exercise_result = '';
@@ -22,6 +40,7 @@ class ExerciseResults extends Component {
         <ul className="exercise-results">
           {exercise_result}
         </ul>
+        {this.renderResult()}
       </section>
     );
   }
