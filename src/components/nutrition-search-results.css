@@ -17,6 +17,7 @@ li {
 .nutrition-facts {
   padding: 0;
   margin-top: 25px;
+  text-align: left;
 }
 
 .nutrition-list-item {
