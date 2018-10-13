@@ -22,6 +22,7 @@ export class SearchPage extends React.Component {
   calculateMeal(e) {
     e.preventDefault();
     this.props.dispatch(get_nutrition(this.state.meal_value));
+    this.setState({meal_value: ''});
   }
 
   exerciseInput(e) {
@@ -31,6 +32,7 @@ export class SearchPage extends React.Component {
   calculateActivity(e) {
     e.preventDefault();
     this.props.dispatch(get_exercise(this.state.exercise_value));
+    this.setState({exercise_value: ''});
   }
 
   render() {
@@ -45,6 +47,7 @@ export class SearchPage extends React.Component {
               type="text" 
               placeholder="1 cup mashed potatoes and 2 tbsp gravy"
               onChange={(e) => this.mealInput(e)}
+              value={this.state.meal_value}
             >
             </textarea><br/>
             <button type="submit">Calculate Meal</button>
@@ -60,6 +63,7 @@ export class SearchPage extends React.Component {
               type="textarea" 
               placeholder="ran 3 miles"
               onChange={(e) => this.exerciseInput(e)}
+              value={this.state.exercise_value}
             >
             </textarea><br/>
             <button type="submit">Calculate Activity</button>
