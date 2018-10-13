@@ -1,13 +1,8 @@
 import React from 'react';
 import './landing-page.css';
 import {connect} from 'react-redux';
-import {beginApp} from '../actions/begin-now';
 
 export class LandingPage extends React.Component {
-  startApp() {
-    this.props.dispatch(beginApp());
-  }
-
   render() {
     return (
       <div className="landing-page">
@@ -21,7 +16,7 @@ export class LandingPage extends React.Component {
 
         <button 
           type="submit" 
-          onClick={() => this.startApp()}
+          onClick={() => this.props.history.push('/nutrition-search')}
         >
         Begin Now
         </button>
