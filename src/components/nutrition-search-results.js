@@ -32,16 +32,16 @@ class NutritionSearchResults extends Component {
         <h3 className="food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
         <img src={`${result.photo.thumb}`} className="food-image" alt="food item"/>
         <ul className="nutrition-facts">
-          <li>Calories : {result.nf_calories}</li>
-          <li>Total Fat : {result.nf_total_fat}g</li>
-          <li>Saturated Fat : {result.nf_saturated_fat}g</li>
-          <li>Cholesterol : {result.nf_cholesterol}mg</li>
-          <li>Sodium : {result.nf_sodium}mg</li>
-          <li>Potassium : {result.nf_potassium}mg</li>
-          <li>Carbohydrates : {result.nf_total_carbohydrate}g</li>
-          <li>Dietary Fiber : {result.nf_dietary_fiber}g</li>
-          <li>Sugars : {result.nf_sugars}g</li>
-          <li>Protein : {result.nf_protein}g</li>
+          <li>Calories : {result.nf_calories === null ? 0 : result.nf_calories}</li>
+          <li>Total Fat : {result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
+          <li>Saturated Fat : {result.nf_saturated_fat === null ? 0 : result.nf_saturated_fat}g</li>
+          <li>Cholesterol : {result.nf_cholesterol === null ? 0 : result.nf_cholesterol}mg</li>
+          <li>Sodium : {result.nf_sodium === null ? 0 : result.nf_sodium}mg</li>
+          <li>Potassium : {result.nf_potassium === null ? 0 : result.nf_potassium}mg</li>
+          <li>Carbohydrates : {result.nf_total_carbohydrate === null ? 0 : result.nf_total_carbohydrate}g</li>
+          <li>Dietary Fiber : {result.nf_dietary_fiber === null ? 0 : result.nf_dietary_fiber}g</li>
+          <li>Sugars : {result.nf_sugars === null ? 0 : result.nf_sugars}g</li>
+          <li>Protein : {result.nf_protein === null ? 0 : result.nf_protein}g</li>
         </ul>
       </li>
     );
