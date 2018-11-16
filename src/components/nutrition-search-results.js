@@ -3,6 +3,12 @@ import './nutrition-search-results.css';
 import {connect} from 'react-redux';
 
 class NutritionSearchResults extends Component {
+  onSubmit(e) {
+    e.preventDefault();
+    console.log('clicked');
+    console.log(this.props.nutritionResults);
+  }
+
   renderResult() {
     let sum;
     let nutrition_results_array = this.props.nutritionResults;
@@ -19,14 +25,26 @@ class NutritionSearchResults extends Component {
       return (
         <h3 className="calories-sum">Total Calories Consumed: {sum}</h3>  
       );
+    } else {
+      console.log('unable to render total calories');
+    }
+  }
+
+  renderSubmitButton() {
+    const resultsArray = this.props.nutritionResults;
+    if (resultsArray.length > 0) {
+      return (
+        <button type="submit" className="save-btn">SAVE NUTRITION</button>
+      );
+    } else {
+      console.log('unable to render submit button');
     }
   }
 
   render() {
     let nutrition_results_array = this.props.nutritionResults;
     let nutrition_result = '';  
-    console.log(nutrition_results_array);
-  
+    
     nutrition_result = nutrition_results_array.map((result, index) => 
       <li key={index} className="nutrition-list-item">
         <h3 className="food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
@@ -48,10 +66,13 @@ class NutritionSearchResults extends Component {
 
     return (
       <section className="nutrition-search-results">
-        <ul className="nutrition-results">
-          {nutrition_result}
-        </ul>
-        {this.renderResult()}
+        <form className="nutrition-form" onSubmit={(e) => this.onSubmit(e)}>
+          <ul className="nutrition-results">
+            {nutrition_result}
+          </ul>
+          {this.renderResult()}
+          {this.renderSubmitButton()}
+        </form>
       </section>
     );
   }
