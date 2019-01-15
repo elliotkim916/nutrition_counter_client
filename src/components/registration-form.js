@@ -23,7 +23,15 @@ export class RegistrationForm extends React.Component {
           name="passwordConfirm"
           label="Confirm password"
         />
-        <button type="submit">REGISTER</button>
+        <button 
+          type="submit"
+          disabled={
+            this.props.pristine ||
+            this.props.submitting
+          }
+        >
+        REGISTER
+        </button>
       </form>
     );
   }
