@@ -15,8 +15,8 @@ export default class Input extends React.Component {
     }
     
     return (
-      <div>
-
+      <div className="form-input">
+      
       </div>
     );
   }
