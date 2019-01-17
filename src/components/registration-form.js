@@ -1,10 +1,15 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
+import Input from './input';
+import {registerUser} from '../actions/users';
 
 export class RegistrationForm extends React.Component {
   onSubmit(values) {
     console.log(values);
+    const {username, password} = values;
+    const user = {username, password}; 
+    return this.props.dispatch(registerUser(user));
   }
 
   render() {
@@ -16,21 +21,21 @@ export class RegistrationForm extends React.Component {
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <Field
-          component={} 
+          component={Input} 
           name="username"
           type="text"
           label="Enter username"
           validate={[required, nonEmpty, isTrimmed]}
         />
         <Field
-          component={}
+          component={Input}
           name="password"
           type="password"
           label="Enter password"
-          validate={[required, nonEmpty, isTrimmed]}
+          validate={[required, nonEmpty, isTrimmed, passwordLength]}
         />
         <Field
-          component={}
+          component={Input}
           name="passwordConfirm"
           type="password"
           label="Confirm password"
