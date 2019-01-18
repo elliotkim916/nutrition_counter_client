@@ -13,7 +13,7 @@ export class RegistrationForm extends React.Component {
   }
 
   render() {
-    const passwordLength = length({min: 10, max: 72});
+    const passwordLength = length({min: 8, max: 72});
     const matchesPassword = matches('password');
 
     return (
@@ -57,7 +57,9 @@ export class RegistrationForm extends React.Component {
 
 // To connect the component to the store, you use the reduxForm function.
 export default reduxForm({
-  form: 'registration'
+  form: 'registration',
+  onSubmitFail: (errors, dispatch) => 
+    dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);
 // controls where info about the form will be stored in the state
 // in this case, would be state.form.registration
