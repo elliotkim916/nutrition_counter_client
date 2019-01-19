@@ -9,7 +9,7 @@ class ExerciseResults extends Component {
     let calories_burned_array = exercise_results_array.map(cal => {
       return cal.nf_calories;
     });
-
+    
     if (calories_burned_array.length > 0) {
       sum = calories_burned_array.reduce((acc, currentVal) => {
         return acc + currentVal;
@@ -24,7 +24,6 @@ class ExerciseResults extends Component {
   render() {
     let exercise_results_array = this.props.exerciseResults;
     let exercise_result = '';
-    console.log(exercise_results_array);
 
     exercise_result = exercise_results_array.map((result, index) => 
       <li key={index} className="exercise-list-item">
