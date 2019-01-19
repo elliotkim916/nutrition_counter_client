@@ -1,7 +1,7 @@
 import React from 'react';
 import RegistrationForm from './registration-form';
 
-export function RegistrationPage(props) {
+export default function RegistrationPage(props) {
   if (props.loggedIn) {
     return;
   }
