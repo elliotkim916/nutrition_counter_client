@@ -20,6 +20,10 @@ export class LandingPage extends React.Component {
         >
         Begin Now
         </button>
+
+        <button onClick={() => this.props.history.push('/registration-page')}>
+          REGISTER HERE
+        </button>
       </div>
     );
   }
