@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {reducer as formReducer} from 'redux-form';
+import authReducer from './reducers/auth';
 
 const store = createStore(
   combineReducers({
     nutrition: nutritionSearchReducer,
     exercise: exerciseSearchReducer,
-    form: formReducer
+    form: formReducer,
+    auth: authReducer
   }),
   applyMiddleware(thunk)
 );
