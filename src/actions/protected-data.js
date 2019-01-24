@@ -13,3 +13,21 @@ export const fetchProtectedDataError = error => ({
   error
 });
 
+export const fetchProtectedData = () => (getState, dispatch) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/protected`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${authToken}`
+    }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  // why is it {data} ?
+  .then(({data}) => dispatch(fetchProtectedDataSuccess(data)))
+  // why do some have { } and some dont?
+  .catch(err => {
+    fetchProtectedDataError(err)
+  });
+}
+
