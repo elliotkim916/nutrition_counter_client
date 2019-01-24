@@ -53,6 +53,23 @@ export const login = (username, password) => dispatch => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then()
-  )
+    // why does authToken have { } ?
+    .then(({authToken}) => {
+
+    })
+    .catch(err => {
+      // If the credentials are incorrect or if there is a server error, we normalize the error messages & 
+      // return a SubmissionError for redux form
+      const {code} = err;
+      const message = code === 401 ? 'Incorrect username or password' : 'Unable to login, please try again';
+
+      dispatch(authError(err));
+
+      return Promise.reject(
+        new SubmissionError({
+          _error: message
+        })
+      );
+    })
+  );
 }
