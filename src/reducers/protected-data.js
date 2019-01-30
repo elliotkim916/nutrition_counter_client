@@ -9,7 +9,7 @@ const initialState = {
   protected_data: ''
 }
 
-export default function protectedDataReducer(state=initialState, action) {
+export function protectedDataReducer(state=initialState, action) {
   if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
     return Object.assign({}, state, {
       protected_data: action.data,
