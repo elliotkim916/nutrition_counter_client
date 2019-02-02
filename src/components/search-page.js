@@ -6,7 +6,7 @@ import {get_exercise} from '../actions/exercise-search';
 import NutritionSearchResults from './nutrition-search-results';
 import ExerciseResults from './exercise-results';
 
-export class SearchPage extends React.Component {
+class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
