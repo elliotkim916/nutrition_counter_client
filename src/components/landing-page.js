@@ -2,7 +2,7 @@ import React from 'react';
 import './landing-page.css';
 import {connect} from 'react-redux';
 
-export class LandingPage extends React.Component {
+class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-page">
