@@ -2,7 +2,7 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {SubmissionError} from 'redux-form';
 import jwtDecode from 'jwt-decode';
-import {saveAuthToken} from '../local-storage';
+import {saveAuthToken, clearAuthToken} from '../local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -72,3 +72,22 @@ export const login = (username, password) => dispatch => {
     })
   );
 }
+
+export const refreshAuthToken = () => (getState, dispatch) => {
+  dispatch(authRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/auth/refresh`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+  .catch(err => {
+    dispatch(authError(err))
+    dispatch(clearAuth());
+    clearAuthToken(authToken);
+  });
+};
