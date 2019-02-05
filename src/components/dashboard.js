@@ -1,8 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
+import {fetchProtectedData} from '../actions/protected-data';
 
 export class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchProtectedData());
+  }
+
   logOut(e) {
     e.preventDefault();
     this.props.dispatch(clearAuth());
@@ -24,3 +30,5 @@ export class Dashboard extends React.Component {
     )
   }
 }
+
+export default connect()(Dashboard);
