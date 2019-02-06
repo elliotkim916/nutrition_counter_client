@@ -23,7 +23,8 @@ export const fetchProtectedData = () => (getState, dispatch) => {
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  // why is it {data} ?
+  // why is it {data} ? because we are using object destructuring , if we weren't object destructuring we would get 
+  // .then(res => dispatch(fetchProtectedDataSuccess(res.data)))
   .then(({data}) => dispatch(fetchProtectedDataSuccess(data)))
   // why do some have { } and some dont?
   .catch(err => {
