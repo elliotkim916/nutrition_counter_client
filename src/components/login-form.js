@@ -2,16 +2,18 @@ import React from 'react';
 import {reduxForm, Field, focus} from 'redux-form';
 import {required, nonEmpty, isTrimmed, length, matches} from '../validators';
 import Input from './input';
+import {login} from '../actions/auth';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
-    console.log(values);
+    const {username, password} = values;
+    return this.props.dispatch(login(username, password));
   }
 
   render() {
     return (
       <div className="login-form">
-        <form onSubmit={this.props.handleSubmit(values => onSubmit(values))}>
+        <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <Field
             component={Input}
             type="text"
