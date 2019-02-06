@@ -21,7 +21,7 @@ export class App extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.stopPeriodicRefresh();
   }
 
@@ -32,6 +32,7 @@ export class App extends Component {
     this.refreshInterval = setInterval(() => 
       this.props.dispatch(refreshAuthToken()), 
       60 * 60 * 1000
+      // one hour
     );
   }
 
