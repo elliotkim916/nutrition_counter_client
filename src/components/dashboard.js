@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import {fetchProtectedData} from '../actions/protected-data';
+import requiresLogin from './requires-login';
+import SearchPage from './search-page';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -18,17 +20,22 @@ export class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-      <a 
-        href = "/"
-        className = "log-out"
-        onClick = {(e) => this.logOut(e)}
-      >
-      Log Out
-      </a>
-        <h1>Welcome user!</h1>
+        <a 
+          href = "/"
+          className = "log-out"
+          onClick = {(e) => this.logOut(e)}
+        >
+        Log Out
+        </a>
+        <h1>Welcome {this.props.username}</h1>
+        <SearchPage/>
       </div>
-    )
+    );
   }
 }
 
-export default connect()(Dashboard);
+const mapStateToProps = state => ({
+  username: state.auth.currentUser.username
+});
+
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));
