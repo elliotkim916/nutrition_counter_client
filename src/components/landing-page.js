@@ -14,12 +14,12 @@ class LandingPage extends React.Component {
 
         <h4>Enter your workout and the duration of your workout and get back a best estimation of how many calories you burned.</h4>
 
-        <button 
+        {/* <button 
           type="submit" 
           onClick={() => this.props.history.push('/nutrition-search')}
         >
         Begin Now
-        </button>
+        </button> */}
 
         <button onClick={() => this.props.history.push('/registration-page')}>
           REGISTER HERE
