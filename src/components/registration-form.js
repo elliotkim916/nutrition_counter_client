@@ -5,6 +5,10 @@ import Input from './input';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
 
+// why does this cause errors if these variables are within the render function?
+const passwordLength = length({min: 8, max: 72});
+const matchesPassword = matches('password');
+
 export class RegistrationForm extends React.Component {
   onSubmit(values) {
     console.log(values);
@@ -12,7 +16,7 @@ export class RegistrationForm extends React.Component {
     const user = {username, password}; 
     return this.props.dispatch(registerUser(user))
     .then(() => {
-      return this.props.dispatch(login(user.username, user.password));
+      return this.props.dispatch(login(username, password));
     })
     .catch(err => {
       if (err.name === 'SubmissionError') {
@@ -22,9 +26,6 @@ export class RegistrationForm extends React.Component {
   }
 
   render() {
-    const passwordLength = length({min: 8, max: 72});
-    const matchesPassword = matches('password');
-
     return (
       <form 
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
@@ -41,21 +42,18 @@ export class RegistrationForm extends React.Component {
           name="password"
           type="password"
           label="Enter password"
-          validate={[required, nonEmpty, isTrimmed, passwordLength]}
+          validate={[required, isTrimmed, passwordLength]}
         />
         <Field
           component={Input}
           name="passwordConfirm"
           type="password"
           label="Confirm password"
-          validate={[required, nonEmpty, isTrimmed, matchesPassword]}
+          validate={[required, nonEmpty, matchesPassword]}
         />
         <button 
           type="submit"
-          disabled={
-            this.props.pristine ||
-            this.props.submitting
-          }
+          disabled={this.props.pristine || this.props.submitting}
         >
         REGISTER
         </button>
