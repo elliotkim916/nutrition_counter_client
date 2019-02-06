@@ -1,6 +1,6 @@
 import React from 'react';
 import {reduxForm, Field, focus} from 'redux-form';
-import {required, nonEmpty, isTrimmed, length, matches} from '../validators';
+import {required, nonEmpty} from '../validators';
 import Input from './input';
 import {login} from '../actions/auth';
 
@@ -30,7 +30,8 @@ export class LoginForm extends React.Component {
           />
           <button 
             type="submit"
-            className="login-btn"  
+            className="login-btn"
+            disabled={this.props.pristine || this.props.submitting}  
           >
             LOG IN
           </button>
