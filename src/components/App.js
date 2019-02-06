@@ -24,6 +24,9 @@ export class App extends Component {
   }
 
   startPeriodicRefresh() {
+    // we use this because we want to use the same refreshInterval variable everytime
+    // we are replacing the existing interval with a new interval
+    // without the this, we would have many intervals as you call the startPeriodicRefresh()
     this.refreshInterval = setInterval(() => 
       this.props.dispatch(refreshAuthToken()), 
       60 * 60 * 1000
@@ -31,10 +34,12 @@ export class App extends Component {
   }
 
   stopPeriodicRefresh() {
+    // if this.refreshInterval doesn't exist, nothing happens
     if (!this.refreshInterval) {
       return;
     }
 
+    // clearInterval along with setInterval are built in functions within JavaScript
     clearInterval(this.refreshInterval);
   }
 
