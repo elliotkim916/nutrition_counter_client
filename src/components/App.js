@@ -6,6 +6,7 @@ import history from '../history';
 import LandingPage from './landing-page';
 import SearchPage from './search-page';
 import RegistrationPage from './registration-page';
+import LoginPage from './login-page';
 import {refreshAuthToken} from '../actions/auth';
 // import Practice from './practice';
 // import ApiCall from './apicall-practice';
@@ -48,6 +49,7 @@ export class App extends Component {
        <Router history={history}>
         <div className="App">
           <Route exact path="/registration-page" component={RegistrationPage} />
+          <Route exact path="/login-page" component={LoginPage} />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/nutrition-search" component={SearchPage}/>
         </div>
