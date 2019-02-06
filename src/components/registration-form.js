@@ -1,15 +1,24 @@
 import React from 'react';
-import {reduxForm, Field, focus} from 'redux-form';
+import {reduxForm, Field, focus, SubmissionError} from 'redux-form';
 import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
 import Input from './input';
 import {registerUser} from '../actions/users';
+import {login} from '../actions/auth';
 
 export class RegistrationForm extends React.Component {
   onSubmit(values) {
     console.log(values);
     const {username, password} = values;
     const user = {username, password}; 
-    return this.props.dispatch(registerUser(user));
+    return this.props.dispatch(registerUser(user))
+    .then(() => {
+      return this.props.dispatch(login(user.username, user.password));
+    })
+    .catch(err => {
+      if (err.name === 'SubmissionError') {
+        throw new SubmissionError({username: 'Username already exists'});
+      }
+    });
   }
 
   render() {
