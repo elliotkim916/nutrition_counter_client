@@ -2,14 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import {fetchProtectedData} from '../actions/protected-data';
+// import {fetchProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
 import SearchPage from './search-page';
 
 export class Dashboard extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(fetchProtectedData());
-  }
+  // componentDidMount() {
+  //   this.props.dispatch(fetchProtectedData());
+  // }
 
   logOut(e) {
     e.preventDefault();
