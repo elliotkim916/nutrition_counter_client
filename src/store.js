@@ -1,5 +1,6 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
+// import logger from 'redux-logger';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {protectedDataReducer} from './reducers/protected-data';
