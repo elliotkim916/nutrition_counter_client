@@ -45,7 +45,7 @@ export const login = (username, password) => dispatch => {
     fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
@@ -54,7 +54,6 @@ export const login = (username, password) => dispatch => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    // why does authToken have { } ?
     .then(({authToken}) => storeAuthInfo(authToken, dispatch))
     .catch(err => {
       // If the credentials are incorrect or if there is a server error, we normalize the error messages & 
@@ -72,8 +71,11 @@ export const login = (username, password) => dispatch => {
     })
   );
 }
+// no curly brackets because with ES6, if its just one line of code we can do without the curly brackets
+// if its more than one line of code, we need curly brackets or code will break
 
-export const refreshAuthToken = () => (getState, dispatch) => {
+// why does the order of dispatch and getState matter in this function?
+export const refreshAuthToken = () => (dispatch, getState) => {
   dispatch(authRequest());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/auth/refresh`, {
