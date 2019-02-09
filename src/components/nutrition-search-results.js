@@ -67,6 +67,7 @@ class NutritionSearchResults extends Component {
     return (
       <section className="nutrition-search-results">
         <form className="nutrition-form" onSubmit={(e) => this.onSubmit(e)}>
+        {/* callback function automatically binds the this.onSubmit method to this particular component */}
           <ul className="nutrition-results">
             {nutrition_result}
           </ul>
