@@ -9,24 +9,83 @@ class NutritionSearchResults extends Component {
     console.log(this.props.nutritionResults);
   }
 
-  renderResult() {
-    let sum;
-    let nutrition_results_array = this.props.nutritionResults;
-    
-    let total_calories = nutrition_results_array.map(cal => {
-      return cal.nf_calories;
-    });
+  // renderTotalCalories() {
+  //   let sum;
+  //   let nutrition_results_array = this.props.nutritionResults;
+  //   let total_calories = nutrition_results_array.map(cal => {
+  //     return cal.nf_calories;
+  //   });
   
-    if (total_calories.length > 0) {
-      sum = total_calories.reduce((acc, currentVal) => {
-        return acc + currentVal;
-      });    
+  //   if (total_calories.length > 0) {
+  //     sum = total_calories.reduce((acc, currentVal) => {
+  //       return Math.floor(acc + currentVal);
+  //     });    
+
+  //     return (
+  //       <h3 className="calories-sum">Total Calories Consumed: {sum}</h3>  
+  //     );
+  //   } else {
+  //     console.log('Unable to render total calories');
+  //   }
+  // }
+
+  renderTotals() {
+    let nutrition_results_array = this.props.nutritionResults;
+    console.log(nutrition_results_array);
+    let calories = [];
+    let fat = [];
+    let carbs = [];
+    let sugar = [];
+    let sodium = [];
+    let protein = [];
+
+    for (let i = 0; i < nutrition_results_array.length; i++) {
+      nutrition_results_array[i].nf_calories ? calories.push(nutrition_results_array[i].nf_calories) : console.log('calorie fail');
+      nutrition_results_array[i].nf_total_carbohydrate ? carbs.push(nutrition_results_array[i].nf_total_carbohydrate) : console.log('carb fail');
+      nutrition_results_array[i].nf_sodium ? sodium.push(nutrition_results_array[i].nf_sodium) : console.log('sodium fail');
+      nutrition_results_array[i].nf_sugars ? sugar.push(nutrition_results_array[i].nf_sugars) : console.log('sugar fail');
+      nutrition_results_array[i].nf_total_fat ? fat.push(nutrition_results_array[i].nf_total_fat) : console.log('fat fail');
+      nutrition_results_array[i].nf_protein ? protein.push(nutrition_results_array[i].nf_protein) : console.log('protein fail');
+    }
+    
+    if (calories.length && fat.length && carbs.length && sugar.length && sodium.length > 0 && protein.length > 0) {
+      let total_calories = calories.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
+      
+      let total_fat = fat.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
+
+      let total_carbs = carbs.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
+
+      let total_protein = protein.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
+
+      let total_sugar = sugar.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
+
+      let total_sodium = sodium.reduce((acc, currentVal) => {
+        return Math.floor(acc + currentVal);
+      });
 
       return (
-        <h3 className="calories-sum">Total Calories Consumed: {sum}</h3>  
+        <div>
+          <h3>Nutrition Totals</h3>
+          <ul>
+            <li>{total_calories} calories</li>
+            <li>{total_fat} grams of fat</li>
+            <li>{total_carbs} grams of carbohydrates</li>
+            <li>{total_protein} grams of protein</li>
+            <li>{total_sugar} grams of sugar</li>
+            <li>{total_sodium} mg of sodium</li>
+          </ul>
+        </div>
       );
-    } else {
-      console.log('unable to render total calories');
     }
   }
 
@@ -71,7 +130,8 @@ class NutritionSearchResults extends Component {
           <ul className="nutrition-results">
             {nutrition_result}
           </ul>
-          {this.renderResult()}
+          {/* {this.renderTotalCalories()} */}
+          {this.renderTotals()}
           {this.renderSubmitButton()}
         </form>
       </section>
