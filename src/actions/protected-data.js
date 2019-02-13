@@ -42,6 +42,8 @@ export const fetchProtectedData = () => (dispatch, getState) => {
   .catch(err => fetchProtectedDataError(err));
 }
 
+// order of dispatch, getState is important because in redux thunk, the second parameter in the async action,
+// the first parameter is for dispatch, and the second is for getState
 export const addProtectedData = (calories, fat, carbs, protein, sugar, sodium, username) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   const username = getState().auth.currentUser.username;
