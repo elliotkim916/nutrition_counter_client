@@ -1,37 +1,18 @@
 import React, {Component} from 'react';
 import './nutrition-search-results.css';
 import {connect} from 'react-redux';
+import {addProtectedData} from '../actions/protected-data';
 
 class NutritionSearchResults extends Component {
-  onSubmit(e) {
+  onAdd(e, cal, fat, carbs, protein, sugar, sodium, username) {
     e.preventDefault();
     console.log('clicked');
-    console.log(this.props.nutritionResults);
+    console.log('username is ' + username);
+    this.props.dispatch(addProtectedData(cal, fat, carbs, protein, sugar, sodium, username));
   }
-
-  // renderTotalCalories() {
-  //   let sum;
-  //   let nutrition_results_array = this.props.nutritionResults;
-  //   let total_calories = nutrition_results_array.map(cal => {
-  //     return cal.nf_calories;
-  //   });
-  
-  //   if (total_calories.length > 0) {
-  //     sum = total_calories.reduce((acc, currentVal) => {
-  //       return Math.floor(acc + currentVal);
-  //     });    
-
-  //     return (
-  //       <h3 className="calories-sum">Total Calories Consumed: {sum}</h3>  
-  //     );
-  //   } else {
-  //     console.log('Unable to render total calories');
-  //   }
-  // }
 
   renderTotals() {
     let nutrition_results_array = this.props.nutritionResults;
-    console.log(nutrition_results_array);
     let calories = [];
     let fat = [];
     let carbs = [];
@@ -75,28 +56,20 @@ class NutritionSearchResults extends Component {
 
       return (
         <div>
+          <form onSubmit = {(e) => this.onAdd(e, total_calories, total_fat, total_carbs, total_protein, total_sugar, total_sodium, this.props.username)}>
           <h3>Nutrition Totals</h3>
-          <ul>
-            <li>{total_calories} calories</li>
-            <li>{total_fat} grams of fat</li>
-            <li>{total_carbs} grams of carbohydrates</li>
-            <li>{total_protein} grams of protein</li>
-            <li>{total_sugar} grams of sugar</li>
-            <li>{total_sodium} mg of sodium</li>
-          </ul>
+            <ul>
+              <li>{total_calories} Calories</li>
+              <li>{total_fat} grams of Fat</li>
+              <li>{total_carbs} grams of Carbohydrates</li>
+              <li>{total_protein} grams of Protein</li>
+              <li>{total_sugar} grams of Sugar</li>
+              <li>{total_sodium} mg of Sodium</li>
+            </ul>
+            <button type="submit">Save Nutrition</button>
+          </form>
         </div>
       );
-    }
-  }
-
-  renderSubmitButton() {
-    const resultsArray = this.props.nutritionResults;
-    if (resultsArray.length > 0) {
-      return (
-        <button type="submit" className="save-btn">SAVE NUTRITION</button>
-      );
-    } else {
-      console.log('unable to render submit button');
     }
   }
 
@@ -125,22 +98,19 @@ class NutritionSearchResults extends Component {
 
     return (
       <section className="nutrition-search-results">
-        <form className="nutrition-form" onSubmit={(e) => this.onSubmit(e)}>
         {/* callback function automatically binds the this.onSubmit method to this particular component */}
-          <ul className="nutrition-results">
-            {nutrition_result}
-          </ul>
-          {/* {this.renderTotalCalories()} */}
-          {this.renderTotals()}
-          {this.renderSubmitButton()}
-        </form>
+        <ul className="nutrition-results">
+          {nutrition_result}
+        </ul>
+        {this.renderTotals()}
       </section>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  nutritionResults: state.nutrition.nutrition
+  nutritionResults: state.nutrition.nutrition,
+  username: state.auth.currentUser.username
 });
 
 export default connect(mapStateToProps)(NutritionSearchResults);
