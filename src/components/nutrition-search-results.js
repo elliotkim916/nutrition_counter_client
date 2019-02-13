@@ -6,8 +6,6 @@ import {addProtectedData} from '../actions/protected-data';
 class NutritionSearchResults extends Component {
   onAdd(e, cal, fat, carbs, protein, sugar, sodium, username) {
     e.preventDefault();
-    console.log('clicked');
-    console.log('username is ' + username);
     this.props.dispatch(addProtectedData(cal, fat, carbs, protein, sugar, sodium, username));
   }
 
@@ -29,7 +27,7 @@ class NutritionSearchResults extends Component {
       nutrition_results_array[i].nf_protein ? protein.push(nutrition_results_array[i].nf_protein) : console.log('protein fail');
     }
     
-    if (calories.length && fat.length && carbs.length && sugar.length && sodium.length > 0 && protein.length > 0) {
+    if (calories.length > 0 && fat.length > 0 && carbs.length > 0 && sugar.length > 0 && sodium.length > 0 && protein.length > 0) {
       let total_calories = calories.reduce((acc, currentVal) => {
         return Math.floor(acc + currentVal);
       });
@@ -97,8 +95,8 @@ class NutritionSearchResults extends Component {
     );
 
     return (
+      // callback function automatically binds the this.onSubmit method to this particular component 
       <section className="nutrition-search-results">
-        {/* callback function automatically binds the this.onSubmit method to this particular component */}
         <ul className="nutrition-results">
           {nutrition_result}
         </ul>
