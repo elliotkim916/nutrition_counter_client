@@ -5,10 +5,9 @@ import {
 } from '../actions/protected-data';
 
 const initialState = {
+  protected_data: [],
   loading: false,
-  error: null,
-  protected_data: '',
-  addedProtectedData: ''
+  error: null
 }
 
 export function protectedDataReducer(state=initialState, action) {
@@ -26,7 +25,7 @@ export function protectedDataReducer(state=initialState, action) {
     });
   } else if (action.type === ADD_PROTECTED_DATA) {
     return Object.assign({}, state, {
-      addedProtectedData: action.addedProtectedData,
+      protected_data: state.protected_data.push(action.addedProtectedData),
       loading: false,
       error: null
     });
