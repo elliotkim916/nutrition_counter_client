@@ -75,7 +75,6 @@ export const login = (username, password) => dispatch => {
 // no curly brackets because with ES6, if its just one line of code we can do without the curly brackets
 // if its more than one line of code, we need curly brackets or code will break
 
-// why does the order of dispatch and getState matter in this function?
 export const refreshAuthToken = () => (dispatch, getState) => {
   dispatch(authRequest());
   const authToken = getState().auth.authToken;
