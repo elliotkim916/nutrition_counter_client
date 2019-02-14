@@ -33,14 +33,8 @@ export class NutritionSearchResults extends Component {
 
     for (let i = 0; i < nutrition_results_array.length; i++) {
       for (let j = 0; j < keys.length; j++) {
-
-        if (nutrition_results_array[i][keys[j]]) {
-          nutritionTotals[keys[j]] = Math.floor(nutritionTotals[keys[j]] += nutrition_results_array[i][keys[j]]);
-        }
-        
-        if (j === keys.length - 1) {
-          add_count_of_j = j;
-        }
+        nutritionTotals[keys[j]] = Math.floor(nutritionTotals[keys[j]] += nutrition_results_array[i][keys[j]]);
+        j === keys.length - 1 ? add_count_of_j = j : console.log('j error');
       }     
     }
 
