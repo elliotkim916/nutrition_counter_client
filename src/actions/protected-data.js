@@ -44,16 +44,19 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 
 // order of dispatch, getState is important because in redux thunk, the second parameter in the async action,
 // the first parameter is for dispatch, and the second is for getState
-export const addProtectedData = (calories, fat, carbs, protein, sugar, sodium, username) => (dispatch, getState) => {
+export const addProtectedData = (nutrition_object, username) => (dispatch, getState) => {
+  // const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutritionObject;
+  // why when doing object destructuring, do the keys have to match my actual object?
+  const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
   const authToken = getState().auth.authToken;
   const username = getState().auth.currentUser.username;
   const data = JSON.stringify({
-    calories: calories,
-    fat: fat,
-    carbs: carbs,
-    protein: protein,
-    sugar: sugar,
-    sodium: sodium,
+    calories: nf_calories,
+    fat: nf_total_fat,
+    carbs: nf_total_carbohydrate,
+    protein: nf_protein,
+    sugar: nf_sugars,
+    sodium: nf_sodium,
     username: username
   });
   const headers = {
