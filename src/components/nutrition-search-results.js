@@ -13,9 +13,7 @@ export class NutritionSearchResults extends Component {
 
   onAdd(e, nutritionObject, username) {
     e.preventDefault();
-    const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutritionObject;
-    // why when doing object destructuring, do the keys have to match my actual object?
-    this.props.dispatch(addProtectedData(nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium, username));
+    this.props.dispatch(addProtectedData(nutritionObject, username));
   }
 
   renderTotals() {
