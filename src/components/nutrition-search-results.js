@@ -3,66 +3,59 @@ import './nutrition-search-results.css';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 
-class NutritionSearchResults extends Component {
-  onAdd(e, cal, fat, carbs, protein, sugar, sodium, username) {
+export class NutritionSearchResults extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      added: false
+    }
+  }
+
+  onAdd(e, nutritionObject, username) {
     e.preventDefault();
-    this.props.dispatch(addProtectedData(cal, fat, carbs, protein, sugar, sodium, username));
+    const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutritionObject;
+    // why when doing object destructuring, do the keys have to match my actual object?
+    this.props.dispatch(addProtectedData(nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium, username));
   }
 
   renderTotals() {
     let nutrition_results_array = this.props.nutritionResults;
-    let calories = [];
-    let fat = [];
-    let carbs = [];
-    let sugar = [];
-    let sodium = [];
-    let protein = [];
+    let nutritionTotals = {
+      'nf_calories': 0,
+      'nf_total_fat': 0,
+      'nf_total_carbohydrate': 0,
+      'nf_protein': 0,
+      'nf_sugars': 0,
+      'nf_sodium': 0
+    };
+    let keys = Object.keys(nutritionTotals);
+    let add_count_of_j;
 
     for (let i = 0; i < nutrition_results_array.length; i++) {
-      nutrition_results_array[i].nf_calories ? calories.push(nutrition_results_array[i].nf_calories) : console.log('calorie fail');
-      nutrition_results_array[i].nf_total_carbohydrate ? carbs.push(nutrition_results_array[i].nf_total_carbohydrate) : console.log('carb fail');
-      nutrition_results_array[i].nf_sodium ? sodium.push(nutrition_results_array[i].nf_sodium) : console.log('sodium fail');
-      nutrition_results_array[i].nf_sugars ? sugar.push(nutrition_results_array[i].nf_sugars) : console.log('sugar fail');
-      nutrition_results_array[i].nf_total_fat ? fat.push(nutrition_results_array[i].nf_total_fat) : console.log('fat fail');
-      nutrition_results_array[i].nf_protein ? protein.push(nutrition_results_array[i].nf_protein) : console.log('protein fail');
+      for (let j = 0; j < keys.length; j++) {
+
+        if (nutrition_results_array[i][keys[j]]) {
+          nutritionTotals[keys[j]] = Math.floor(nutritionTotals[keys[j]] += nutrition_results_array[i][keys[j]]);
+        }
+        
+        if (j === keys.length - 1) {
+          add_count_of_j = j;
+        }
+      }     
     }
-    
-    if (calories.length > 0 && fat.length > 0 && carbs.length > 0 && sugar.length > 0 && sodium.length > 0 && protein.length > 0) {
-      let total_calories = calories.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-      
-      let total_fat = fat.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
 
-      let total_carbs = carbs.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-
-      let total_protein = protein.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-
-      let total_sugar = sugar.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-
-      let total_sodium = sodium.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-
+    if (add_count_of_j) {
       return (
         <div>
-          <form onSubmit = {(e) => this.onAdd(e, total_calories, total_fat, total_carbs, total_protein, total_sugar, total_sodium, this.props.username)}>
+          <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, this.props.username)}>
           <h3>Nutrition Totals</h3>
             <ul>
-              <li>{total_calories} Calories</li>
-              <li>{total_fat} grams of Fat</li>
-              <li>{total_carbs} grams of Carbohydrates</li>
-              <li>{total_protein} grams of Protein</li>
-              <li>{total_sugar} grams of Sugar</li>
-              <li>{total_sodium} mg of Sodium</li>
+              <li>{nutritionTotals.nf_calories} calories</li>
+              <li>{nutritionTotals.nf_total_fat} grams of fat</li>
+              <li>{nutritionTotals.nf_total_carbohydrate} grams of carbohydrates</li>
+              <li>{nutritionTotals.nf_protein} grams of protein</li>
+              <li>{nutritionTotals.nf_sugars} grams of sugar</li>
+              <li>{nutritionTotals.nf_sodium} mg of sodium</li>
             </ul>
             <button type="submit">Save Nutrition</button>
           </form>
