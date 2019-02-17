@@ -50,7 +50,6 @@ export const addProtectedData = (nutrition_object, username) => (dispatch, getSt
   // why when doing object destructuring, do the keys have to match my actual object?
   const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
   const authToken = getState().auth.authToken;
-  const username = getState().auth.currentUser.username;
   const data = JSON.stringify({
     calories: nf_calories,
     fat: nf_total_fat,
