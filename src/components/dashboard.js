@@ -18,7 +18,25 @@ export class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props.protectedData);
+    let nutrition_array = this.props.protectedData;
+    let nutrition_totals = '';
+    if (nutrition_array) {
+      nutrition_totals = nutrition_array.map((value, index) => {
+        return (
+          <li key={index} className="nutrition_total">
+            <ul>
+              <li>{value.calories}</li>
+              <li>{value.fat}</li>
+              <li>{value.carbs}</li>
+              <li>{value.sugars}</li>
+              <li>{value.protein}</li>
+              <li>{value.sodium}</li>
+            </ul>
+          </li>
+        );
+      });
+    }
+
     return (
       <div className="dashboard">
         <a 
@@ -29,6 +47,7 @@ export class Dashboard extends React.Component {
         Log Out
         </a>
         <h1>Welcome {this.props.username}</h1>
+        {nutrition_totals}
         <SearchPage/>
       </div>
     );
