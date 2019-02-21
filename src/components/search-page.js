@@ -5,6 +5,7 @@ import {get_nutrition} from '../actions/nutrition-search';
 import {get_exercise} from '../actions/exercise-search';
 import NutritionSearchResults from './nutrition-search-results';
 import ExerciseResults from './exercise-results';
+// import {Link} from 'react-router-dom';
 
 class SearchPage extends React.Component {
   constructor(props) {
