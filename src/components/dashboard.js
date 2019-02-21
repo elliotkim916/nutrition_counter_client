@@ -6,6 +6,10 @@ import {fetchProtectedData, deleteData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
 import SearchPage from './search-page';
 
+const listStyle = {
+  listStyleType : 'none'
+};
+
 export class Dashboard extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProtectedData());
@@ -31,14 +35,14 @@ export class Dashboard extends React.Component {
     if (nutrition_array) {
       nutrition_totals = nutrition_array.map((value, index) => {
         return (
-          <li key={index} className="nutrition_total">
+          <li style = {listStyle} key = {index} className = "nutrition_total">
             <ul>
-              <li>{value.calories}</li>
-              <li>{value.fat}</li>
-              <li>{value.carbs}</li>
-              <li>{value.sugars}</li>
-              <li>{value.protein}</li>
-              <li>{value.sodium}</li>
+              <li>Calories : {value.calories} grams</li>
+              <li>Fat : {value.fat} grams</li>
+              <li>Carbohydrates : {value.carbs} grams</li>
+              <li>Sugar : {value.sugars} grams</li>
+              <li>Protein : {value.protein} grams</li>
+              <li>Sodium : {value.sodium} mg</li>
             </ul>
             <button onClick = {e => this.onDelete(e, value._id)}>Delete</button>
           </li>
