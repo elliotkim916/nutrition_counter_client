@@ -12,7 +12,6 @@ const initialState = {
 }
 
 export function protectedDataReducer(state=initialState, action) {
-  console.log(action.data);
   if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
     return Object.assign({}, state, {
       protected_data:  action.data,
@@ -26,18 +25,17 @@ export function protectedDataReducer(state=initialState, action) {
     });
   } else if (action.type === ADD_PROTECTED_DATA) {
     return Object.assign({}, state, {
-      protected_data: action.data.unshift(action.addedProtectedData),
+      protected_data: state.protected_data.push(action.addedProtectedData),
       loading: false,
       error: null
     });
   } else if (action.type === DELETE_PROTECTED_DATA) {
-    // with the filter method, its able to filter with the action.data array?
-    console.log(action);
+    // Why are we using state.protected_data?
     return Object.assign({}, state, {
-      protected_data: action.data.filter(nutrition => nutrition._id !== action.id),
+      protected_data: state.protected_data.filter(nutrition => nutrition._id !== action.id),
       loading: false,
       error: null
-    })
+    });
   }
   return state;
 }
