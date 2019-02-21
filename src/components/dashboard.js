@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import {fetchProtectedData} from '../actions/protected-data';
+import {fetchProtectedData, deleteData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
 import SearchPage from './search-page';
 
@@ -15,6 +15,14 @@ export class Dashboard extends React.Component {
     e.preventDefault();
     this.props.dispatch(clearAuth());
     clearAuthToken();
+  }
+
+  onDelete(e, id) {
+    e.preventDefault();
+    const result = window.confirm('Are you sure you want to delete?  If so, click OK');
+    if (result) {
+      this.props.dispatch(deleteData(id));
+    }
   }
 
   render() {
@@ -32,6 +40,7 @@ export class Dashboard extends React.Component {
               <li>{value.protein}</li>
               <li>{value.sodium}</li>
             </ul>
+            <button onClick = {e => this.onDelete(e, value._id)}>Delete</button>
           </li>
         );
       });
