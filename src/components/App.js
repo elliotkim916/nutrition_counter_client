@@ -8,6 +8,7 @@ import SearchPage from './search-page';
 import RegistrationPage from './registration-page';
 import LoginPage from './login-page';
 import Dashboard from './dashboard';
+import NutritionSearchResults from './nutrition-search-results';
 import {refreshAuthToken} from '../actions/auth';
 // import Practice from './practice';
 // import ApiCall from './apicall-practice';
@@ -54,7 +55,8 @@ export class App extends Component {
           <Route exact path="/login-page" component={LoginPage} />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/nutrition-search" component={SearchPage}/>
+          <Route exact path="/nutrition-search" component={SearchPage} />
+          <Route exact path="/search-results" component={NutritionSearchResults} />
         </div>
        </Router> 
     );
