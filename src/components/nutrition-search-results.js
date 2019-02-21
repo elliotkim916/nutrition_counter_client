@@ -61,10 +61,10 @@ export class NutritionSearchResults extends Component {
     let nutrition_result = '';  
     
     nutrition_result = nutrition_results_array.map((result, index) => 
-      <li key={index} className="nutrition-list-item">
-        <h3 className="food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
-        <img src={`${result.photo.thumb}`} className="food-image" alt="food item"/>
-        <ul className="nutrition-facts">
+      <li key = {index} className="nutrition-list-item">
+        <h3 className = "food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
+        <img src = {`${result.photo.thumb}`} className = "food-image" alt = "food item"/>
+        <ul className = "nutrition-facts">
           <li>Calories : {result.nf_calories === null ? 0 : result.nf_calories}</li>
           <li>Total Fat : {result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
           <li>Saturated Fat : {result.nf_saturated_fat === null ? 0 : result.nf_saturated_fat}g</li>
@@ -81,8 +81,8 @@ export class NutritionSearchResults extends Component {
 
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
-      <section className="nutrition-search-results">
-        <ul className="nutrition-results">
+      <section className = "nutrition-search-results">
+        <ul className = "nutrition-results">
           {nutrition_result}
         </ul>
         {this.renderTotals()}
