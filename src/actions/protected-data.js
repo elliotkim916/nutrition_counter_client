@@ -20,8 +20,9 @@ export const addProtectedDataSuccess = addedProtectedData => ({
 });
 
 export const DELETE_PROTECTED_DATA = 'DELETE_PROTECTED_DATA';
-export const deleteProtectedData = () => ({
-  type: DELETE_PROTECTED_DATA
+export const deleteProtectedData = id => ({
+  type: DELETE_PROTECTED_DATA,
+  id
 });
 
 export const fetchProtectedData = () => (dispatch, getState) => {
@@ -46,7 +47,6 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 // order of dispatch, getState is important because in redux thunk, the second parameter in the async action,
 // the first parameter is for dispatch, and the second is for getState
 export const addProtectedData = (nutrition_object, username) => (dispatch, getState) => {
-  // const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutritionObject;
   // why when doing object destructuring, do the keys have to match my actual object?
   const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
   const authToken = getState().auth.authToken;
@@ -73,4 +73,19 @@ export const addProtectedData = (nutrition_object, username) => (dispatch, getSt
   .then(res => res.json())
   .then(data => dispatch(addProtectedDataSuccess(data)))
   .catch(err => dispatch(fetchProtectedDataError(err)));
+}
+
+export const deleteData = id => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  const headers = {
+    'Authorization': `Bearer ${authToken}`,
+    'Content-Type': `application/json`
+  };
+
+  return fetch(`${API_BASE_URL}/nutrition/${id}`, {
+    headers,
+    method: 'DELETE'
+  })
+  .then(() => dispatch(deleteProtectedData(id)))
+  .catch(err => dispatch(fetchProtectedDataError(err)))
 }
