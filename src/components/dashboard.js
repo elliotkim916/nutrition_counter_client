@@ -31,7 +31,6 @@ export class Dashboard extends React.Component {
 
   render() {
     let nutrition_array = this.props.protectedData;
-    console.log(this.props.protectedData);
     let nutrition_totals = '';
     if (nutrition_array) {
       nutrition_totals = nutrition_array.map((value, index) => {
@@ -42,7 +41,7 @@ export class Dashboard extends React.Component {
               <li>Calories : {value.calories} grams</li>
               <li>Fat : {value.fat} grams</li>
               <li>Carbohydrates : {value.carbs} grams</li>
-              <li>Sugar : {value.sugars} grams</li>
+              <li>Sugar : {value.sugar} grams</li>
               <li>Protein : {value.protein} grams</li>
               <li>Sodium : {value.sodium} mg</li>
             </ul>
