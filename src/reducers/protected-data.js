@@ -21,14 +21,12 @@ export function protectedDataReducer(state=initialState, action) {
       error: null
     });
   } else if (action.type === ADD_PROTECTED_DATA) {
-    console.log(state);
     return Object.assign({}, state, {
       protected_data: [...state.protected_data, action.addedProtectedData],
       loading: false,
       error: null
     });
   } else if (action.type === DELETE_PROTECTED_DATA) {
-    // Why are we using state.protected_data?
     return Object.assign({}, state, {
       protected_data: state.protected_data.filter(nutrition => nutrition._id !== action.id),
       loading: false,
