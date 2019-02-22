@@ -3,6 +3,7 @@ import {
   APP_ID,
   APP_KEY
 } from '../config';
+import history from '../history';
 
 export const EXERCISE_SEARCH_REQUEST = 'EXERCISE_SEARCH_REQUEST';
 export const exerciseSearchRequest = () => ({
@@ -49,10 +50,7 @@ function fetch_exercise(exercise) {
 export const get_exercise = exercise => dispatch => {
   dispatch(exerciseSearchRequest())
   fetch_exercise(exercise)
-  .then(exercise => {
-    dispatch(exerciseSearchSuccess(exercise))
-  })
-  .catch(error => {
-    dispatch(exerciseSearchError(error));
-  });
+  .then(exercise => dispatch(exerciseSearchSuccess(exercise)))
+  .then(() => history.push('/results'))
+  .catch(error => dispatch(exerciseSearchError(error)));
 }
