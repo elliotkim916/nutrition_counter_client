@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './nutrition-search-results.css';
+// import SearchPage from './search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 
@@ -14,6 +15,7 @@ export class NutritionSearchResults extends Component {
   onAdd(e, nutritionObject, username) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(nutritionObject, username));
+    window.alert('You have just saved your nutrition!');
   }
 
   renderTotals() {
