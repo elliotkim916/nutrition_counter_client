@@ -31,12 +31,14 @@ export class Dashboard extends React.Component {
 
   render() {
     let nutrition_array = this.props.protectedData;
+    console.log(this.props.protectedData);
     let nutrition_totals = '';
     if (nutrition_array) {
       nutrition_totals = nutrition_array.map((value, index) => {
         return (
           <li style = {listStyle} key = {index} className = "nutrition_total">
             <ul>
+              <li>Date : {value.created}</li>
               <li>Calories : {value.calories} grams</li>
               <li>Fat : {value.fat} grams</li>
               <li>Carbohydrates : {value.carbs} grams</li>
@@ -59,7 +61,7 @@ export class Dashboard extends React.Component {
         >
         Log Out
         </a>
-        <h1>Welcome {this.props.username}</h1>
+        <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         {nutrition_totals}
         <SearchPage/>
       </div>
