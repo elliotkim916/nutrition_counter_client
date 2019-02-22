@@ -3,6 +3,7 @@ import {
   APP_ID,
   APP_KEY
 } from '../config';
+import history from '../history';
 
 export const NUTRITION_SEARCH_REQUEST = 'NUTRITION_SEARCH_REQUEST';
 export const nutrtionSearchRequest = () => ({
@@ -50,10 +51,7 @@ function fetch_nutrition(meal) {
 export const get_nutrition = meal => dispatch => {
   dispatch(nutrtionSearchRequest());
   fetch_nutrition(meal)
-  .then(meal => {
-    dispatch(nutritionSearchSuccess(meal))
-  })
-  .catch(error => {
-    dispatch(nutritionSearchError(error));
-  });
+  .then(meal => dispatch(nutritionSearchSuccess(meal)))
+  .then(() => history.push('/search-results'))
+  .catch(error => dispatch(nutritionSearchError(error)));
 } 
