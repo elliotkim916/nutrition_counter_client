@@ -4,7 +4,8 @@ import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import {fetchProtectedData, deleteData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
-import SearchPage from './search-page';
+import NutritionSearchPage from './nutrition-search-page';
+import ExerciseSearchPage from './exercise-search-page';
 
 const listStyle = {
   listStyleType : 'none'
@@ -62,7 +63,8 @@ export class Dashboard extends React.Component {
         </a>
         <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         {nutrition_totals}
-        <SearchPage/>
+        <NutritionSearchPage/>
+        <ExerciseSearchPage/>
       </div>
     );
   }
