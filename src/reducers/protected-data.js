@@ -16,7 +16,15 @@ const initialState = {
 export function protectedDataReducer(state=initialState, action) {
   if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {  
     return Object.assign({}, state, {
-      protected_data: action.data,
+      protected_data: action.data.sort((a, b) => {
+        if (b.created < a.created) {
+          return -1;
+        }
+        if (b.created > a.created) {
+          return 1;
+        }
+        return 0;
+      }),
       loading: false,
       error: null
     });
