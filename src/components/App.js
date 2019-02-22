@@ -4,11 +4,13 @@ import './App.css';
 import { Router, Route } from 'react-router-dom';
 import history from '../history';
 import LandingPage from './landing-page';
-import SearchPage from './search-page';
 import RegistrationPage from './registration-page';
 import LoginPage from './login-page';
 import Dashboard from './dashboard';
-import NutritionSearchResults from './nutrition-search-results';
+import NutritionSearchPage from './nutrition-search-page';
+import ExerciseSearchPage from './exercise-search-page';
+import NutritionResults from './nutrition-results';
+import ExerciseResults from './exercise-results';
 import {refreshAuthToken} from '../actions/auth';
 // import Practice from './practice';
 // import ApiCall from './apicall-practice';
@@ -49,18 +51,20 @@ export class App extends Component {
 
   render() {
     return (
-       <Router history={history}>
+       <Router history = {history}>
         <div className="App">
-          <Route exact path="/registration-page" component={RegistrationPage} />
-          <Route exact path="/login-page" component={LoginPage} />
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/nutrition-search" component={SearchPage} />
-          <Route exact path="/search-results" component={NutritionSearchResults} />
+          <Route exact path = "/registration-page" component = {RegistrationPage} />
+          <Route exact path = "/login-page" component = {LoginPage} />
+          <Route exact path = "/" component = {LandingPage} />
+          <Route exact path = "/dashboard" component = {Dashboard} />
+          <Route exact path = "/nutrition-search" component = {NutritionSearchPage} />
+          <Route exact path = "/exercise-search" component = {ExerciseSearchPage} />
+          <Route exact path = "/results" component = {NutritionResults} />
+          <Route exact path = "/results" component = {ExerciseResults} />
         </div>
        </Router> 
     );
-  }
+  } 
 }
 
 const mapStateToProps = state => ({
