@@ -12,9 +12,9 @@ export class NutritionSearchResults extends Component {
     }
   }
 
-  onAdd(e, nutritionObject, username) {
+  onAdd(e, nutritionObject, username, date) {
     e.preventDefault();
-    this.props.dispatch(addProtectedData(nutritionObject, username));
+    this.props.dispatch(addProtectedData(nutritionObject, username, date));
     window.alert('You have just saved your nutrition!');
   }
 
@@ -41,7 +41,7 @@ export class NutritionSearchResults extends Component {
     if (add_count_of_j) {
       return (
         <div>
-          <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, this.props.username)}>
+          <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, this.props.username, Date.now)}>
           <h3>Nutrition Totals</h3>
             <ul>
               <li>{nutritionTotals.nf_calories} calories</li>
