@@ -39,8 +39,6 @@ export const fetchProtectedData = () => (dispatch, getState) => {
   // why is it {data}? because we are using object destructuring , if we weren't object destructuring we would get 
   // .then(res => dispatch(fetchProtectedDataSuccess(res.data)))
   .then(data => dispatch(fetchProtectedDataSuccess(data)))
-  // why do some have { } and some dont?
-  // That is ES6.  If I only need one line of code, dont need curly brackets.
   .catch(err => fetchProtectedDataError(err));
 }
 
