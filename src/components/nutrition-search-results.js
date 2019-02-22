@@ -7,9 +7,6 @@ import {addProtectedData} from '../actions/protected-data';
 export class NutritionSearchResults extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      added: false
-    }
   }
 
   onAdd(e, nutritionObject, username, date) {
