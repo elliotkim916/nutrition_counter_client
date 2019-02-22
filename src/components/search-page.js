@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import './search-page.css';
 import {get_nutrition} from '../actions/nutrition-search';
 import {get_exercise} from '../actions/exercise-search';
-import NutritionSearchResults from './nutrition-search-results';
-import ExerciseResults from './exercise-results';
+// import NutritionSearchResults from './nutrition-search-results';
+// import ExerciseResults from './exercise-results';
 // import {Link} from 'react-router-dom';
 
 class SearchPage extends React.Component {
@@ -53,7 +53,7 @@ class SearchPage extends React.Component {
             </textarea><br/>
             <button type="submit">Calculate Meal</button>
           </form>
-          <NutritionSearchResults />
+          {/* <NutritionSearchResults /> */}
         </div>
 
         <div className="exercise-page">
@@ -69,7 +69,7 @@ class SearchPage extends React.Component {
             </textarea><br/>
             <button type="submit">Calculate Activity</button>
           </form>
-          <ExerciseResults />
+          {/* <ExerciseResults /> */}
         </div>
       </div>
     );
