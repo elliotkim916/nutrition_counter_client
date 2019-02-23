@@ -11,10 +11,10 @@ import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
   combineReducers({
-    nutrition: nutritionSearchReducer,
-    exercise: exerciseSearchReducer,
+    nutritionSearchReducer: nutritionSearchReducer,
+    exerciseSearchReducer: exerciseSearchReducer,
+    authReducer: authReducer,
     form: formReducer,
-    auth: authReducer,
     protected: protectedDataReducer
   }),
   applyMiddleware(thunk)
