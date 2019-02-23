@@ -58,8 +58,8 @@ export class ExerciseResults extends Component {
 }
 
 const mapStateToProps = state => ({
-  exerciseResults: state.exercise.exercise_results,
-  username: state.auth.currentUser.username
+  exerciseResults: state.exerciseSearchReducer.exercise_results,
+  username: state.authReducer.currentUser.username
 });
 
 export default connect(mapStateToProps)(ExerciseResults);

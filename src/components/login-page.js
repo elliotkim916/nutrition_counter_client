@@ -30,8 +30,8 @@ export class LoginPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null,
-  loading: state.auth.loading
+  loggedIn: state.authReducer.currentUser !== null,
+  loading: state.authReducer.loading
 });
 
 export default connect(mapStateToProps)(LoginPage);

@@ -95,8 +95,8 @@ export class NutritionResults extends Component {
 }
 
 const mapStateToProps = state => ({
-  nutritionResults: state.nutrition.nutrition,
-  username: state.auth.currentUser.username
+  nutritionResults: state.nutritionSearchReducer.nutrition,
+  username: state.authReducer.currentUser.username
 });
 
 export default connect(mapStateToProps)(NutritionResults);
