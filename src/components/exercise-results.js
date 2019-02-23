@@ -8,37 +8,29 @@ export class ExerciseResults extends Component {
     // Need to add code that will dispatch my async action that will make POST request to server
   }
 
-  renderResult() {
-    let calorieSum;
-    let durationSum;
+  renderTotals() {
     let exercise_results_array = this.props.exerciseResults;
-    let calories_burned_array = exercise_results_array.map(cal => {
-      return cal.nf_calories;
-    });
-    let total_duration_array = exercise_results_array.map(val => {
-      return val.duration_min;
-    });
+    let exerciseTotals = {
+      'nf_calories' : 0,
+      'duration_min' : 0
+    };
     
-    if (calories_burned_array.length && total_duration_array.length > 0) {
-      calorieSum = calories_burned_array.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-      durationSum = total_duration_array.reduce((acc, currentVal) => {
-        return Math.floor(acc + currentVal);
-      });
-
-      return (
-        <div className = "exercise-totals">
-          <form
-            // onSubmit = {(e) => this.onAdd(e, cal, dur, this.props.username, Date.now)}
-          >
-            <h3>Total Calories Burned : {calorieSum}</h3>
-            <h3>Total Duration : {durationSum}</h3>
-            <button type = "submit">Save Exercise</button>
-          </form>
-        </div>
-      );
+    for (let i = 0; i < exercise_results_array.length; i++) {
+      exerciseTotals.nf_calories = Math.floor(exerciseTotals.nf_calories += exercise_results_array[i].nf_calories);
+      exerciseTotals.duration_min = Math.floor(exerciseTotals.duration_min += exercise_results_array[i].duration_min);
     }
+
+    return (
+      <div className = "exercise-totals">
+        <form
+          // onSubmit = {(e) => this.onAdd(e, cal, dur, this.props.username, Date.now)}
+        >
+          <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
+          <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
+          <button type = "submit">Save Exercise</button>
+        </form>
+      </div>
+    );
   }
 
   render() {
@@ -59,7 +51,7 @@ export class ExerciseResults extends Component {
         <ul className="exercise-results">
           {exercise_result}
         </ul>
-        {this.renderResult()}
+        {this.renderTotals()}
       </section>
     );
   }
