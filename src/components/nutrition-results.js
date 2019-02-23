@@ -6,6 +6,11 @@ import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 
 export class NutritionResults extends Component {
+  componentWillUnmount() {
+    // I want my previous results to not appear when user leaves this component
+    console.log('unmount test');
+  }
+
   onAdd(e, nutritionObject, username, date) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(nutritionObject, username, date));
