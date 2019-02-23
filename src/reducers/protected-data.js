@@ -11,8 +11,6 @@ const initialState = {
   error: null
 }
 
-// state is immutable in react/redux
-// directly modifying vs making a copy
 export function protectedDataReducer(state=initialState, action) {
   if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {  
     return Object.assign({}, state, {
@@ -22,6 +20,8 @@ export function protectedDataReducer(state=initialState, action) {
     });
   } else if (action.type === ADD_PROTECTED_DATA) {
     return Object.assign({}, state, {
+      // Not directly altering state, can't do that in react/redux
+      // Taking copy of all contents within state.protected_data & including action.addedProtectedData
       protected_data: [...state.protected_data, action.addedProtectedData],
       loading: false,
       error: null
