@@ -14,23 +14,27 @@ export class ExerciseResults extends Component {
       'nf_calories' : 0,
       'duration_min' : 0
     };
+    let i_count;
     
     for (let i = 0; i < exercise_results_array.length; i++) {
       exerciseTotals.nf_calories = Math.floor(exerciseTotals.nf_calories += exercise_results_array[i].nf_calories);
       exerciseTotals.duration_min = Math.floor(exerciseTotals.duration_min += exercise_results_array[i].duration_min);
+      i === exercise_results_array.length - 1 ? i_count = i : console.log('i error');
     }
-
-    return (
-      <div className = "exercise-totals">
-        <form
-          // onSubmit = {(e) => this.onAdd(e, cal, dur, this.props.username, Date.now)}
-        >
-          <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
-          <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
-          <button type = "submit">Save Exercise</button>
-        </form>
-      </div>
-    );
+    
+    if (i_count) {
+      return (
+        <div className = "exercise-totals">
+          <form
+            // onSubmit = {(e) => this.onAdd(e, cal, dur, this.props.username, Date.now)}
+          >
+            <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
+            <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
+            <button type = "submit">Save Exercise</button>
+          </form>
+        </div>
+      );
+    }
   }
 
   render() {
