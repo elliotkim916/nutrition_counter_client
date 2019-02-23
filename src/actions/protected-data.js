@@ -26,8 +26,8 @@ export const deleteProtectedData = id => ({
 });
 
 export const fetchProtectedData = () => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
-  const username = getState().auth.currentUser.username;
+  const authToken = getState().authReducer.authToken;
+  const username = getState().authReducer.currentUser.username;
   return fetch(`${API_BASE_URL}/nutrition/${username}`, {
     method: 'GET',
     headers: {
@@ -47,7 +47,7 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 export const addProtectedData = (nutrition_object, username, date) => (dispatch, getState) => {
   // why when doing object destructuring, do the keys have to match my actual object?
   const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
-  const authToken = getState().auth.authToken;
+  const authToken = getState().authReducer.authToken;
   const data = JSON.stringify({
     calories: nf_calories,
     fat: nf_total_fat,
@@ -75,7 +75,7 @@ export const addProtectedData = (nutrition_object, username, date) => (dispatch,
 }
 
 export const deleteData = id => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
+  const authToken = getState().authReducer.authToken;
   const headers = {
     'Authorization': `Bearer ${authToken}`,
     'Content-Type': `application/json`
