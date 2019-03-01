@@ -2,25 +2,26 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './nutrition-search-page.css';
 import {get_nutrition} from '../actions/nutrition-search';
+import requiresLogin from './requires-login';
 
 export class NutritionSearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      meal_value: ''
+      meal_value : ''
     }
   }
   
   mealInput(e) {
-    this.setState({meal_value: e.target.value});
+    this.setState({meal_value : e.target.value});
   }
-
+  
   calculateMeal(e) {
     e.preventDefault();
     this.props.dispatch(get_nutrition(this.state.meal_value));
-    this.setState({meal_value: ''});
+    this.setState({meal_value : ''});
   }
-
+  
   render() {
     return (
       <div className="nutrition-page">
@@ -42,4 +43,4 @@ export class NutritionSearchPage extends React.Component {
   }
 }
 
-export default connect()(NutritionSearchPage);
+export default requiresLogin()(connect()(NutritionSearchPage));

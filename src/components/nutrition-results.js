@@ -4,13 +4,9 @@ import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
+import requiresLogin from './requires-login';
 
 export class NutritionResults extends Component {
-  componentWillUnmount() {
-    // I want my previous results to not appear when user leaves this component
-    console.log('unmount test');
-  }
-
   onAdd(e, nutritionObject, username, date) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(nutritionObject, username, date));
@@ -79,7 +75,7 @@ export class NutritionResults extends Component {
         </ul>
       </li>
     );
-
+    
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
       <section className = "nutrition-search-results">
@@ -95,8 +91,9 @@ export class NutritionResults extends Component {
 }
 
 const mapStateToProps = state => ({
+  showData: state.nutritionSearchReducer.showData,
   nutritionResults: state.nutritionSearchReducer.nutrition,
   username: state.authReducer.currentUser.username
 });
 
-export default connect(mapStateToProps)(NutritionResults);
+export default requiresLogin()(connect(mapStateToProps)(NutritionResults));
