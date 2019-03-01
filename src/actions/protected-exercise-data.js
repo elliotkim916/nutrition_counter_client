@@ -39,7 +39,8 @@ export const addExercise = (calories, duration, username, date) => (dispatch, ge
 
   return fetch(`${API_BASE_URL}/exercise/${username}`, {
     headers: headers,
-    body : body
+    body : body,
+    method : 'POST'
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
