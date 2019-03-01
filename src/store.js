@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {protectedDataReducer} from './reducers/protected-data';
+import {exerciseDataReducer} from './reducers/protected-exercise-data';
 import {reducer as formReducer} from 'redux-form';
 import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
@@ -11,11 +12,12 @@ import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
   combineReducers({
-    nutritionSearchReducer: nutritionSearchReducer,
-    exerciseSearchReducer: exerciseSearchReducer,
-    authReducer: authReducer,
-    form: formReducer,
-    protected: protectedDataReducer
+    nutritionSearchReducer : nutritionSearchReducer,
+    exerciseSearchReducer : exerciseSearchReducer,
+    authReducer : authReducer,
+    form : formReducer,
+    protected : protectedDataReducer,
+    exerciseDataReducer : exerciseDataReducer
   }),
   applyMiddleware(thunk)
 );
