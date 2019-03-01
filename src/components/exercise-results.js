@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import './exercise-results.css';
 import {connect} from 'react-redux';
+import {addExercise} from '../actions/protected-exercise-data';
 
 export class ExerciseResults extends Component {
   onAdd(e, cal, dur, username, date) {
     e.preventDefault();
-    // Need to add code that will dispatch my async action that will make POST request to server
+    this.props.dispatch(addExercise(cal, dur, username, date));
   }
 
   renderTotals() {
@@ -25,9 +26,7 @@ export class ExerciseResults extends Component {
     if (i_count) {
       return (
         <div className = "exercise-totals">
-          <form
-            // onSubmit = {(e) => this.onAdd(e, cal, dur, this.props.username, Date.now)}
-          >
+          <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
             <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
             <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
             <button type = "submit">Save Exercise</button>
