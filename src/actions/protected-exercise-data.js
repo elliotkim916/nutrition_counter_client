@@ -24,6 +24,24 @@ export const deleteExerciseData = () => ({
   type : DELETE_EXERCISE_DATA
 });
 
+export const getExercise = () => (dispatch, getState) => {
+  const authToken = getState().authReducer.authToken;
+  const username = getState().authReducer.currentUser.username;
+  const headers = {
+    'Authorization' : `Bearer ${authToken}`,
+    'Content-Type' : 'application/json'
+  };
+
+  return fetch(`${API_BASE_URL}/exercise/${username}`, {
+    method : 'GET',
+    headers : headers
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then(data => dispatch(fetchExerciseData(data)))
+  .catch(err => fetchExerciseError(err))
+};
+
 export const addExercise = (calories, duration, username, date) => (dispatch, getState) => {
   const authToken = getState().authReducer.authToken;
   const body = JSON.stringify({
@@ -46,4 +64,4 @@ export const addExercise = (calories, duration, username, date) => (dispatch, ge
   .then(res => res.json())
   .then(data => dispatch(addExerciseData(data)))
   .catch(err => dispatch(fetchExerciseError(err)))
-}
+};
