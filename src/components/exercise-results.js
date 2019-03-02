@@ -22,8 +22,8 @@ export class ExerciseResults extends Component {
       exerciseTotals.duration_min = Math.floor(exerciseTotals.duration_min += exercise_results_array[i].duration_min);
       i === exercise_results_array.length - 1 ? i_count = i : console.log('i error');
     }
-    
-    if (i_count) {
+  
+    if (i_count >= 0) {
       return (
         <div className = "exercise-totals">
           <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
