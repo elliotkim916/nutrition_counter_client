@@ -78,6 +78,7 @@ export class Dashboard extends React.Component {
           <li style = {listStyle} key = {index} className = "exercise_total">
             <ul>
               <li>Date : {value.created}</li>
+              <li>Exercise Name : {value.exerciseName}</li>
               <li>Calories Burned : {value.caloriesBurned}</li>
               <li>Duration of workout : {value.duration} minutes</li>
             </ul>
