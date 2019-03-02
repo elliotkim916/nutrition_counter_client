@@ -20,8 +20,9 @@ export const addExerciseData = addedExerciseData => ({
 });
 
 export const DELETE_EXERCISE_DATA = 'DELETE_EXERCISE_DATA';
-export const deleteExerciseData = () => ({
-  type : DELETE_EXERCISE_DATA
+export const deleteExerciseData = id => ({
+  type : DELETE_EXERCISE_DATA,
+  id
 });
 
 export const getExercise = () => (dispatch, getState) => {
@@ -33,8 +34,8 @@ export const getExercise = () => (dispatch, getState) => {
   };
 
   return fetch(`${API_BASE_URL}/exercise/${username}`, {
-    method : 'GET',
-    headers : headers
+    headers : headers,
+    method : 'GET'
   })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
@@ -65,3 +66,18 @@ export const addExercise = (calories, duration, username, date) => (dispatch, ge
   .then(data => dispatch(addExerciseData(data)))
   .catch(err => dispatch(fetchExerciseError(err)))
 };
+
+export const deleteExercise = id => (dispatch, getState) => {
+  const authToken = getState().authReducer.authToken;
+  const headers = {
+    'Authorization' : `Bearer ${authToken}`,
+    'Content-Type' : 'application/json'
+  };
+
+  return fetch(`${API_BASE_URL}/exercise/${id}`, {
+    headers : headers,
+    method : 'DELETE'
+  })
+  .then(() => dispatch(deleteExerciseData(id)))
+  .catch(err => dispatch(fetchExerciseError(err)))
+}
