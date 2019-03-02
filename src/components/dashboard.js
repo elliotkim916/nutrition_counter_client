@@ -12,6 +12,14 @@ const listStyle = {
   listStyleType : 'none'
 };
 
+const invisible = {
+  visibility : 'hidden'
+};
+
+const visible = {
+  visibility : 'visible'
+};
+
 export class Dashboard extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProtectedData());
@@ -39,7 +47,7 @@ export class Dashboard extends React.Component {
       this.props.dispatch(deleteExercise(id));
     }
   }
-  
+
   render() {
     let nutrition_array = this.props.protectedData;
     let nutrition_totals = '';
@@ -75,8 +83,8 @@ export class Dashboard extends React.Component {
             </ul>
             <button onClick = {e => this.deleteExercise(e, value._id)}>Delete</button>
           </li>
-        )
-      })
+        );
+      });
     }
 
     return (
@@ -89,11 +97,11 @@ export class Dashboard extends React.Component {
         Log Out
         </a>
         <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-        <div className = "nutrition-totals-container">
+        <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
           <h3>Nutrition Totals</h3>
           {nutrition_totals}
         </div>
-        <div className = "exercise-totals-container">
+        <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>
           <h3>Exercise Totals</h3>
           {exercise_totals}  
         </div>
