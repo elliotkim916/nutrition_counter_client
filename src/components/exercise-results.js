@@ -13,12 +13,15 @@ export class ExerciseResults extends Component {
   renderTotals() {
     let exercise_results_array = this.props.exerciseResults;
     let exerciseTotals = {
+      'name' : '',
       'nf_calories' : 0,
       'duration_min' : 0
     };
     let i_count;
     
     for (let i = 0; i < exercise_results_array.length; i++) {
+      let name = exercise_results_array[i].name.charAt(0).toUpperCase() + exercise_results_array[i].name.slice(1);
+      exerciseTotals.name = exerciseTotals.name += name + (exercise_results_array[i + 1] ? ', ' : '');
       exerciseTotals.nf_calories = Math.floor(exerciseTotals.nf_calories += exercise_results_array[i].nf_calories);
       exerciseTotals.duration_min = Math.floor(exerciseTotals.duration_min += exercise_results_array[i].duration_min);
       i === exercise_results_array.length - 1 ? i_count = i : console.log('i error');
@@ -27,7 +30,7 @@ export class ExerciseResults extends Component {
     if (i_count >= 0) {
       return (
         <div className = "exercise-totals">
-          <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
+          <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
             <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
             <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
             <button type = "submit">Save Exercise</button>
