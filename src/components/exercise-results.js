@@ -7,6 +7,7 @@ export class ExerciseResults extends Component {
   onAdd(e, cal, dur, username, date) {
     e.preventDefault();
     this.props.dispatch(addExercise(cal, dur, username, date));
+    window.alert('You have just saved your exercise!');
   }
 
   renderTotals() {
