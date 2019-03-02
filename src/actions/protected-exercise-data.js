@@ -43,9 +43,10 @@ export const getExercise = () => (dispatch, getState) => {
   .catch(err => fetchExerciseError(err))
 };
 
-export const addExercise = (calories, duration, username, date) => (dispatch, getState) => {
+export const addExercise = (name, calories, duration, username, date) => (dispatch, getState) => {
   const authToken = getState().authReducer.authToken;
   const body = JSON.stringify({
+    exerciseName : name,
     caloriesBurned : calories,
     duration : duration,
     username : username,
