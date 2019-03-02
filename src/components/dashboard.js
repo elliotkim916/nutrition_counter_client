@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import {fetchProtectedData, deleteData} from '../actions/protected-data';
-import {getExercise} from '../actions/protected-exercise-data';
+import {getExercise, deleteExercise} from '../actions/protected-exercise-data';
 import requiresLogin from './requires-login';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
@@ -32,6 +32,14 @@ export class Dashboard extends React.Component {
     }
   }
 
+  deleteExercise(e, id) {
+    e.preventDefault();
+    const result = window.confirm('Are you sure you want to delete?  If so, click OK');
+    if (result) {
+      this.props.dispatch(deleteExercise(id));
+    }
+  }
+  
   render() {
     let nutrition_array = this.props.protectedData;
     let nutrition_totals = '';
@@ -65,7 +73,7 @@ export class Dashboard extends React.Component {
               <li>Calories Burned : {value.caloriesBurned}</li>
               <li>Duration of workout : {value.duration} minutes</li>
             </ul>
-            <button>Delete</button>
+            <button onClick = {e => this.deleteExercise(e, value._id)}>Delete</button>
           </li>
         )
       })
