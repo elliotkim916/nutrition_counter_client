@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import {fetchProtectedData, deleteData} from '../actions/protected-data';
+import {getExercise} from '../actions/protected-exercise-data';
 import requiresLogin from './requires-login';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
@@ -14,6 +15,7 @@ const listStyle = {
 export class Dashboard extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProtectedData());
+    this.props.dispatch(getExercise());
   }
 
   logOut(e) {
@@ -52,6 +54,23 @@ export class Dashboard extends React.Component {
       });
     }
 
+    let exercise_array = this.props.exerciseData;
+    let exercise_totals = '';
+    if (exercise_array) {
+      exercise_totals = exercise_array.map((value, index) => {
+        return (
+          <li style = {listStyle} key = {index} className = "exercise_total">
+            <ul>
+              <li>Date : {value.created}</li>
+              <li>Calories Burned : {value.caloriesBurned}</li>
+              <li>Duration of workout : {value.duration} minutes</li>
+            </ul>
+            <button>Delete</button>
+          </li>
+        )
+      })
+    }
+
     return (
       <div className="dashboard">
         <a 
@@ -62,7 +81,14 @@ export class Dashboard extends React.Component {
         Log Out
         </a>
         <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-        {nutrition_totals}
+        <div className = "nutrition-totals-container">
+          <h3>Nutrition Totals</h3>
+          {nutrition_totals}
+        </div>
+        <div className = "exercise-totals-container">
+          <h3>Exercise Totals</h3>
+          {exercise_totals}  
+        </div>
         <NutritionSearchPage/>
         <ExerciseSearchPage/>
       </div>
@@ -71,8 +97,9 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  protectedData: state.protected.protected_data,
-  username: state.authReducer.currentUser.username
+  exerciseData : state.exerciseDataReducer.exerciseData, 
+  protectedData : state.protected.protected_data,
+  username : state.authReducer.currentUser.username
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
