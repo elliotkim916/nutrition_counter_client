@@ -24,6 +24,12 @@ export function exerciseDataReducer(state=initialState, action) {
       loading : false,
       error : null
     });
+  } else if (action.type === DELETE_EXERCISE_DATA) {
+    return Object.assign({}, state, {
+      exerciseData : state.exerciseData.filter(exercise => exercise._id !== action.id),
+      loading : false,
+      error : null
+    })
   } else if (action.type === FETCH_EXERCISE_ERROR) {
     return Object.assign({}, state, {
       error : action.error,
