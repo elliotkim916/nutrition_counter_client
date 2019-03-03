@@ -7,6 +7,7 @@ import {getExercise, deleteExercise} from '../actions/protected-exercise-data';
 import requiresLogin from './requires-login';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
+import moment from 'moment';
 
 const listStyle = {
   listStyleType : 'none'
@@ -56,7 +57,7 @@ export class Dashboard extends React.Component {
         return (
           <li style = {listStyle} key = {index} className = "nutrition_total">
             <ul>
-              <li>Date : {value.created}</li>
+              <li>Date : {moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
               <li>Foods : {value.food_name}</li>
               <li>Calories : {value.calories} grams</li>
               <li>Fat : {value.fat} grams</li>
@@ -78,7 +79,7 @@ export class Dashboard extends React.Component {
         return (
           <li style = {listStyle} key = {index} className = "exercise_total">
             <ul>
-              <li>Date : {value.created}</li>
+              <li>Date : {moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
               <li>Exercise Name : {value.exerciseName}</li>
               <li>Calories Burned : {value.caloriesBurned}</li>
               <li>Duration of workout : {value.duration} minutes</li>
