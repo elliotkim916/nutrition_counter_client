@@ -20,7 +20,7 @@ export class ExerciseResults extends Component {
     let i_count;
     
     for (let i = 0; i < exercise_results_array.length; i++) {
-      let name = exercise_results_array[i].name.charAt(0).toUpperCase() + exercise_results_array[i].name.slice(1);
+      let name = exercise_results_array[i].name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
       exerciseTotals.name = exerciseTotals.name += name + (exercise_results_array[i + 1] ? ', ' : '');
       exerciseTotals.nf_calories = Math.floor(exerciseTotals.nf_calories += exercise_results_array[i].nf_calories);
       exerciseTotals.duration_min = Math.floor(exerciseTotals.duration_min += exercise_results_array[i].duration_min);
@@ -46,7 +46,7 @@ export class ExerciseResults extends Component {
 
     exercise_result = exercise_results_array.map((result, index) => 
       <li key={index} className="exercise-list-item">
-        <h3 className="exercise-name">{result.name.charAt(0).toUpperCase() + result.name.slice(1)}</h3>
+        <h3 className="exercise-name">{result.name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <p className="calories-burned">Estimated Calories Burned : {Math.floor(result.nf_calories)}</p>
         <p className="MET">MET : {result.met}</p>
         <p className="exercise-duration">Duration : {result.duration_min} min</p>

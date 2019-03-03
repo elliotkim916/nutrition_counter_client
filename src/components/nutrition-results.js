@@ -63,7 +63,7 @@ export class NutritionResults extends Component {
     
     nutrition_result = nutrition_results_array.map((result, index) => 
       <li key = {index} className="nutrition-list-item">
-        <h3 className = "food-name">{result.food_name.charAt(0).toUpperCase() + result.food_name.slice(1)}</h3>
+        <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <img src = {`${result.photo.thumb}`} className = "food-image" alt = "food item"/>
         <ul className = "nutrition-facts">
           <li>Calories : {result.nf_calories === null ? 0 : result.nf_calories}</li>
