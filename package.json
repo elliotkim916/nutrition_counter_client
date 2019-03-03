@@ -6,6 +6,7 @@
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "localStorage": "^1.0.4",
+    "moment": "^2.24.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
