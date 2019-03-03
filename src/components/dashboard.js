@@ -57,6 +57,7 @@ export class Dashboard extends React.Component {
           <li style = {listStyle} key = {index} className = "nutrition_total">
             <ul>
               <li>Date : {value.created}</li>
+              <li>Foods : {value.food_name}</li>
               <li>Calories : {value.calories} grams</li>
               <li>Fat : {value.fat} grams</li>
               <li>Carbohydrates : {value.carbs} grams</li>
