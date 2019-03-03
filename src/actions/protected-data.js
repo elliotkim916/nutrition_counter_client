@@ -46,17 +46,18 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 // the first parameter is for dispatch, and the second is for getState
 export const addProtectedData = (nutrition_object, username, date) => (dispatch, getState) => {
   // why when doing object destructuring, do the keys have to match my actual object?
-  const {nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
+  const {food_name, nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
   const authToken = getState().authReducer.authToken;
   const data = JSON.stringify({
-    calories: nf_calories,
-    fat: nf_total_fat,
-    carbs: nf_total_carbohydrate,
-    protein: nf_protein,
-    sugar: nf_sugars,
-    sodium: nf_sodium,
-    created: date,
-    username: username
+    food_name : food_name, 
+    calories : nf_calories,
+    fat : nf_total_fat,
+    carbs : nf_total_carbohydrate,
+    protein : nf_protein,
+    sugar : nf_sugars,
+    sodium : nf_sodium,
+    created : date,
+    username : username
   });
   const headers = {
     'Authorization': `Bearer ${authToken}`,
