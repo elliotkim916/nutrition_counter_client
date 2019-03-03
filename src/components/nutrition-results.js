@@ -16,6 +16,7 @@ export class NutritionResults extends Component {
   renderTotals() {
     let nutrition_results_array = this.props.nutritionResults;
     let nutritionTotals = {
+      'food_name': '',
       'nf_calories': 0,
       'nf_total_fat': 0,
       'nf_total_carbohydrate': 0,
@@ -28,6 +29,9 @@ export class NutritionResults extends Component {
 
     for (let i = 0; i < nutrition_results_array.length; i++) {
       for (let j = 0; j < keys.length; j++) {
+        let foodName = nutrition_results_array[i].food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+        typeof nutritionTotals[keys[j]] === 'string' ? 
+        nutritionTotals[keys[j]] = nutritionTotals[keys[j]] += foodName + (nutrition_results_array[i + 1] ? ', ' : '') : 
         nutritionTotals[keys[j]] = Math.floor(nutritionTotals[keys[j]] += nutrition_results_array[i][keys[j]]);
         j === keys.length - 1 ? add_count_of_j = j : console.log('j error');
       }     
