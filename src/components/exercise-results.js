@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './exercise-results.css';
 import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
+import ExerciseSearchPage from './exercise-search-page';
 
 export class ExerciseResults extends Component {
   onAdd(e, cal, dur, username, date) {
@@ -55,6 +56,7 @@ export class ExerciseResults extends Component {
 
     return (
       <section className="exercise-results-section">
+        <ExerciseSearchPage/>
         <ul className="exercise-results">
           {exercise_result}
         </ul>
