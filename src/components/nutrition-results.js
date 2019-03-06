@@ -81,9 +81,8 @@ export class NutritionResults extends Component {
     
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
+      // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
       <section className = "nutrition-search-results">
-        {/* <a href = "/dashboard">Home</a> */}
-        {/* why does a href not work? */}
         <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
         <NutritionSearchPage/>
         <ul className = "nutrition-results">
