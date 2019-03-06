@@ -14,7 +14,7 @@ const initialState = {
 export function exerciseDataReducer(state=initialState, action) {
   if (action.type === FETCH_EXERCISE_DATA) {
     return Object.assign({}, state, {
-      exerciseData : action.data,
+      exerciseData : action.data.sort((a, b) => a.created > b.created ? -1 : a.created < b.created ? 1 : 0),
       loading : false,
       error : null
     });
