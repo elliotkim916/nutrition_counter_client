@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './nutrition-results.css';
 import NutritionSearchPage from './nutrition-search-page';
-import ExerciseSearchPage from './exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
@@ -83,12 +82,14 @@ export class NutritionResults extends Component {
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
       <section className = "nutrition-search-results">
+        {/* <a href = "/dashboard">Home</a> */}
+        {/* why does a href not work? */}
+        <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
         <NutritionSearchPage/>
         <ul className = "nutrition-results">
           {nutrition_result}
         </ul>
         {this.renderTotals()}
-        <ExerciseSearchPage/>
       </section>
     );
   }
