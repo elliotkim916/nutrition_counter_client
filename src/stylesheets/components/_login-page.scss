@@ -3,7 +3,6 @@ form {
 }
 
 .login-page, .registration-page {
-  background-color: yellow;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -21,11 +20,37 @@ input, .login-btn, .registration-btn {
 
 input {
   border: none;
-  background-color: yellow;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #00bb95;
+  padding: 5px;
+}
+
+input::placeholder {
+  color:#999999;
 }
 
 .login-btn, .registration-btn {
   width: 100%;
+  border-radius: 12px;
+  padding: 5px;
+  background-color: #00bb95;
+  border: 1px solid #00bb95;
+  color: whitesmoke;
   cursor: pointer;
+}
+
+h1, h3 {
+  color: #999999;
+}
+
+h3 {
+  font-size: 15px;
+}
+
+span {
+  color: #363636;
+}
+
+.link-text {
+  text-decoration: none;
+  color: #363636;
 }
