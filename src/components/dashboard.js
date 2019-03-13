@@ -8,6 +8,7 @@ import requiresLogin from './requires-login';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import moment from 'moment';
+import '../stylesheets/components/_dashboard.scss';
 
 const listStyle = {
   listStyleType : 'none'
