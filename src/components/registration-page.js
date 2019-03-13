@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import RegistrationForm from './registration-form';
+import '../stylesheets/components/_login-page.scss';
 
 export function RegistrationPage(props) {
   if (props.loggedIn) {
@@ -17,7 +18,7 @@ export function RegistrationPage(props) {
   }
 
   return (
-    <div>
+    <div className="registration-page">
       <Link to="/" className="nutrition-counter-header">
         <h1>Nutrition Counter</h1>
       </Link>
