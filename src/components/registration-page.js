@@ -24,7 +24,7 @@ export function RegistrationPage(props) {
       </Link>
       <h3>Begin tracking your workout and meals today!</h3>
       <RegistrationForm/>
-      <span>Already have an account?  <Link to="/login-page">Click Here!</Link></span>
+      <span>Already have an account?  <Link to="/login-page" className="link-text">Click Here!</Link></span>
     </div>
   );
 }

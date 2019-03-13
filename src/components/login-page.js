@@ -24,7 +24,7 @@ export class LoginPage extends React.Component {
           <h1>Nutrition Counter</h1>
         </Link>
         <LoginForm />
-        <span>Don't have an account? <Link to="/registration-page">Click here</Link></span>
+        <span>Don't have an account? <Link to="/registration-page" className="link-text">Click here</Link></span>
       </div>
     );
   }
