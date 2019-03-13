@@ -1,0 +1,31 @@
+form {
+  text-align: center;
+}
+
+.login-page, .registration-page {
+  background-color: yellow;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nutrition-counter-header {
+  text-decoration: none;
+}
+
+input, .login-btn, .registration-btn {
+  margin-bottom: 15px;
+}
+
+input {
+  border: none;
+  background-color: yellow;
+  border-bottom: 1px solid black;
+}
+
+.login-btn, .registration-btn {
+  width: 100%;
+  cursor: pointer;
+}
