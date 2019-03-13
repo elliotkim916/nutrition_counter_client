@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from './login-form';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
+import '../stylesheets/components/_login-page.scss';
 
 export class LoginPage extends React.Component {
   render() {
