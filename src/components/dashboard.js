@@ -99,7 +99,7 @@ export class Dashboard extends React.Component {
           onClick = {(e) => this.logOut(e)}
         >
         Log Out
-        </a>
+        </a><br></br>
         <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
           <h3>Nutrition Totals</h3>
