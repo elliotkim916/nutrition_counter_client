@@ -58,7 +58,7 @@ export class Dashboard extends React.Component {
         return (
           <li style = {listStyle} key = {index} className = "nutrition_total">
             <ul>
-              <li>Date : {moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
+              <li>{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
               <li>Foods : {value.food_name}</li>
               <li>Calories : {value.calories} grams</li>
               <li>Fat : {value.fat} grams</li>
@@ -67,7 +67,7 @@ export class Dashboard extends React.Component {
               <li>Protein : {value.protein} grams</li>
               <li>Sodium : {value.sodium} mg</li>
             </ul>
-            <button onClick = {e => this.onDelete(e, value._id)}>Delete</button>
+            <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span>X</span></button>
           </li>
         );
       });
@@ -85,7 +85,7 @@ export class Dashboard extends React.Component {
               <li>Calories Burned : {value.caloriesBurned}</li>
               <li>Duration of workout : {value.duration} minutes</li>
             </ul>
-            <button onClick = {e => this.deleteExercise(e, value._id)}>Delete</button>
+            <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span>X</span></button>
           </li>
         );
       });
@@ -99,7 +99,7 @@ export class Dashboard extends React.Component {
           onClick = {(e) => this.logOut(e)}
         >
         Log Out
-        </a><br></br>
+        </a><br/>
         <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
           <h3>Nutrition Totals</h3>
@@ -108,7 +108,7 @@ export class Dashboard extends React.Component {
         <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>
           <h3>Exercise Totals</h3>
           {exercise_totals}  
-        </div>
+        </div><br/>
         <NutritionSearchPage/>
         <ExerciseSearchPage/>
       </div>
