@@ -96,13 +96,17 @@ export class Dashboard extends React.Component {
 
     return (
       <div className="dashboard">
-        <a 
-          className = "log-out"
-          onClick = {(e) => this.logOut(e)}
-        >
-        Log Out
-        </a><br/>
-        <h1>Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+        <div className="shape">
+          <a 
+            className = "log-out"
+            onClick = {(e) => this.logOut(e)}
+          >
+          Log Out
+          </a><br/>
+          <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
+        </div>
         <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
           <h3>Nutrition Totals</h3>
           {nutrition_totals}
@@ -111,8 +115,6 @@ export class Dashboard extends React.Component {
           <h3>Exercise Totals</h3>
           {exercise_totals}  
         </div><br/>
-        <NutritionSearchPage/>
-        <ExerciseSearchPage/>
       </div>
     );
   }
