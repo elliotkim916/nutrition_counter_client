@@ -32,3 +32,28 @@ textarea {
   float: right;
   padding: 15px 25px 0 0;
 }
+
+.nutrition_total, .exercise_total {
+  position: relative;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15px;
+  width: 5px;
+  border-radius: 50%;
+  border: 1.45px solid black;
+  cursor: pointer;
+}
+
+span {
+  position: absolute;
+  top: -1px;
+  right: 1px;
+  bottom: 0;
+  left: 1px;
+  font-size: .8rem;
+  font-weight: bolder;
+}
