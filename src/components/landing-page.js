@@ -1,5 +1,5 @@
 import React from 'react';
-import './landing-page.css';
+import '../stylesheets/components/_landing-page.scss';
 import {connect} from 'react-redux';
 
 class LandingPage extends React.Component {
@@ -13,13 +13,6 @@ class LandingPage extends React.Component {
         <h4>See your meal broken down by ingredients and see an image and the nutrition of each specific ingredient.</h4>
 
         <h4>Enter your workout and the duration of your workout and get back a best estimation of how many calories you burned.</h4>
-
-        {/* <button 
-          type="submit" 
-          onClick={() => this.props.history.push('/nutrition-search')}
-        >
-        Begin Now
-        </button> */}
 
         <button onClick={() => this.props.history.push('/registration-page')}>
           REGISTER HERE
