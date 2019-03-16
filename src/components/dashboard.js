@@ -32,6 +32,7 @@ export class Dashboard extends React.Component {
     e.preventDefault();
     this.props.dispatch(clearAuth());
     clearAuthToken();
+    this.props.history.push('/login-page');
   }
 
   onDelete(e, id) {
@@ -96,7 +97,6 @@ export class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <a 
-          href = "/"
           className = "log-out"
           onClick = {(e) => this.logOut(e)}
         >
