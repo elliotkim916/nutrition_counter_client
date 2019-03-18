@@ -60,7 +60,7 @@ textarea {
   height: 15px;
   width: 5px;
   border-radius: 50%;
-  border: 1.45px solid black;
+  border: 2px solid black;
   cursor: pointer;
 }
 
@@ -95,9 +95,15 @@ textarea {
   top: -200px;
 }
 
-.welcome-header {
-  color: whitesmoke;
+.title-header {
+  color:whitesmoke;
   position: relative;
+}
+
+.welcome-header {
+  color: #00bb95;
+  position: relative;
+  font-family: Questrial;
 }
 
 label {
@@ -143,8 +149,12 @@ textarea::placeholder {
   letter-spacing: .5px;
 }
 
-@media (max-width: 745px) {
+@media (max-width: 790px) {
   .shape {
     height: 1000px;
+  }
+
+  .nutrition-page {
+    margin-right: 0px;
   }
 }
