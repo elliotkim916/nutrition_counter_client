@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './nutrition-search-page.css';
 import {get_nutrition} from '../actions/nutrition-search';
 import requiresLogin from './requires-login';
 
@@ -35,7 +34,7 @@ export class NutritionSearchPage extends React.Component {
             value={this.state.meal_value}
           >
           </textarea><br/>
-          <button type="submit">Calculate Meal</button>
+          <button type="submit" className="calculate-btn">Calculate Meal</button>
         </form>
       </div>
     );
