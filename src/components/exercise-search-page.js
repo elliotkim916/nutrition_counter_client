@@ -33,7 +33,7 @@ export class ExerciseSearchPage extends React.Component {
             value = {this.state.exercise_value}
           >
           </textarea><br/>
-          <button type = "submit">Calculate Activity</button>
+          <button type = "submit" className="calculate-btn">Calculate Activity</button>
         </form>
       </div>
     );
