@@ -103,10 +103,11 @@ export class Dashboard extends React.Component {
           >
           Log Out
           </a><br/>
-          <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+          <h1 className="title-header">Nutrition Counter</h1>
           <NutritionSearchPage/>
           <ExerciseSearchPage/><br/>
         </div>
+        <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
           <h3>Nutrition Totals</h3>
           {nutrition_totals}
