@@ -2,16 +2,26 @@
   text-align: center;
 }
 
-.nutrition-totals-container, 
-.exercise-totals-container {
-  max-width: 335px;
+.totals-container {
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+}
+
+.totals-container > div {
+  font-size: 1rem;
   display: inline-block;
+  vertical-align: top;
+  width: 40%;
   text-align: left;
   padding: 0 35px;
 }
 
 h3 {
   text-align: center;
+  font-size: 2.5rem;
 }
 
 ul {
@@ -103,7 +113,7 @@ textarea {
 .welcome-header {
   color: #00bb95;
   position: relative;
-  font-family: Questrial;
+  font-family: Josefin Sans;
 }
 
 label {
@@ -156,5 +166,9 @@ textarea::placeholder {
 
   .nutrition-page {
     margin-right: 0px;
+  }
+
+  .totals-container > div {
+    width: 300px;
   }
 }
