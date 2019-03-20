@@ -123,6 +123,12 @@
   text-align: left;
 }
 
+.container-list-item {
+  background: url('../images/checkmark-512.png') 0 2px no-repeat;
+  background-size: 21px 17px;
+  padding-left: 33px;
+}
+
 @media (max-width: 387px) {
   .descriptor-header {
     font-size: 2rem;
