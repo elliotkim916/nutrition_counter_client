@@ -94,6 +94,7 @@
   color: whitesmoke;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 .container-one {
@@ -127,6 +128,24 @@
   background: url('../images/checkmark-512.png') 0 2px no-repeat;
   background-size: 21px 17px;
   padding-left: 33px;
+}
+
+img {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: 110px;
+}
+.weightlift-img {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+}
+.benchpress-img {
+  position: absolute;
+  top: 30%;
+  right: 20%;
+  width: 110px;
 }
 
 @media (max-width: 387px) {
