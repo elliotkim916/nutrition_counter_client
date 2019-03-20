@@ -63,6 +63,8 @@
 }
 .shape-two {
   position: relative;
+  margin: 0;
+  padding: 0;
   height: 500px;
   background: linear-gradient(130deg, #41cd8c, #00b698);
   border-bottom-left-radius: 25% 10%;
@@ -101,7 +103,7 @@
   background: linear-gradient(130deg, #ffa634, #ff435b);
   display: inline-block;
   width: 35%;
-  min-width: 300px;
+  min-width: 240px;
   margin: 50px 50px 50px 0;  
 }
 
@@ -109,13 +111,13 @@
   background: linear-gradient(130deg, #41cd8c, #00b698);
   display: inline-block;
   width: 35%;
-  min-width: 300px;
+  min-width: 240px;
 }
 
 .container-three {
   background: linear-gradient(130deg, #66b9ea, #6d78e7);
   width: 76%;
-  min-width: 300px;
+  min-width: 240px;
   margin-bottom: 50px;
 }
 
@@ -172,7 +174,7 @@ img {
 
 @media (max-width: 1450px) {
   .benchpress-img {
-    right: 35%;
+    right: 40%;
   }
 
   .container-one, .container-two, .container-three {
