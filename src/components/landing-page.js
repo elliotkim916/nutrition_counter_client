@@ -6,17 +6,46 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-page">
-        <h1>Nutrition Counter</h1>
+        <div className="shape-two">
+          <p className="landing-login" onClick = {() => this.props.history.push('/login-page')}>Log In</p>
+          <p className="landing-signup" onClick = {() => this.props.history.push('/registration-page')}>Sign Up</p><br/>
 
-        <h4>Enter your meal and see the nutrition information of your entire meal broken down into calories, fats, carbohydrates, and more!</h4>
+          <h1 className="landing-page-header">Nutrition Counter</h1>
 
-        <h4>See your meal broken down by ingredients and see an image and the nutrition of each specific ingredient.</h4>
+          <p className="descriptor-header">STAY ON TRACK</p>
+          <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
 
-        <h4>Enter your workout and the duration of your workout and get back a best estimation of how many calories you burned.</h4>
+          <button onClick={() => this.props.history.push('/registration-page')} className="landing-page-signup-btn">
+            SIGN UP
+          </button>
+        </div>
 
-        <button onClick={() => this.props.history.push('/registration-page')}>
-          REGISTER HERE
-        </button>
+        <div className="container-one">
+          <h3 className="container-headers">Weight Loss</h3>
+          <ul>
+            <li>Search your meal</li>
+            <li>See the nutrtion broken down into calories, fats, carbs, and more</li>
+            <li>Save all your food and keep track</li>
+          </ul>
+        </div>
+
+        <div className="container-two">
+          <h3 className="container-headers">Calorie Counter</h3>
+          <ul>
+            <li>Enter your workout and duration</li>
+            <li>Search from a huge database</li>
+            <li>Track exercises</li>
+          </ul>
+        </div>
+
+        <div className="container-three">
+          <h3 className="container-headers">Get Fit</h3>
+          <ul>
+            <li>Compare calories burned to calories consumed</li>
+            <li>You can always see if you are eating more than you are burning</li>
+            <li>Save and delete what you want to update your dashboard</li>
+          </ul>
+        </div>
       </div>
     );
   }
