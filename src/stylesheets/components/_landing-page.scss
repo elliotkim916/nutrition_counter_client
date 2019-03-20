@@ -1,7 +1,6 @@
 .landing-page {
   text-align: center;
   margin: 0;
-  padding: 15px;
 }
 
 .landing-page-header {
@@ -56,47 +55,72 @@
 }
 
 .landing-login {
-  margin-right: 85px;
+  margin-right: 105px;
 }
 
+.landing-signup {
+  margin-right: 25px;
+}
 .shape-two {
   position: relative;
   height: 500px;
+  background: linear-gradient(130deg, #41cd8c, #00b698);
+  border-bottom-left-radius: 25% 10%;
+  border-bottom-right-radius: 25% 10%;
 }
 
-.shape-two::before {
-  border-radius: 50%;
-  position: absolute;
-  background: linear-gradient(130deg, #41cd8c, #00b698);
-  content: '';
-  bottom: 0;
-  right: -200px;
-  left: -200px;
-  top: -200px;
+// .shape-two::before {
+//   border-radius: 100%;
+//   width: 100%;
+//   position: absolute;
+//   background: linear-gradient(130deg, #41cd8c, #00b698);
+//   content: '';
+//   bottom: 0;
+//   right: 0;
+//   left: 0;
+//   top: 0;
+// }
+
+.parent-container {
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container-one, .container-two, .container-three {
-  width: 350px;
   text-align: left;
   padding: 25px;
   border-radius: 15px;
   color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container-one {
   background: linear-gradient(130deg, #ffa634, #ff435b);
+  display: inline-block;
+  width: 35%;
+  min-width: 300px;
+  margin: 50px 50px 50px 0;  
 }
 
 .container-two {
   background: linear-gradient(130deg, #41cd8c, #00b698);
+  display: inline-block;
+  width: 35%;
+  min-width: 300px;
 }
 
 .container-three {
   background: linear-gradient(130deg, #66b9ea, #6d78e7);
+  width: 76%;
+  min-width: 300px;
+  margin-bottom: 50px;
 }
 
 .container-headers {
   color: whitesmoke;
+  text-align: left;
 }
 
 @media (max-width: 387px) {
@@ -108,5 +132,25 @@
 @media (max-width: 582px) {
   .descriptor-header {
     padding-top: 0px;
+  }
+}
+
+@media (max-width: 724px) {
+  .container-one {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1450px) {
+  .container-one, .container-two, .container-three {
+    width: 65%;
+  }
+
+  .container-one {
+    margin-right: 0;
+  }
+
+  .container-two {
+    margin-bottom: 50px;
   }
 }
