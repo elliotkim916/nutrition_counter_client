@@ -4,7 +4,109 @@
   padding: 15px;
 }
 
-h1 {
+.landing-page-header {
   font-family: Lobster;
   font-size: 5em;
+  position: relative;
+  color: whitesmoke;
+  letter-spacing: 1px;
+}
+
+.landing-page-signup-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  border: none;
+  background: linear-gradient(130deg, #ffa634, #ff435b);
+  color: whitesmoke;
+  font-family: Questrial;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  width: 200px;
+  height: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.descriptor-header {
+  position: relative;
+  color: whitesmoke;
+  font-size: 3rem;
+  padding-top: 55px;
+}
+
+.landing-page-descriptor {
+  position: relative;
+  color: whitesmoke;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.landing-signup, .landing-login {
+  position: absolute;
+  color: whitesmoke;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.landing-login {
+  margin-right: 85px;
+}
+
+.shape-two {
+  position: relative;
+  height: 500px;
+}
+
+.shape-two::before {
+  border-radius: 50%;
+  position: absolute;
+  background: linear-gradient(130deg, #41cd8c, #00b698);
+  content: '';
+  bottom: 0;
+  right: -200px;
+  left: -200px;
+  top: -200px;
+}
+
+.container-one, .container-two, .container-three {
+  width: 350px;
+  text-align: left;
+  padding: 25px;
+  border-radius: 15px;
+  color: whitesmoke;
+}
+
+.container-one {
+  background: linear-gradient(130deg, #ffa634, #ff435b);
+}
+
+.container-two {
+  background: linear-gradient(130deg, #41cd8c, #00b698);
+}
+
+.container-three {
+  background: linear-gradient(130deg, #66b9ea, #6d78e7);
+}
+
+.container-headers {
+  color: whitesmoke;
+}
+
+@media (max-width: 387px) {
+  .descriptor-header {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 582px) {
+  .descriptor-header {
+    padding-top: 0px;
+  }
 }
