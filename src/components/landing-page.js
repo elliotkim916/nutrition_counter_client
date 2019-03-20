@@ -20,31 +20,33 @@ class LandingPage extends React.Component {
           </button>
         </div>
 
-        <div className="container-one">
-          <h3 className="container-headers">Weight Loss</h3>
-          <ul>
-            <li>Search your meal</li>
-            <li>See the nutrtion broken down into calories, fats, carbs, and more</li>
-            <li>Save all your food and keep track</li>
-          </ul>
-        </div>
+        <div className="parent-container">
+          <div className="container-one">
+            <h3 className="container-headers">Weight Loss</h3>
+            <ul>
+              <li>Search your meal</li>
+              <li>See the nutrtion broken down</li>
+              <li>Save all your food and keep track</li>
+            </ul>
+          </div>
 
-        <div className="container-two">
-          <h3 className="container-headers">Calorie Counter</h3>
-          <ul>
-            <li>Enter your workout and duration</li>
-            <li>Search from a huge database</li>
-            <li>Track exercises</li>
-          </ul>
-        </div>
+          <div className="container-two">
+            <h3 className="container-headers">Calorie Counter</h3>
+            <ul>
+              <li>Enter your workout and duration</li>
+              <li>Search from a huge database</li>
+              <li>Track exercises</li>
+            </ul>
+          </div><br/>
 
-        <div className="container-three">
-          <h3 className="container-headers">Get Fit</h3>
-          <ul>
-            <li>Compare calories burned to calories consumed</li>
-            <li>You can always see if you are eating more than you are burning</li>
-            <li>Save and delete what you want to update your dashboard</li>
-          </ul>
+          <div className="container-three">
+            <h3 className="container-headers">Get Fit</h3>
+            <ul>
+              <li>Compare calories burned to calories consumed</li>
+              <li>See if you are eating more than you are burning</li>
+              <li>Save and delete what you want</li>
+            </ul>
+          </div>
         </div>
       </div>
     );
