@@ -23,6 +23,7 @@ class LandingPage extends React.Component {
         <div className="parent-container">
           <div className="container-one">
             <h3 className="container-headers">Weight Loss</h3>
+            <img src="https://img.icons8.com/color/96/000000/apple.png" alt="apple"></img>
             <ul>
               <li className="container-list-item">Search your meal</li>
               <li className="container-list-item">See the nutrtion broken down</li>
@@ -32,6 +33,7 @@ class LandingPage extends React.Component {
 
           <div className="container-two">
             <h3 className="container-headers">Calorie Counter</h3>
+            <img src="https://img.icons8.com/color/96/000000/treadmill.png" alt="treadmill"></img>
             <ul>
               <li className="container-list-item">Enter your workout and duration</li>
               <li className="container-list-item">Search from a huge database</li>
@@ -41,6 +43,8 @@ class LandingPage extends React.Component {
 
           <div className="container-three">
             <h3 className="container-headers">Get Fit</h3>
+            <img src="https://img.icons8.com/color/96/000000/bench-press-with-dumbbells.png" alt="weightlifter" className="benchpress-img"></img>
+            <img src="https://img.icons8.com/color/96/000000/weightlift.png" alt="weightlifter" className="weightlift-img"></img>
             <ul>
               <li className="container-list-item">Compare calories burned to calories consumed</li>
               <li className="container-list-item">See if you are eating more than you are burning</li>
