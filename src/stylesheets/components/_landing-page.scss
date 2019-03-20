@@ -122,12 +122,16 @@
 .container-headers {
   color: whitesmoke;
   text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .container-list-item {
   background: url('../images/checkmark-512.png') 0 2px no-repeat;
   background-size: 21px 17px;
   padding-left: 33px;
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -167,6 +171,10 @@ img {
 }
 
 @media (max-width: 1450px) {
+  .benchpress-img {
+    right: 35%;
+  }
+
   .container-one, .container-two, .container-three {
     width: 65%;
   }
