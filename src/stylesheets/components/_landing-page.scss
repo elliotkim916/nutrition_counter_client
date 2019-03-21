@@ -5,7 +5,7 @@
 
 .landing-page-header {
   font-family: Lobster;
-  font-size: 5em;
+  font-size: 6em;
   position: relative;
   color: whitesmoke;
   letter-spacing: 1px;
@@ -35,7 +35,7 @@
   position: relative;
   color: whitesmoke;
   font-size: 3rem;
-  padding-top: 55px;
+  padding-top: 25px;
 }
 
 .landing-page-descriptor {
@@ -61,27 +61,16 @@
 .landing-signup {
   margin-right: 25px;
 }
+
 .shape-two {
   position: relative;
   margin: 0;
   padding: 0;
   height: 500px;
   background: linear-gradient(130deg, #41cd8c, #00b698);
-  border-bottom-left-radius: 25% 10%;
-  border-bottom-right-radius: 25% 10%;
+  border-bottom-left-radius: 1000px 25px;
+  border-bottom-right-radius: 1000px 25px;
 }
-
-// .shape-two::before {
-//   border-radius: 100%;
-//   width: 100%;
-//   position: absolute;
-//   background: linear-gradient(130deg, #41cd8c, #00b698);
-//   content: '';
-//   bottom: 0;
-//   right: 0;
-//   left: 0;
-//   top: 0;
-// }
 
 .parent-container {
   width: 100vw;
@@ -163,6 +152,19 @@ img {
 @media (max-width: 582px) {
   .descriptor-header {
     padding-top: 0px;
+  }
+}
+
+@media (max-width: 606px) {
+  .descriptor-header {
+    font-size: 2.2em;
+    padding-top: 0px;
+  }
+}
+
+@media (max-width: 660px) {
+  .landing-page-header {
+    font-size: 5.1em;
   }
 }
 
