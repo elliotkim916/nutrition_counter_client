@@ -23,7 +23,7 @@ export class ExerciseSearchPage extends React.Component {
   render() {
     return (
       <div className = "exercise-page">
-        <form onSubmit = {(e) => this.calculateActivity(e)}>
+        <form onSubmit = {(e) => this.calculateActivity(e)} className="exercise-form">
           <label htmlFor = "exercise">Enter your workout.  It can be anything from 30 min of weight lifting, 1 hour of yoga, or a 2 hour walk!</label><br/>
           <textarea 
             id = "exercise"
