@@ -7,12 +7,12 @@ class LandingPage extends React.Component {
     return (
       <div className="landing-page">
         <div className="shape-two">
-          <p className="landing-login" onClick = {() => this.props.history.push('/login-page')}>Log In</p>
-          <p className="landing-signup" onClick = {() => this.props.history.push('/registration-page')}>Sign Up</p><br/>
+          <p className="landing-login" onClick = {() => this.props.history.push('/login-page')}>Log in</p>
+          <p className="landing-signup" onClick = {() => this.props.history.push('/registration-page')}>Sign up</p><br/>
 
           <h1 className="landing-page-header">Nutrition Counter</h1>
 
-          <p className="descriptor-header">STAY ON TRACK</p>
+          <p className="descriptor-header">Stay on track</p>
           <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
 
           <button onClick={() => this.props.history.push('/registration-page')} className="landing-page-signup-btn">
