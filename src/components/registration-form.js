@@ -1,5 +1,6 @@
 import React from 'react';
 import {reduxForm, Field, focus, SubmissionError} from 'redux-form';
+import {Link} from 'react-router-dom';
 import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
 import Input from './input';
 import {registerUser} from '../actions/users';
@@ -27,38 +28,42 @@ export class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <form 
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-      >
-        <Field
-          component={Input} 
-          name="username"
-          type="text"
-          label="Enter username"
-          validate={[required, nonEmpty, isTrimmed]}
-        />
-        <Field
-          component={Input}
-          name="password"
-          type="password"
-          label="Enter password"
-          validate={[required, isTrimmed, passwordLength]}
-        />
-        <Field
-          component={Input}
-          name="passwordConfirm"
-          type="password"
-          label="Confirm password"
-          validate={[required, nonEmpty, matchesPassword]}
-        />
-        <button 
-          type="submit"
-          disabled={this.props.pristine || this.props.submitting}
-          className="registration-btn"
+      <div className="login-form">
+        <h3 className="login-descriptor">Sign up</h3>
+        <form 
+          onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
-        REGISTER
-        </button>
-      </form>
+          <Field
+            component={Input} 
+            name="username"
+            type="text"
+            label="Enter username"
+            validate={[required, nonEmpty, isTrimmed]}
+          />
+          <Field
+            component={Input}
+            name="password"
+            type="password"
+            label="Enter password"
+            validate={[required, isTrimmed, passwordLength]}
+          />
+          <Field
+            component={Input}
+            name="passwordConfirm"
+            type="password"
+            label="Confirm password"
+            validate={[required, nonEmpty, matchesPassword]}
+          />
+          <button 
+            type="submit"
+            disabled={this.props.pristine || this.props.submitting}
+            className="registration-btn"
+          >
+          REGISTER
+          </button>
+        </form>
+        <span>Have an account?  <Link to="/login-page" className="link-text">Click Here!</Link></span>
+      </div>
     );
   }
 }
