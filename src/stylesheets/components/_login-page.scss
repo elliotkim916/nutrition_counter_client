@@ -2,6 +2,10 @@ form {
   text-align: center;
 }
 
+.form-input {
+  text-align: center;
+}
+
 .login-page, .registration-page {
   height: 100%;
   display: flex;
@@ -20,6 +24,7 @@ input, .login-btn, .registration-btn {
 
 input {
   border: none;
+  background-color: #f4f3f0;
   border-bottom: 1px solid #00bb95;
   padding: 5px;
 }
@@ -29,22 +34,41 @@ input::placeholder {
 }
 
 .login-btn, .registration-btn {
-  width: 100%;
+  width: 57%;
   border-radius: 12px;
   padding: 5px;
-  background-color: #00bb95;
-  border: 1px solid #00bb95;
+  background-color: #41cd8c;
+  border: 1px solid #41cd8c;
   color: whitesmoke;
   cursor: pointer;
 }
 
-h1, h3 {
-  color: #999999;
-  text-align: center;
+.registration-btn {
+  width: 66%;
 }
 
-h3 {
-  font-size: 15px;
+.login-header {
+  font-family: Lobster;
+  font-size: 3rem;
+  color: #41cd8c;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.login-descriptor {
+  color: #41cd8c;
+  font-size: 1.5rem;
+}
+
+.login-form {
+  border: 1px solid #f4f3f0;
+  background-color: #f4f3f0;
+  border-radius: 15px;
+  padding: 50px 20px 50px 20px;
+  text-align: center;
 }
 
 span {
@@ -55,4 +79,22 @@ span {
 .link-text {
   text-decoration: none;
   color: #363636;
+}
+
+@media (max-width: 330px) {
+  .login-header {
+    font-size: 2.8rem;
+  }
+}
+
+@media (min-width: 410px) {
+  .login-form {
+    padding: 100px 50px 100px 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .login-form {
+    padding: 150px 85px 175px 85px;
+  }
 }
