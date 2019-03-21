@@ -155,6 +155,10 @@ textarea::placeholder {
   letter-spacing: .5px;
 }
 
+.nutrition-form, .exercise-form {
+  text-align: left;
+}
+
 @media (max-width: 790px) {
   .shape {
     height: 1000px;
