@@ -68,7 +68,7 @@ export class Dashboard extends React.Component {
               <li>Protein : {value.protein} grams</li>
               <li>Sodium : {value.sodium} mg</li>
             </ul>
-            <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span className="exit">X</span></button>
+            <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
           </li>
         );
@@ -87,7 +87,7 @@ export class Dashboard extends React.Component {
               <li>Calories Burned : {value.caloriesBurned}</li>
               <li>Duration of workout : {value.duration} minutes</li>
             </ul>
-            <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">X</span></button>
+            <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
           </li>
         );
