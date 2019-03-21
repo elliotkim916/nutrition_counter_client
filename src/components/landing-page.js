@@ -1,6 +1,5 @@
 import React from 'react';
 import '../stylesheets/components/_landing-page.scss';
-import iphone_food from '../stylesheets/images/iphone_food.jpg';
 import {connect} from 'react-redux';
 
 class LandingPage extends React.Component {
