@@ -22,6 +22,7 @@
 h3 {
   text-align: center;
   font-size: 2.5rem;
+  color: #41cd8c;
 }
 
 ul {
@@ -69,7 +70,7 @@ textarea {
   right: 0;
   height: 15px;
   width: 5px;
-  border-radius: 50%;
+  border-radius: 50px;
   border: 2px solid black;
   cursor: pointer;
 }
@@ -92,28 +93,22 @@ textarea {
 .shape {
   position: relative;
   height: 600px;
-}
-
-.shape::before {
-  border-radius: 35%;
-  position: absolute;
   background: linear-gradient(130deg, #66b9ea, #6d78e7);
-  content: '';
-  bottom: 0;
-  right: -200px;
-  left: -200px;
-  top: -200px;
+  border-bottom-left-radius: 1000px 25px;
+  border-bottom-right-radius: 1000px 25px;
 }
 
 .title-header {
+  font-family: Lobster;
+  font-size: 3rem;
   color:whitesmoke;
   position: relative;
 }
 
 .welcome-header {
-  color: #00bb95;
   position: relative;
-  font-family: Josefin Sans;
+  font-size: 5rem;
+  color: #41cd8c
 }
 
 label {
