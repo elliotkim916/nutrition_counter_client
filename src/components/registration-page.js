@@ -20,11 +20,9 @@ export function RegistrationPage(props) {
   return (
     <div className="registration-page">
       <Link to="/" className="nutrition-counter-header">
-        <h1>Nutrition Counter</h1>
+        <h1 className="login-header">Nutrition Counter</h1>
       </Link>
-      <h3>Begin tracking your workout and meals today!</h3>
       <RegistrationForm/>
-      <span>Already have an account?  <Link to="/login-page" className="link-text">Click Here!</Link></span>
     </div>
   );
 }
