@@ -1,5 +1,6 @@
 import React from 'react';
 import '../stylesheets/components/_landing-page.scss';
+import iphone_food from '../stylesheets/images/iphone_food.jpg';
 import {connect} from 'react-redux';
 
 class LandingPage extends React.Component {
@@ -12,7 +13,7 @@ class LandingPage extends React.Component {
 
           <h1 className="landing-page-header">Nutrition Counter</h1>
 
-          <p className="descriptor-header">Stay on track</p>
+          <p className="descriptor-header">Stay On Track</p>
           <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
 
           <button onClick={() => this.props.history.push('/registration-page')} className="landing-page-signup-btn">
