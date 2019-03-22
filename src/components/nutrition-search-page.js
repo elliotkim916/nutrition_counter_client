@@ -24,6 +24,8 @@ export class NutritionSearchPage extends React.Component {
   render() {
     return (
       <div className="nutrition-page">
+        <img src="https://img.icons8.com/dusk/64/000000/ingredients.png" alt="food" className="food-image"/>
+        <p className="nutrition-header">Food</p>
         <form onSubmit = {(e) => this.calculateMeal(e)} className="nutrition-form">
           <label htmlFor="meal">Enter your meal, snack, or anything you consumed to see the total nutrition breakdown.</label><br/>
           <textarea
