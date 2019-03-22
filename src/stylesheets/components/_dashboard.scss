@@ -38,11 +38,11 @@ li {
   display: inline-block;
   width: 335px;
   padding: 15px;
-  margin-top: 75px;
+  margin-top: -15px;
 }
 
 .nutrition-page {
-  margin-right: 45px;
+  margin-right: 150px;
 }
 
 textarea {
@@ -97,7 +97,7 @@ textarea {
 
 .shape {
   position: relative;
-  height: 600px;
+  height: 650px;
   background: linear-gradient(130deg, #66b9ea, #6d78e7);
   border-bottom-left-radius: 1000px 25px;
   border-bottom-right-radius: 1000px 25px;
@@ -118,9 +118,8 @@ textarea {
 
 label {
   color: whitesmoke;
-  font-weight: bolder;
   font-size: 1.2rem;
-  letter-spacing: .4px;
+  letter-spacing: .45px;
 }
 
 .calculate-btn {
@@ -157,6 +156,26 @@ textarea::placeholder {
 
 .nutrition-form, .exercise-form {
   text-align: left;
+}
+
+.nutrition-header, .exercise-header {
+  color: whitesmoke;
+  letter-spacing: 1px;
+  font-size: 3em;
+  margin-left: 75px;
+}
+
+.food-image {
+  width: 75px;
+  position: absolute;
+  top: 38px;
+  left: 70px;
+}
+.exercise-image {
+  width: 75px;
+  position: absolute;
+  top: 48px;
+  left: 40px;
 }
 
 @media (max-width: 790px) {
