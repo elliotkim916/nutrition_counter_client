@@ -42,7 +42,7 @@ li {
 }
 
 .nutrition-page {
-  margin-right: 150px;
+  margin-right: 100px;
 }
 
 textarea {
@@ -178,13 +178,33 @@ textarea::placeholder {
   left: 40px;
 }
 
-@media (max-width: 790px) {
-  .shape {
-    height: 1000px;
+@media (max-width: 400px) {
+  .nutrition-page, .exercise-page {
+    width: 260px;
+  }
+ 
+  .food-image {
+    left: 40px;
   }
 
-  .nutrition-page {
-    margin-right: 0px;
+  .exercise-image {
+    left: 10px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 879px) {
+  .shape {
+    height: 1150px;
+  }
+
+  .nutrition-page, .exercise-page {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .totals-container > div {
