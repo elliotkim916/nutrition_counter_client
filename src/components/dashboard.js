@@ -58,15 +58,15 @@ export class Dashboard extends React.Component {
       nutrition_totals = nutrition_array.map((value, index) => {
         return (
           <li style = {listStyle} key = {index} className = "nutrition_total">
+            <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
-              <li>{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
-              <li>Foods : {value.food_name}</li>
-              <li>Calories : {value.calories} grams</li>
-              <li>Fat : {value.fat} grams</li>
-              <li>Carbohydrates : {value.carbs} grams</li>
-              <li>Sugar : {value.sugar} grams</li>
-              <li>Protein : {value.protein} grams</li>
-              <li>Sodium : {value.sodium} mg</li>
+              <li><span className="list-title">Foods : </span> {value.food_name}</li>
+              <li><span className="list-title">Calories : </span> {value.calories} grams</li>
+              <li><span className="list-title">Fat : </span> {value.fat} grams</li>
+              <li><span className="list-title">Carbohydrates : </span> {value.carbs} grams</li>
+              <li><span className="list-title">Sugar : </span> {value.sugar} grams</li>
+              <li><span className="list-title">Protein : </span> {value.protein} grams</li>
+              <li><span className="list-title">Sodium : </span> {value.sodium} mg</li>
             </ul>
             <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
@@ -81,11 +81,11 @@ export class Dashboard extends React.Component {
       exercise_totals = exercise_array.map((value, index) => {
         return (
           <li style = {listStyle} key = {index} className = "exercise_total">
+            <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
-              <li>{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</li>
-              <li>Exercise Name : {value.exerciseName}</li>
-              <li>Calories Burned : {value.caloriesBurned}</li>
-              <li>Duration of workout : {value.duration} minutes</li>
+              <li><span className="list-title">Exercise Name :</span> {value.exerciseName}</li>
+              <li><span className="list-title">Calories Burned :</span> {value.caloriesBurned}</li>
+              <li><span className="list-title">Duration of workout :</span> {value.duration} minutes</li>
             </ul>
             <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
