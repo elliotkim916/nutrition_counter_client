@@ -1,5 +1,6 @@
 .dashboard {
   text-align: center;
+  background-color: whitesmoke;
 }
 
 .totals-container {
@@ -22,7 +23,7 @@
 h3 {
   text-align: center;
   font-size: 2.5rem;
-  color: #41cd8c;
+  color: #2f2f2f;
 }
 
 ul {
@@ -31,6 +32,7 @@ ul {
 
 li {
   padding: 5px;
+  color: #2f2f2f;
 }
 
 .nutrition-page, .exercise-page {
@@ -113,7 +115,7 @@ textarea {
 .welcome-header {
   position: relative;
   font-size: 5rem;
-  color: #41cd8c
+  color: #2f2f2f;
 }
 
 label {
@@ -176,6 +178,16 @@ textarea::placeholder {
   position: absolute;
   top: 48px;
   left: 40px;
+}
+
+.date {
+  text-align: left;
+  font-size: 1.5rem;
+  color: #2f2f2f;
+}
+.list-title {
+  font-weight: bolder;
+  color: #41cd8c;
 }
 
 @media (max-width: 400px) {
