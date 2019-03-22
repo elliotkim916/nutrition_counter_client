@@ -179,6 +179,17 @@ textarea::placeholder {
 }
 
 @media (max-width: 400px) {
+  .totals-container > div {
+    padding: 0;
+  }
+
+  .welcome-header {
+    font-size: 4rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  
   .nutrition-page, .exercise-page {
     width: 260px;
   }
