@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
-import './nutrition-results.css';
+import {clearAuth} from '../actions/auth';
+import {clearAuthToken} from '../local-storage';
+import '../stylesheets/components/_results-page.scss';
 import NutritionSearchPage from './nutrition-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
 
 export class NutritionResults extends Component {
+  logOut() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+    this.props.history.push('/login-page');
+  }
+
   onAdd(e, nutritionObject, username, date) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(nutritionObject, username, date));
@@ -84,6 +92,7 @@ export class NutritionResults extends Component {
       // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
       <section className = "nutrition-search-results">
         <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
+        <p onClick={() => this.logOut()} className="logout-btn">Log Out</p>
         <NutritionSearchPage/>
         <ul className = "nutrition-results">
           {nutrition_result}
