@@ -57,8 +57,8 @@ export class App extends Component {
           <Route exact path = "/dashboard" component = {Dashboard} />
           <Route exact path = "/nutrition-search" component = {NutritionSearchPage} />
           <Route exact path = "/exercise-search" component = {ExerciseSearchPage} />
-          <Route exact path = "/results" component = {NutritionResults} />
-          <Route exact path = "/results" component = {ExerciseResults} />
+          <Route exact path = "/nutrition-results" component = {NutritionResults} />
+          <Route exact path = "/exercise-results" component = {ExerciseResults} />
         </div>
        </Router> 
     );
