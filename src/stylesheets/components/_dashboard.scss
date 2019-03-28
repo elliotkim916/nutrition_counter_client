@@ -219,6 +219,33 @@ textarea::placeholder {
   }
 }
 
+@media (max-width: 739px) {
+  .totals-container {
+    display: none;
+  }
+
+  .date {
+    font-size: 1.3rem;
+  }
+  .tab {
+    background: whitesmoke;
+  }
+
+  .nutrition_total, .exercise_total {
+    text-align: left;
+    padding: 0 25px 0 25px;
+  }
+  .delete-btn {
+    margin-right: 25px;
+  }
+}
+
+@media (min-width: 740px) {
+  .react-tabs {
+    display: none;
+  }
+}
+
 @media (max-width: 879px) {
   .shape {
     height: 1150px;
