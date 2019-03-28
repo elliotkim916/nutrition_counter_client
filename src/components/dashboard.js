@@ -9,6 +9,8 @@ import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import moment from 'moment';
 import '../stylesheets/components/_dashboard.scss';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 
 const listStyle = {
   listStyleType : 'none'
@@ -94,34 +96,52 @@ export class Dashboard extends React.Component {
       });
     }
 
-    return (
-      <div className="dashboard">
-        <div className="shape">
-          <a 
-            className = "log-out"
-            onClick = {(e) => this.logOut(e)}
-          >
-          Log Out
-          </a><br/>
-          <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
-        </div>
-        <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-        <div className="totals-container">
-          <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
-            <h3>Nutrition Totals</h3>
-            {nutrition_totals}
+      return (
+        <div className="dashboard">
+          <div className="shape">
+            <a 
+              className = "log-out"
+              onClick = {(e) => this.logOut(e)}
+            >
+            Log Out
+            </a><br/>
+            <h1 className="title-header">Nutrition Counter</h1>
+            <NutritionSearchPage/>
+            <ExerciseSearchPage/><br/>
           </div>
-          <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>
-            <h3>Exercise Totals</h3>
-            {exercise_totals}  
-          </div><br/>
+          <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+          <div className="totals-container">
+            <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
+              <h3>Nutrition Totals</h3>
+              {nutrition_totals}
+            </div>
+            <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>
+              <h3>Exercise Totals</h3>
+              {exercise_totals}  
+            </div><br/>
+          </div>
+
+          <Tabs>
+            <TabList>
+              <Tab>Nutrition Totals</Tab>
+              <Tab>Exercise Totals</Tab>
+            </TabList>
+      
+            <TabPanel>
+              <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>  
+                {nutrition_totals}
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>  
+                {exercise_totals}  
+              </div>
+            </TabPanel>
+          </Tabs>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 const mapStateToProps = state => ({
   exerciseData : state.exerciseDataReducer.exerciseData, 
