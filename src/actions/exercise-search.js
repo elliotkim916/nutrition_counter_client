@@ -51,6 +51,6 @@ export const get_exercise = exercise => dispatch => {
   dispatch(exerciseSearchRequest())
   fetch_exercise(exercise)
   .then(exercise => dispatch(exerciseSearchSuccess(exercise)))
-  .then(() => history.push('/results'))
+  .then(() => history.push('/exercise-results'))
   .catch(error => dispatch(exerciseSearchError(error)));
 }
