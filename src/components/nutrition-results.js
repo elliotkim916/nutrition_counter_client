@@ -4,12 +4,9 @@ import {clearAuthToken} from '../local-storage';
 import '../stylesheets/components/_results-page.scss';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
-import ExerciseResults from './exercise-results';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import "react-tabs/style/react-tabs.css";
 
 export class NutritionResults extends Component {
   logOut() {
@@ -53,15 +50,15 @@ export class NutritionResults extends Component {
         <div>
           <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, this.props.username, Date.now)}>
           <h3>Nutrition Totals</h3>
-            <ul>
+            <ul className="nutrition-list">
               <li>{nutritionTotals.nf_calories} calories</li>
               <li>{nutritionTotals.nf_total_fat} grams of fat</li>
-              <li>{nutritionTotals.nf_total_carbohydrate} grams of carbohydrates</li>
+              <li>{nutritionTotals.nf_total_carbohydrate} grams of carbs</li>
               <li>{nutritionTotals.nf_protein} grams of protein</li>
               <li>{nutritionTotals.nf_sugars} grams of sugar</li>
               <li>{nutritionTotals.nf_sodium} mg of sodium</li>
             </ul>
-            <button type="submit">Save Nutrition</button>
+            <button type="submit" className="save-btn">Save Nutrition</button>
           </form>
         </div>
       );
