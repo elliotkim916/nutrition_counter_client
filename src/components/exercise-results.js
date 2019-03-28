@@ -43,7 +43,7 @@ export class ExerciseResults extends Component {
           <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
             <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
             <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
-            <button type = "submit">Save Exercise</button>
+            <button type = "submit" className="save-btn">Save Exercise</button>
           </form>
         </div>
       );
