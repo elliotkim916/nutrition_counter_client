@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import NutritionSearchPage from './nutrition-search-page';
+import ExerciseSearchPage from './exercise-search-page';
 import './exercise-results.css';
 import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
-import ExerciseSearchPage from './exercise-search-page';
 
 export class ExerciseResults extends Component {
   onAdd(e, cal, dur, username, date) {
@@ -56,7 +57,14 @@ export class ExerciseResults extends Component {
 
     return (
       <section className="exercise-results-section">
-        <ExerciseSearchPage/>
+        <div className="shape">
+          <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
+          <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+          <h1 className="title-header">Nutrition Counter</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
+        </div>
+        
         <ul className="exercise-results">
           {exercise_result}
         </ul>

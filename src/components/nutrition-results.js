@@ -3,9 +3,13 @@ import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import '../stylesheets/components/_results-page.scss';
 import NutritionSearchPage from './nutrition-search-page';
+import ExerciseSearchPage from './exercise-search-page';
+import ExerciseResults from './exercise-results';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 
 export class NutritionResults extends Component {
   logOut() {
@@ -71,7 +75,7 @@ export class NutritionResults extends Component {
     nutrition_result = nutrition_results_array.map((result, index) => 
       <li key = {index} className="nutrition-list-item">
         <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
-        <img src = {`${result.photo.thumb}`} className = "food-image" alt = "food item"/>
+        <img src = {`${result.photo.thumb}`} className = "result-image" alt = "food item"/>
         <ul className = "nutrition-facts">
           <li>Calories : {result.nf_calories === null ? 0 : result.nf_calories}</li>
           <li>Total Fat : {result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
@@ -91,9 +95,14 @@ export class NutritionResults extends Component {
       // callback function automatically binds the this.onSubmit method to this particular component 
       // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
       <section className = "nutrition-search-results">
-        <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
-        <p onClick={() => this.logOut()} className="logout-btn">Log Out</p>
-        <NutritionSearchPage/>
+        <div className="shape">
+          <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
+          <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+          <h1 className="title-header">Nutrition Counter</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
+        </div>
+
         <ul className = "nutrition-results">
           {nutrition_result}
         </ul>
