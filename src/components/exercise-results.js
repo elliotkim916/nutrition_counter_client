@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {clearAuth} from '../actions/auth';
+import {clearAuthToken} from '../local-storage';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import './exercise-results.css';
@@ -6,6 +8,12 @@ import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
 
 export class ExerciseResults extends Component {
+  logOut() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+    this.props.history.push('/login-page');
+  }
+  
   onAdd(e, cal, dur, username, date) {
     e.preventDefault();
     this.props.dispatch(addExercise(cal, dur, username, date));
@@ -64,7 +72,7 @@ export class ExerciseResults extends Component {
           <NutritionSearchPage/>
           <ExerciseSearchPage/><br/>
         </div>
-        
+
         <ul className="exercise-results">
           {exercise_result}
         </ul>
