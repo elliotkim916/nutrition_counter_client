@@ -13,7 +13,10 @@
 .nutrition-facts {
   padding: 0;
   margin-top: 25px;
-  text-align: left;
+  text-align: center;
+}
+.nutrition-facts > li > span {
+  color: #41cd8c;
 }
 
 .go-home-btn {
@@ -37,19 +40,20 @@
   letter-spacing: 1px;
 }
 
+.nutrition-list > li {
+  font-weight: bolder;
+}
 .nutrition-list {
   width: 200px;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
-  padding-left: 25px;
+  text-align: center;
 }
 .nutrition-list-item {
   padding: 0;
-  text-align: left;
 }
 .food-name {
-  text-align: left;
+  text-align: center;
 }
 
 .save-btn {
@@ -66,4 +70,8 @@
   margin-right: auto;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.exercise-totals, .nutrition-results-container {
+  padding-bottom: 50px;
 }
