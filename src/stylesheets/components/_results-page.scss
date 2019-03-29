@@ -39,6 +39,9 @@
   font-weight: bolder;
   letter-spacing: 1px;
 }
+.logout-btn:hover, .go-home-btn:hover {
+  text-decoration: underline;
+}
 
 .nutrition-list > li {
   font-weight: bolder;
