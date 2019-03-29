@@ -3,7 +3,7 @@ import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
-import './exercise-results.css';
+import '../stylesheets/components/_results-page.scss';
 import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
 
@@ -41,8 +41,8 @@ export class ExerciseResults extends Component {
       return (
         <div className = "exercise-totals">
           <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
-            <h3>Total Calories Burned : {exerciseTotals.nf_calories}</h3>
-            <h3>Total Duration : {exerciseTotals.duration_min} minutes</h3>
+            <h4>Total Calories Burned : {exerciseTotals.nf_calories}</h4>
+            <h4>Total Duration : {exerciseTotals.duration_min} minutes</h4>
             <button type = "submit" className="save-btn">Save Exercise</button>
           </form>
         </div>
@@ -57,9 +57,9 @@ export class ExerciseResults extends Component {
     exercise_result = exercise_results_array.map((result, index) => 
       <li key={index} className="exercise-list-item">
         <h3 className="exercise-name">{result.name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
-        <p className="calories-burned">Estimated Calories Burned : {Math.floor(result.nf_calories)}</p>
-        <p className="MET">MET : {result.met}</p>
-        <p className="exercise-duration">Duration : {result.duration_min} min</p>
+        <p className="calories-burned"><span>Estimated Calories Burned :</span> {Math.floor(result.nf_calories)}</p>
+        <p className="MET"><span>MET :</span> {result.met}</p>
+        <p className="exercise-duration"><span>Duration :</span> {result.duration_min} min</p>
       </li>
     );
 
