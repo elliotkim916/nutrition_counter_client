@@ -12,18 +12,6 @@ import '../stylesheets/components/_dashboard.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
-const listStyle = {
-  listStyleType : 'none'
-};
-
-const invisible = {
-  visibility : 'hidden'
-};
-
-const visible = {
-  visibility : 'visible'
-};
-
 export class Dashboard extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProtectedData());
@@ -59,7 +47,7 @@ export class Dashboard extends React.Component {
     if (nutrition_array) {
       nutrition_totals = nutrition_array.map((value, index) => {
         return (
-          <li style = {listStyle} key = {index} className = "nutrition_total">
+          <li key = {index} className = "nutrition_total">
             <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
               <li><span className="list-title">Foods : </span> {value.food_name}</li>
@@ -82,7 +70,7 @@ export class Dashboard extends React.Component {
     if (exercise_array) {
       exercise_totals = exercise_array.map((value, index) => {
         return (
-          <li style = {listStyle} key = {index} className = "exercise_total">
+          <li key = {index} className = "exercise_total">
             <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
               <li><span className="list-title">Exercise Name :</span> {value.exerciseName}</li>
@@ -111,33 +99,35 @@ export class Dashboard extends React.Component {
           </div>
           <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
           <div className="totals-container">
-            <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>
+            <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
               <h3>Nutrition Totals</h3>
               {nutrition_totals}
             </div>
-            <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>
+            <div className = {this.props.protectedData.length > 0 ? 'exercise-totals-container' : 'invisible'}>
               <h3>Exercise Totals</h3>
               {exercise_totals}  
             </div><br/>
           </div>
 
-          <Tabs>
-            <TabList>
-              <Tab>Nutrition Totals</Tab>
-              <Tab>Exercise Totals</Tab>
-            </TabList>
-      
-            <TabPanel>
-              <div className = "nutrition-totals-container" style = {this.props.protectedData.length > 0 ? visible : invisible}>  
-                {nutrition_totals}
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className = "exercise-totals-container" style = {this.props.exerciseData.length > 0 ? visible : invisible}>  
-                {exercise_totals}  
-              </div>
-            </TabPanel>
-          </Tabs>
+          <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
+            <Tabs>
+              <TabList>
+                <Tab>Nutrition Totals</Tab>
+                <Tab>Exercise Totals</Tab>
+              </TabList>
+        
+              <TabPanel>
+                <div>  
+                  {nutrition_totals}
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div>  
+                  {exercise_totals}  
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
         </div>
       );
     }
