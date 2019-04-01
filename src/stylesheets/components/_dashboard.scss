@@ -69,7 +69,8 @@ textarea {
   letter-spacing: 1px;
 }
 
-.log-out:hover {
+
+.log-out:hover, .landing-login:hover, .landing-signup:hover {
   text-decoration: underline;
 }
 
