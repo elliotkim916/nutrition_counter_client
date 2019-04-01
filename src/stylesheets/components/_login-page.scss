@@ -41,8 +41,14 @@ input::placeholder {
   border: 1px solid #41cd8c;
   color: whitesmoke;
   cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
 }
-
+.login-btn:hover, .login-btn:focus,
+.registration-btn:hover, .registration-btn:focus {
+  background-color:#7eddb1;
+  border: 1px solid #7eddb1; 
+}
 .registration-btn {
   width: 66%;
 }
@@ -79,6 +85,9 @@ span {
 .link-text {
   text-decoration: none;
   color: #363636;
+}
+.link-text:hover, .link-text:focus {
+  text-decoration: underline;
 }
 
 @media (max-width: 330px) {
