@@ -70,7 +70,10 @@ textarea {
 }
 
 
-.log-out:hover, .landing-login:hover, .landing-signup:hover {
+.log-out:hover, .log-out:focus, 
+.landing-login:hover, .landing-login:focus,
+.landing-signup:hover, .landing-signup:focus {
+  outline: none;
   text-decoration: underline;
 }
 
@@ -153,6 +156,7 @@ label {
   -webkit-transition-duration: 0.4s;
 }
 .calculate-btn:hover, .calculate-btn:focus {
+  outline: none;
   background-color: #ffb300;
   cursor: pointer;
 }
@@ -166,7 +170,10 @@ textarea {
   font-family: Questrial;
   font-size: 1rem;
 }
-
+textarea:focus {
+  outline: none;
+  border: 2px solid #41cd8c;
+}
 textarea::placeholder {
   font-size: 1rem;
   font-family: Questrial;
@@ -205,6 +212,11 @@ textarea::placeholder {
 .list-title {
   font-weight: bolder;
   color: #41cd8c;
+}
+
+.form-error {
+  margin-top: -10px;
+  color: black;
 }
 
 @media (max-width: 400px) {

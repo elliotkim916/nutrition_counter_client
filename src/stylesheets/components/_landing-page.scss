@@ -35,6 +35,7 @@
 .landing-page-signup-btn:focus {
   background-color: #ffb300;
   cursor: pointer;
+  outline: none;
 }
 
 .descriptor-header {
@@ -58,14 +59,18 @@
   right: 0;
   cursor: pointer;
   font-weight: bolder;
+  text-decoration: none;
 }
-
 .landing-login {
   margin-right: 105px;
 }
-
 .landing-signup {
   margin-right: 25px;
+}
+.landing-login:hover, .landing-login:focus,
+.landing-signup:hover, .landing-signup:focus {
+  outline: none;
+  text-decoration: underline;
 }
 
 .shape-two {

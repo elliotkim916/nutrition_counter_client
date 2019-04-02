@@ -28,7 +28,10 @@ input {
   border-bottom: 1px solid #00bb95;
   padding: 5px;
 }
-
+input:focus {
+  outline: none;
+  border-bottom: 2px solid #5E9ED6;
+}
 input::placeholder {
   color:#999999;
 }
@@ -40,12 +43,15 @@ input::placeholder {
   background-color: #41cd8c;
   border: 1px solid #41cd8c;
   color: whitesmoke;
-  cursor: pointer;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
 }
-.login-btn:hover, .login-btn:focus,
-.registration-btn:hover, .registration-btn:focus {
+.login-btn:hover, 
+.login-btn:focus,
+.registration-btn:hover, 
+.registration-btn:focus {
+  outline: none;
+  cursor: pointer;
   background-color:#7eddb1;
   border: 1px solid #7eddb1; 
 }
@@ -62,6 +68,13 @@ input::placeholder {
   top: 0;
   left: 0;
   right: 0;
+}
+.login-header:hover {
+  cursor: pointer;
+}
+.login-header:focus {
+  outline: none;
+  border: 10px solid #5E9ED6;
 }
 
 .login-descriptor {
@@ -88,6 +101,7 @@ span {
 }
 .link-text:hover, .link-text:focus {
   text-decoration: underline;
+  outline: none;
 }
 
 @media (max-width: 330px) {
