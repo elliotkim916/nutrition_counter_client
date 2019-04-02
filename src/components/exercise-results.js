@@ -78,8 +78,8 @@ export class ExerciseResults extends Component {
       return (
         <section className="exercise-results-section">
           <div className="shape">
-            <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
-            <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+            <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+            <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
             <h1 className="title-header">Nutrition Counter</h1>
             <NutritionSearchPage/>
             <ExerciseSearchPage/><br/>
