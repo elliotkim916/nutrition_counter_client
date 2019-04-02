@@ -20,7 +20,7 @@ export function RegistrationPage(props) {
   return (
     <div className="registration-page">
       <Link to="/" className="nutrition-counter-header">
-        <h1 className="login-header">Nutrition Counter</h1>
+        <h2 className="login-header">Nutrition Counter</h2>
       </Link>
       <RegistrationForm/>
     </div>
@@ -32,4 +32,4 @@ const mapStateToProps = state => ({
   loading: state.authReducer.loading
 });
 
-export default connect(mapStateToProps)(RegistrationPage);
+export default connect(mapStateToProps)(RegistrationPage);          
