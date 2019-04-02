@@ -51,6 +51,15 @@ export class ExerciseResults extends Component {
   }
 
   render() {
+    let error;
+    if (this.props.exerciseResults.length === 0) {
+      error = (
+        <div className="error-msg">
+          <h3>Sorry, no results were found.  Try another search!</h3>
+        </div>
+      );
+    }
+
     let exercise_results_array = this.props.exerciseResults;
     let exercise_result = '';
 
@@ -64,7 +73,7 @@ export class ExerciseResults extends Component {
     );
 
     if (this.props.loading) {
-        return <div className="loader">L O A D I N G . . .</div>;
+        return <div className="loader">L O A D I N G ...</div>;
     } else {
       return (
         <section className="exercise-results-section">
@@ -80,6 +89,7 @@ export class ExerciseResults extends Component {
             {exercise_result}
           </ul>
           {this.renderTotals()}
+          {error}
         </section>
       );
     }
