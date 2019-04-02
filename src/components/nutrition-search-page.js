@@ -11,6 +11,10 @@ export class NutritionSearchPage extends React.Component {
     }
   }
   
+  componentDidMount() {
+    this.input.focus();
+  }
+  
   mealInput(e) {
     this.setState({meal_value : e.target.value});
   }
@@ -34,6 +38,7 @@ export class NutritionSearchPage extends React.Component {
             placeholder="1 cup mashed potatoes and 2 tbsp gravy"
             onChange={(e) => this.mealInput(e)}
             value={this.state.meal_value}
+            ref={input => this.input = input}
           >
           </textarea><br/>
           <button type="submit" className="calculate-btn">Calculate Meal</button>
