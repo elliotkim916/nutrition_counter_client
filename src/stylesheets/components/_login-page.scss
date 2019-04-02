@@ -59,22 +59,22 @@ input::placeholder {
   width: 66%;
 }
 
-.login-header {
+.nutrition-counter-header {
   font-family: Lobster;
   font-size: 3rem;
+  max-width: 322px;
   color: #41cd8c;
   text-align: center;
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  padding-top: 15px;
 }
-.login-header:hover {
+.nutrition-counter-header:hover {
   cursor: pointer;
 }
-.login-header:focus {
+.nutrition-counter-header:focus {
   outline: none;
-  border: 10px solid #5E9ED6;
+  border-bottom: 2px solid #5E9ED6;
 }
 
 .login-descriptor {
@@ -105,7 +105,7 @@ span {
 }
 
 @media (max-width: 330px) {
-  .login-header {
+  .nutrition-counter-header {
     font-size: 2.8rem;
   }
 }
