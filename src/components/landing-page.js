@@ -1,14 +1,15 @@
 import React from 'react';
 import '../stylesheets/components/_landing-page.scss';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-page">
         <div className="shape-two">
-          <p className="landing-login" onClick = {() => this.props.history.push('/login-page')}>Log in</p>
-          <p className="landing-signup" onClick = {() => this.props.history.push('/registration-page')}>Sign up</p><br/>
+          <Link className="landing-login" to="/login-page">Log in</Link>
+          <Link className="landing-signup" to="/registration-page">Sign up</Link><br/>
 
           <h1 className="landing-page-header">Nutrition Counter</h1>
 
