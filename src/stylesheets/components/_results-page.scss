@@ -28,6 +28,8 @@
   color: whitesmoke;
   font-weight: bolder;
   letter-spacing: 1px;
+  text-decoration: none;
+  padding-top: 15px;
 }
 .logout-btn {
   position: absolute;
@@ -38,8 +40,12 @@
   color: whitesmoke;
   font-weight: bolder;
   letter-spacing: 1px;
+  text-decoration: none;
+  padding-top: 15px;
 }
-.logout-btn:hover, .go-home-btn:hover {
+.logout-btn:hover, .logout-btn:focus, 
+.go-home-btn:hover, .go-home-btn:focus {
+  outline: none;
   text-decoration: underline;
 }
 
