@@ -87,7 +87,7 @@ export class Dashboard extends React.Component {
       return (
         <div className="dashboard">
           <div className="shape">
-            <span className="log-out" onClick={(e) => this.logOut(e)} tabindex="1">Log Out</span><br/>
+            <span className="log-out" onClick={(e) => this.logOut(e)} tabIndex="1">Log Out</span><br/>
             <h1 className="title-header">Nutrition Counter</h1>
             <NutritionSearchPage/>
             <ExerciseSearchPage/><br/>
