@@ -21,7 +21,7 @@ export class LoginPage extends React.Component {
     return (
       <div className="login-page">
         <Link to="/" className="nutrition-counter-header">
-          <h1 className="login-header">Nutrition Counter</h1>
+          <h2 className="login-header">Nutrition Counter</h2>
         </Link>
         <LoginForm />
       </div>
