@@ -87,29 +87,34 @@ export class NutritionResults extends Component {
         </ul>
       </li>
     );
-    
-    return (
-      // callback function automatically binds the this.onSubmit method to this particular component 
-      // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
-      <section className = "nutrition-search-results">
-        <div className="shape">
-          <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
-          <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
-          <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
-        </div>
 
-        <ul className = "nutrition-results">
-          {nutrition_result}
-        </ul>
-        {this.renderTotals()}
-      </section>
-    );
+    if (this.props.loading) {
+      return <div className="loader">L O A D I N G . . .</div>;
+    } else {
+      return (
+        // callback function automatically binds the this.onSubmit method to this particular component 
+        // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
+        <section className = "nutrition-search-results">
+          <div className="shape">
+            <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
+            <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+            <h1 className="title-header">Nutrition Counter</h1>
+            <NutritionSearchPage/>
+            <ExerciseSearchPage/><br/>
+          </div>
+  
+          <ul className = "nutrition-results">
+            {nutrition_result}
+          </ul>
+          {this.renderTotals()}
+        </section>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => ({
+  loading: state.nutritionSearchReducer.loading,
   showData: state.nutritionSearchReducer.showData,
   nutritionResults: state.nutritionSearchReducer.nutrition,
   username: state.authReducer.currentUser.username

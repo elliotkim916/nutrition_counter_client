@@ -63,26 +63,31 @@ export class ExerciseResults extends Component {
       </li>
     );
 
-    return (
-      <section className="exercise-results-section">
-        <div className="shape">
-          <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
-          <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
-          <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
-        </div>
-
-        <ul className="exercise-results">
-          {exercise_result}
-        </ul>
-        {this.renderTotals()}
-      </section>
-    );
+    if (this.props.loading) {
+        return <div className="loader">L O A D I N G . . .</div>;
+    } else {
+      return (
+        <section className="exercise-results-section">
+          <div className="shape">
+            <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
+            <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+            <h1 className="title-header">Nutrition Counter</h1>
+            <NutritionSearchPage/>
+            <ExerciseSearchPage/><br/>
+          </div>
+  
+          <ul className="exercise-results">
+            {exercise_result}
+          </ul>
+          {this.renderTotals()}
+        </section>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => ({
+  loading: state.exerciseSearchReducer.loading,
   exerciseResults: state.exerciseSearchReducer.exercise_results,
   username: state.authReducer.currentUser.username
 });
