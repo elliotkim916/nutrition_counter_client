@@ -14,7 +14,7 @@ export class NutritionSearchPage extends React.Component {
   componentDidMount() {
     this.input.focus();
   }
-  
+
   mealInput(e) {
     this.setState({meal_value : e.target.value});
   }
@@ -39,6 +39,7 @@ export class NutritionSearchPage extends React.Component {
             onChange={(e) => this.mealInput(e)}
             value={this.state.meal_value}
             ref={input => this.input = input}
+            required
           >
           </textarea><br/>
           <button type="submit" className="calculate-btn">Calculate Meal</button>
@@ -48,4 +49,8 @@ export class NutritionSearchPage extends React.Component {
   }
 }
 
-export default requiresLogin()(connect()(NutritionSearchPage));
+const mapStateToProps = state => ({
+  nutritionResults: state.nutritionSearchReducer.nutrition
+});
+
+export default requiresLogin()(connect(mapStateToProps)(NutritionSearchPage));

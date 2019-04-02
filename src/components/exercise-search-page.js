@@ -28,11 +28,12 @@ export class ExerciseSearchPage extends React.Component {
         <form onSubmit = {(e) => this.calculateActivity(e)} className="exercise-form">
           <label htmlFor = "exercise">Enter your workout.  It can be anything from 30 min of weight lifting, 1 hour of yoga, or a 2 hour walk!</label><br/>
           <textarea 
-            id = "exercise"
-            type = "textarea" 
-            placeholder = "ran 3 miles"
-            onChange = {(e) => this.exerciseInput(e)}
-            value = {this.state.exercise_value}
+            id="exercise"
+            type="textarea" 
+            placeholder="ran 3 miles"
+            onChange={(e) => this.exerciseInput(e)}
+            value={this.state.exercise_value}
+            required
           >
           </textarea><br/>
           <button type = "submit" className="calculate-btn">Calculate Activity</button>
