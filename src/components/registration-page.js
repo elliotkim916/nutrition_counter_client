@@ -11,8 +11,9 @@ export function RegistrationPage(props) {
 
   if (props.loading) {
     return (
-      <div className="loader">
-        <h3>Creating Account . . . </h3>
+      <div className="loading-container">
+        <h3 className="loading-header">Creating account ...</h3>
+        <div className="loader"></div> 
       </div>
     );
   }
