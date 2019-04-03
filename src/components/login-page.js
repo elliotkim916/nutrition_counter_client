@@ -12,8 +12,9 @@ export class LoginPage extends React.Component {
 
     if (this.props.loading) {
       return (
-        <div className="loader">
-          <h3>Logging in . . .</h3>
+        <div className="loading-container">
+          <h3 className="loading-header">Loading ...</h3>
+          <div className="loader"></div> 
         </div>
       );
     }

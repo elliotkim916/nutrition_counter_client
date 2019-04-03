@@ -6,7 +6,7 @@ import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
-import requiresLogin from './requires-login';
+// import requiresLogin from './requires-login';
 
 export class NutritionResults extends Component {
   logOut() {
@@ -66,6 +66,20 @@ export class NutritionResults extends Component {
   }
 
   render() {
+    // fix error, make sure it appears when no nutrition is found
+    // also, make sure exercise error disappears when nutrition search is successful
+    let error;
+    console.log(this.props);
+    console.log(this.props.error);
+    console.log(this.props.loading);
+    if (this.props.error === 'Not Found' && this.props.loading) {
+      error = (
+        <div className="error-msg">
+          <h3>Sorry, no results were found.  Try another search!</h3>
+        </div>
+      );
+    }
+
     let nutrition_results_array = this.props.nutritionResults;
     let nutrition_result = '';  
     
@@ -74,30 +88,35 @@ export class NutritionResults extends Component {
         <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <img src = {`${result.photo.thumb}`} className = "result-image" alt = "food item"/>
         <ul className = "nutrition-facts">
-          <li><span>Calories :</span>{result.nf_calories === null ? 0 : result.nf_calories}</li>
-          <li><span>Total Fat :</span>{result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
-          <li><span>Saturated Fat :</span>{result.nf_saturated_fat === null ? 0 : result.nf_saturated_fat}g</li>
-          <li><span>Cholesterol :</span>{result.nf_cholesterol === null ? 0 : result.nf_cholesterol}mg</li>
-          <li><span>Sodium :</span>{result.nf_sodium === null ? 0 : result.nf_sodium}mg</li>
-          <li><span>Potassium :</span>{result.nf_potassium === null ? 0 : result.nf_potassium}mg</li>
-          <li><span>Carbohydrates :</span>{result.nf_total_carbohydrate === null ? 0 : result.nf_total_carbohydrate}g</li>
-          <li><span>Dietary Fiber :</span>{result.nf_dietary_fiber === null ? 0 : result.nf_dietary_fiber}g</li>
-          <li><span>Sugars :</span>{result.nf_sugars === null ? 0 : result.nf_sugars}g</li>
-          <li><span>Protein :</span>{result.nf_protein === null ? 0 : result.nf_protein}g</li>
+          <li><span>Calories : </span>{result.nf_calories === null ? 0 : result.nf_calories}</li>
+          <li><span>Total Fat : </span>{result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
+          <li><span>Saturated Fat : </span>{result.nf_saturated_fat === null ? 0 : result.nf_saturated_fat}g</li>
+          <li><span>Cholesterol : </span>{result.nf_cholesterol === null ? 0 : result.nf_cholesterol}mg</li>
+          <li><span>Sodium : </span>{result.nf_sodium === null ? 0 : result.nf_sodium}mg</li>
+          <li><span>Potassium : </span>{result.nf_potassium === null ? 0 : result.nf_potassium}mg</li>
+          <li><span>Carbohydrates : </span>{result.nf_total_carbohydrate === null ? 0 : result.nf_total_carbohydrate}g</li>
+          <li><span>Dietary Fiber : </span>{result.nf_dietary_fiber === null ? 0 : result.nf_dietary_fiber}g</li>
+          <li><span>Sugars : </span>{result.nf_sugars === null ? 0 : result.nf_sugars}g</li>
+          <li><span>Protein : </span>{result.nf_protein === null ? 0 : result.nf_protein}g</li>
         </ul>
       </li>
     );
 
     if (this.props.loading) {
-      return <div className="loader">L O A D I N G . . .</div>;
+      return (
+        <div className="loading-container">
+          <h3 className="loading-header">Loading ...</h3>
+          <div className="loader"></div> 
+        </div>
+      );
     } else {
       return (
         // callback function automatically binds the this.onSubmit method to this particular component 
         // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
         <section className = "nutrition-search-results">
           <div className="shape">
-            <p onClick={() => this.props.history.push('/dashboard')} className="go-home-btn">Home</p>
-            <p onClick={() => this.logOut()} className="logout-btn">Log Out</p><br/>
+            <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+            <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
             <h1 className="title-header">Nutrition Counter</h1>
             <NutritionSearchPage/>
             <ExerciseSearchPage/><br/>
@@ -107,6 +126,7 @@ export class NutritionResults extends Component {
             {nutrition_result}
           </ul>
           {this.renderTotals()}
+          {error}
         </section>
       );
     }
@@ -114,10 +134,10 @@ export class NutritionResults extends Component {
 }
 
 const mapStateToProps = state => ({
+  error: state.nutritionSearchReducer.error,
   loading: state.nutritionSearchReducer.loading,
-  showData: state.nutritionSearchReducer.showData,
   nutritionResults: state.nutritionSearchReducer.nutrition,
   username: state.authReducer.currentUser.username
 });
 
-export default requiresLogin()(connect(mapStateToProps)(NutritionResults));
+export default connect(mapStateToProps)(NutritionResults);

@@ -73,7 +73,12 @@ export class ExerciseResults extends Component {
     );
 
     if (this.props.loading) {
-        return <div className="loader">L O A D I N G ...</div>;
+        return (
+          <div className="loading-container">
+            <h3 className="loading-header">Loading ...</h3>
+            <div className="loader"></div> 
+          </div>
+        );
     } else {
       return (
         <section className="exercise-results-section">
