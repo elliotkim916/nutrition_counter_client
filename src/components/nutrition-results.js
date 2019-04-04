@@ -6,7 +6,7 @@ import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../actions/protected-data';
-// import requiresLogin from './requires-login';
+import requiresLogin from './requires-login';
 
 export class NutritionResults extends Component {
   logOut() {
@@ -66,23 +66,27 @@ export class NutritionResults extends Component {
   }
 
   render() {
-    // fix error, make sure it appears when no nutrition is found
-    // also, make sure exercise error disappears when nutrition search is successful
     let error;
-    console.log(this.props);
-    console.log(this.props.error);
-    console.log(this.props.loading);
-    if (this.props.error === 'Not Found' && this.props.loading) {
+    if (this.props.nutritionError) {
       error = (
         <div className="error-msg">
-          <h3>Sorry, no results were found.  Try another search!</h3>
+          <h3>Sorry, no results were found.<br/> Try another search!</h3>
         </div>
       );
-    }
+    } 
+
+    let loading;
+    if (this.props.loading) {
+      loading = (
+        <div className="loading-container">
+          <h3 className="loading-header">Loading ...</h3>
+          <div className="loader"></div> 
+        </div>
+      );
+    } 
 
     let nutrition_results_array = this.props.nutritionResults;
     let nutrition_result = '';  
-    
     nutrition_result = nutrition_results_array.map((result, index) => 
       <li key = {index} className="nutrition-list-item">
         <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
@@ -101,43 +105,38 @@ export class NutritionResults extends Component {
         </ul>
       </li>
     );
-
-    if (this.props.loading) {
-      return (
-        <div className="loading-container">
-          <h3 className="loading-header">Loading ...</h3>
-          <div className="loader"></div> 
+    
+    return (
+      // callback function automatically binds the this.onSubmit method to this particular component 
+      // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
+      <section className = "nutrition-search-results">
+        <div className="shape">
+          <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+          <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
+          <h1 className="title-header">Nutrition Counter</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
         </div>
-      );
-    } else {
-      return (
-        // callback function automatically binds the this.onSubmit method to this particular component 
-        // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
-        <section className = "nutrition-search-results">
-          <div className="shape">
-            <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
-            <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
-            <h1 className="title-header">Nutrition Counter</h1>
-            <NutritionSearchPage/>
-            <ExerciseSearchPage/><br/>
-          </div>
-  
-          <ul className = "nutrition-results">
-            {nutrition_result}
-          </ul>
-          {this.renderTotals()}
-          {error}
-        </section>
-      );
-    }
+
+        <ul className = "nutrition-results">
+          {nutrition_result}
+        </ul>
+        {this.renderTotals()}
+        {loading}
+        {error}
+      </section>
+    );
   }
 }
 
+  
+
+
 const mapStateToProps = state => ({
-  error: state.nutritionSearchReducer.error,
   loading: state.nutritionSearchReducer.loading,
+  nutritionError: state.nutritionSearchReducer.error,
   nutritionResults: state.nutritionSearchReducer.nutrition,
   username: state.authReducer.currentUser.username
 });
 
-export default connect(mapStateToProps)(NutritionResults);
+export default requiresLogin()(connect(mapStateToProps)(NutritionResults));
