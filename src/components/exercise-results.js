@@ -56,7 +56,8 @@ export class ExerciseResults extends Component {
     if (this.props.exerciseResults.length === 0) {
       error = (
         <div className="error-msg">
-          <h3>Sorry, no results were found.<br/> Try another search!</h3>
+          <img src="https://img.icons8.com/clouds/100/000000/sad.png" alt="sad face"></img><br/>
+          <h3 className="error-header">Sorry, no results were found.<br/> Try another search!</h3>
         </div>
       );
     }
