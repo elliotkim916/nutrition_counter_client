@@ -11,6 +11,7 @@ import moment from 'moment';
 import '../stylesheets/components/_dashboard.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
+import harvest from '../stylesheets/images/harvest.png';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -92,6 +93,8 @@ export class Dashboard extends React.Component {
           <NutritionSearchPage/>
           <ExerciseSearchPage/><br/>
         </div>
+
+        <img src={harvest} alt="nutrition" className="tossing" />
         <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         <div className="totals-container">
           <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
