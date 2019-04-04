@@ -53,5 +53,6 @@ export const get_nutrition = meal => dispatch => {
   fetch_nutrition(meal)
   .then(meal => dispatch(nutritionSearchSuccess(meal)))
   .then(() => history.push('/nutrition-results'))
-  .catch(error => dispatch(nutritionSearchError(error)));
+  .catch(error => dispatch(nutritionSearchError(error)))
+  .then(() => history.push('/nutrition-results'));
 } 
