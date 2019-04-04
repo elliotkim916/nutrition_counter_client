@@ -187,3 +187,18 @@
   transform: rotate(360deg);
   }
 }
+
+.error-msg {
+  background-color: white;
+  line-height: 3.2rem;
+}
+.error-header {
+  margin-top: -25px;
+}
+
+@media (max-width: 530px) {
+  .error-msg > h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
