@@ -83,50 +83,50 @@ export class Dashboard extends React.Component {
         );
       });
     }
-
-      return (
-        <div className="dashboard">
-          <div className="shape">
-            <span className="log-out" onClick={(e) => this.logOut(e)} tabIndex="1">Log Out</span><br/>
-            <h1 className="title-header">Nutrition Counter</h1>
-            <NutritionSearchPage/>
-            <ExerciseSearchPage/><br/>
-          </div>
-          <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-          <div className="totals-container">
-            <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
-              <h3>Nutrition Totals</h3>
-              {nutrition_totals}
-            </div>
-            <div className = {this.props.protectedData.length > 0 ? 'exercise-totals-container' : 'invisible'}>
-              <h3>Exercise Totals</h3>
-              {exercise_totals}  
-            </div><br/>
-          </div>
-
-          <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
-            <Tabs>
-              <TabList>
-                <Tab>Nutrition Totals</Tab>
-                <Tab>Exercise Totals</Tab>
-              </TabList>
-        
-              <TabPanel>
-                <div>  
-                  {nutrition_totals}
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div>  
-                  {exercise_totals}  
-                </div>
-              </TabPanel>
-            </Tabs>
-          </div>
+    
+    return (
+      <div className="dashboard">
+        <div className="shape">
+          <span className="log-out" onClick={(e) => this.logOut(e)} tabIndex="1">Log Out</span><br/>
+          <h1 className="title-header">Nutrition Counter</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
         </div>
-      );
-    }
+        <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+        <div className="totals-container">
+          <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
+            <h3>Nutrition Totals</h3>
+            {nutrition_totals}
+          </div>
+          <div className = {this.props.protectedData.length > 0 ? 'exercise-totals-container' : 'invisible'}>
+            <h3>Exercise Totals</h3>
+            {exercise_totals}  
+          </div><br/>
+        </div>
+
+        <div className = {this.props.protectedData.length > 0 ? 'nutrition-totals-container' : 'invisible'}>
+          <Tabs>
+            <TabList>
+              <Tab>Nutrition Totals</Tab>
+              <Tab>Exercise Totals</Tab>
+            </TabList>
+      
+            <TabPanel>
+              <div>  
+                {nutrition_totals}
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div>  
+                {exercise_totals}  
+              </div>
+            </TabPanel>
+          </Tabs>
+        </div>
+      </div>
+    );
   }
+}
 
 const mapStateToProps = state => ({
   exerciseData : state.exerciseDataReducer.exerciseData, 
