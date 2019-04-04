@@ -18,11 +18,14 @@ export function nutritionSearchReducer(state=initialState, action) {
   } else if (action.type === NUTRITION_SEARCH_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      nutrition: action.nutrition
+      nutrition: action.nutrition,
+      error: null
     });
   } else if (action.type === NUTRITION_SEARCH_ERROR) {
     return Object.assign({}, state, {
-      error: action.error
+      error: action.error,
+      nutrition: [],
+      loading: false
     });
   }
   return state;
