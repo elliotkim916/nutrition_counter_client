@@ -6,6 +6,7 @@ import ExerciseSearchPage from './exercise-search-page';
 import '../stylesheets/components/_results-page.scss';
 import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
+import requiresLogin from './requires-login';
 
 export class ExerciseResults extends Component {
   logOut() {
@@ -55,14 +56,23 @@ export class ExerciseResults extends Component {
     if (this.props.exerciseResults.length === 0) {
       error = (
         <div className="error-msg">
-          <h3>Sorry, no results were found.  Try another search!</h3>
+          <h3>Sorry, no results were found.<br/> Try another search!</h3>
         </div>
       );
     }
 
+    let loading;
+    if (this.props.loading) {
+      loading = (
+        <div className="loading-container">
+          <h3 className="loading-header">Loading ...</h3>
+          <div className="loader"></div> 
+        </div>
+      );
+    } 
+
     let exercise_results_array = this.props.exerciseResults;
     let exercise_result = '';
-
     exercise_result = exercise_results_array.map((result, index) => 
       <li key={index} className="exercise-list-item">
         <h3 className="exercise-name">{result.name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
@@ -71,35 +81,28 @@ export class ExerciseResults extends Component {
         <p className="exercise-duration"><span>Duration :</span> {result.duration_min} min</p>
       </li>
     );
+   
+    return (
+      <section className="exercise-results-section">
+        <div className="shape">
+          <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+          <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
+          <h1 className="title-header">Nutrition Counter</h1>
+          <NutritionSearchPage/>
+          <ExerciseSearchPage/><br/>
+        </div>
 
-    if (this.props.loading) {
-        return (
-          <div className="loading-container">
-            <h3 className="loading-header">Loading ...</h3>
-            <div className="loader"></div> 
-          </div>
-        );
-    } else {
-      return (
-        <section className="exercise-results-section">
-          <div className="shape">
-            <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
-            <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
-            <h1 className="title-header">Nutrition Counter</h1>
-            <NutritionSearchPage/>
-            <ExerciseSearchPage/><br/>
-          </div>
-  
-          <ul className="exercise-results">
-            {exercise_result}
-          </ul>
-          {this.renderTotals()}
-          {error}
-        </section>
-      );
-    }
+        <ul className="exercise-results">
+          {exercise_result}
+        </ul>
+        {this.renderTotals()}
+        {loading}
+        {error}
+      </section>
+    );
   }
 }
+
 
 const mapStateToProps = state => ({
   loading: state.exerciseSearchReducer.loading,
@@ -107,4 +110,4 @@ const mapStateToProps = state => ({
   username: state.authReducer.currentUser.username
 });
 
-export default connect(mapStateToProps)(ExerciseResults);
+export default requiresLogin()(connect(mapStateToProps)(ExerciseResults));
