@@ -9,8 +9,9 @@ export function RegistrationPage(props) {
     return <Redirect to="/dashboard" />;
   }
 
+  let loading;
   if (props.loading) {
-    return (
+    loading = (
       <div className="loading-container">
         <h3 className="loading-header">Creating account ...</h3>
         <div className="loader"></div> 
@@ -22,6 +23,7 @@ export function RegistrationPage(props) {
     <div className="registration-page">
       <Link to="/" className="nutrition-counter-header">Nutrition Counter</Link>
       <RegistrationForm/>
+      {loading}
     </div>
   );
 }

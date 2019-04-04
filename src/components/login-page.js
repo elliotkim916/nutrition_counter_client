@@ -10,8 +10,9 @@ export class LoginPage extends React.Component {
       return <Redirect to="/dashboard" />;
     }
 
+    let loading;
     if (this.props.loading) {
-      return (
+      loading = (
         <div className="loading-container">
           <h3 className="loading-header">Logging in ...</h3>
           <div className="loader"></div> 
@@ -23,6 +24,7 @@ export class LoginPage extends React.Component {
       <div className="login-page">
         <Link to="/" className="nutrition-counter-header">Nutrition Counter</Link>
         <LoginForm />
+        {loading}
       </div>
     );
   }
