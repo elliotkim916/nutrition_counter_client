@@ -40,7 +40,7 @@ export class ExerciseResults extends Component {
   
     if (i_count >= 0) {
       return (
-        <div className = "exercise-totals">
+        <div className = {!this.props.loading ? "exercise-totals fadeIn" : "exercise-totals"}>
           <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
             <h4>Total Calories Burned : {exerciseTotals.nf_calories}</h4>
             <h4>Total Duration : {exerciseTotals.duration_min} minutes</h4>
@@ -93,7 +93,7 @@ export class ExerciseResults extends Component {
           <ExerciseSearchPage/><br/>
         </div>
 
-        <ul className="exercise-results">
+        <ul className={!this.props.loading ? "exercise-results fadeIn" : "exercise-results"}>
           {exercise_result}
         </ul>
         {this.renderTotals()}

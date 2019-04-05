@@ -47,7 +47,7 @@ export class NutritionResults extends Component {
 
     if (add_count_of_j) {
       return (
-        <div className="nutrition-results-container">
+        <div className= {!this.props.loading ? "nutrition-results-container fadeIn" : "nutrition-results-container"}>
           <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, this.props.username, Date.now)}>
           <h3>Nutrition Totals</h3>
             <ul className="nutrition-list">
@@ -69,7 +69,7 @@ export class NutritionResults extends Component {
     let error;
     if (this.props.nutritionError) {
       error = (
-        <div className="error-msg">
+        <div className={!this.props.loading ? "error-msg fadeIn" : "error-msg"}>
           <img src="https://img.icons8.com/clouds/100/000000/sad.png" alt="sad face"></img><br/>
           <h3 className="error-header">Sorry, no results were found.<br/> Try another search!</h3>
         </div>
@@ -119,7 +119,7 @@ export class NutritionResults extends Component {
           <ExerciseSearchPage/><br/>
         </div>
 
-        <ul className = "nutrition-results">
+        <ul className = {!this.props.loading ? "nutrition-results fadeIn" : "nutrition-results"}>
           {nutrition_result}
         </ul>
         {this.renderTotals()}
