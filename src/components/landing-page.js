@@ -1,22 +1,55 @@
 import React from 'react';
+import '../stylesheets/components/_all.scss';
 import '../stylesheets/components/_landing-page.scss';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaving: false
+    };
+  }
+
+  logIn() {
+    this.setState({leaving: true});
+    const landingPage = this.refs.landingPage;
+    landingPage.addEventListener('animationend', e => {
+      if (e.animationName === "opacity_out") {
+        this.props.history.push("/login-page");
+      } else {
+        return;
+      }
+    });
+  }
+
+  signUp() {
+    this.setState({leaving: true});
+    const landingPage = this.refs.landingPage;
+    landingPage.addEventListener('animationend', e => {
+      if (e.animationName === "opacity_out") {
+        this.props.history.push("/registration-page");
+      } else {
+        return;
+      }
+    });
+  }
+
+
   render() {
     return (
-      <div className="landing-page">
+      <div className={`landing-page ${this.state.leaving ? "opacity-out" : ""}`} ref="landingPage">
         <div className="shape-two">
-          <Link className="landing-login" to="/login-page">Log in</Link>
-          <Link className="landing-signup" to="/registration-page">Sign up</Link><br/>
+          <span className="landing-login" onClick={() => this.logIn()}>Log in</span>
+          <span className="landing-signup" onClick={() => this.signUp()}>Sign up</span><br/>
 
           <h1 className="landing-page-header expandOpen">Nutrition Counter</h1>
 
           <p className="descriptor-header">Stay On Track</p>
           <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
 
-          <button onClick={() => this.props.history.push('/registration-page')} className="landing-page-signup-btn">
+          <button onClick={() => this.signUp()} className="landing-page-signup-btn">
             SIGN UP
           </button>
         </div>

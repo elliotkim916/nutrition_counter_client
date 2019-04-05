@@ -9,10 +9,37 @@ import {addProtectedData} from '../actions/protected-data';
 import requiresLogin from './requires-login';
 
 export class NutritionResults extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaving: false
+    };
+  }
+
   logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-    this.props.history.push('/login-page');
+    this.setState({leaving: true});
+    const nutritionSearchResults = this.refs.nutritionSearchResults;
+    nutritionSearchResults.addEventListener('animationend', e => {
+      if (e.animationName === 'opacity_out') {
+        this.props.dispatch(clearAuth());
+        clearAuthToken();
+        this.props.history.push('/login-page');
+      } else {
+        return;
+      }
+    });
+  }
+
+  toDashboard() {
+    this.setState({leaving: true});
+    const nutritionSearchResults = this.refs.nutritionSearchResults;
+    nutritionSearchResults.addEventListener('animationend', e => {
+      if (e.animationName === 'opacity_out') {
+        this.props.history.push('/dashboard');
+      } else {
+        return;
+      }
+    });
   }
 
   onAdd(e, nutritionObject, username, date) {
@@ -110,9 +137,9 @@ export class NutritionResults extends Component {
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
       // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
-      <section className = "nutrition-search-results">
+      <section className = {`nutrition-search-results ${this.state.leaving ? "opacity-out" : ""}`} ref="nutritionSearchResults">
         <div className="shape">
-          <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+          <span onClick={() => this.toDashboard()} tabIndex="1" className="go-home-btn">Home</span>
           <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
           <NutritionSearchPage/>

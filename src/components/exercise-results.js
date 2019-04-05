@@ -9,10 +9,37 @@ import {addExercise} from '../actions/protected-exercise-data';
 import requiresLogin from './requires-login';
 
 export class ExerciseResults extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaving: false
+    };
+  }
+
   logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-    this.props.history.push('/login-page');
+    this.setState({leaving: true});
+    const exerciseSearchResults = this.refs.exerciseResultsSection;
+    exerciseSearchResults.addEventListener('animationend', e => {
+      if (e.animationName === 'opacity_out') {
+        this.props.dispatch(clearAuth());
+        clearAuthToken();
+        this.props.history.push('/login-page');
+      } else {
+        return;
+      }
+    });
+  }
+
+  toDashboard() {
+    this.setState({leaving: true});
+    const exerciseSearchResults = this.refs.exerciseResultsSection;
+    exerciseSearchResults.addEventListener('animationend', e => {
+      if (e.animationName === 'opacity_out') {
+        this.props.history.push('/dashboard');
+      } else {
+        return;
+      }
+    });
   }
   
   onAdd(e, cal, dur, username, date) {
@@ -84,9 +111,9 @@ export class ExerciseResults extends Component {
     );
    
     return (
-      <section className="exercise-results-section">
+      <section className={`exercise-results-section ${this.state.leaving ? "opacity-out" : ""}`} ref="exerciseResultsSection">
         <div className="shape">
-          <span onClick={() => this.props.history.push('/dashboard')} tabIndex="1" className="go-home-btn">Home</span>
+          <span onClick={() => this.toDashboard()} tabIndex="1" className="go-home-btn">Home</span>
           <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
           <NutritionSearchPage/>

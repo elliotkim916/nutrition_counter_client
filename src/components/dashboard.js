@@ -9,21 +9,36 @@ import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import moment from 'moment';
 import '../stylesheets/components/_dashboard.scss';
+import '../stylesheets/components/_all.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import harvest from '../stylesheets/images/harvest.png';
 
 export class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaving: false
+    };
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchProtectedData());
     this.props.dispatch(getExercise());
   }
 
-  logOut(e) {
-    e.preventDefault();
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-    this.props.history.push('/login-page');
+  logOut() {
+    this.setState({leaving: true});
+    const thisDashboard = this.refs.thisDashboard;
+    thisDashboard.addEventListener('animationend', e => {
+      if (e.animationName === 'opacity_out') {
+        this.props.dispatch(clearAuth());
+        clearAuthToken();
+        this.props.history.push('/login-page');
+      } else {
+        return;
+      }
+    });
   }
 
   onDelete(e, id) {
@@ -86,9 +101,9 @@ export class Dashboard extends React.Component {
     }
     
     return (
-      <div className="dashboard">
+      <div className={`dashboard ${this.state.leaving ? "opacity-out" : ""}`} ref="thisDashboard">
         <div className="shape">
-          <span className="log-out" onClick={(e) => this.logOut(e)} tabIndex="1">Log Out</span><br/>
+          <span className="log-out" onClick={() => this.logOut()} tabIndex="1">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
           <NutritionSearchPage/>
           <ExerciseSearchPage/><br/>

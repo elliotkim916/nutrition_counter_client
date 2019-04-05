@@ -1,10 +1,29 @@
 import React from 'react';
 import LoginForm from './login-form';
 import {connect} from 'react-redux';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import '../stylesheets/components/_login-page.scss';
 
 export class LoginPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaving: false
+    };
+  }
+
+  toLanding() {
+    this.setState({leaving: true});
+    const loginPage = this.refs.loginPage;
+    loginPage.addEventListener("animationend", e => {
+      if (e.animationName === "opacity_out") {
+        this.props.history.push("/");
+      } else {
+        return;
+      }
+    });
+  }
+
   render() {
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
@@ -21,8 +40,8 @@ export class LoginPage extends React.Component {
     }
 
     return (
-      <div className="login-page">
-        <Link to="/" className="nutrition-counter-header">Nutrition Counter</Link>
+      <div className={`login-page ${this.state.leaving || this.props.loading ? "opacity-out" : ""}`} ref="loginPage">
+        <h3 className="nutrition-counter-header" onClick={() => this.toLanding()}>Nutrition Counter</h3>
         <LoginForm />
         {loading}
       </div>
