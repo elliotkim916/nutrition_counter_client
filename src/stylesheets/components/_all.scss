@@ -14,3 +14,27 @@ body {
   height: 100%;
   background-color: white;
 }
+
+.login-page, .registration-page,
+.landing-page, .dashboard {
+  animation: opacity_effect 0.3s;
+}
+@keyframes opacity_effect {
+  0% {
+    opacity: 0;
+  }
+  100% {
+   opacity: 1;
+  }
+}
+.opacity-out {
+  animation: opacity_out 0.3s;
+}
+@keyframes opacity_out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
