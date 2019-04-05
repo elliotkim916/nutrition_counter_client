@@ -11,7 +11,7 @@ class LandingPage extends React.Component {
           <Link className="landing-login" to="/login-page">Log in</Link>
           <Link className="landing-signup" to="/registration-page">Sign up</Link><br/>
 
-          <h1 className="landing-page-header">Nutrition Counter</h1>
+          <h1 className="landing-page-header expandOpen">Nutrition Counter</h1>
 
           <p className="descriptor-header">Stay On Track</p>
           <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
