@@ -48,7 +48,7 @@ export class Dashboard extends React.Component {
     if (nutrition_array) {
       nutrition_totals = nutrition_array.map((value, index) => {
         return (
-          <li key = {index} className = "nutrition_total">
+          <div key = {index} className = "nutrition_total">
             <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
               <li><span className="list-title">Foods : </span> {value.food_name}</li>
@@ -61,7 +61,7 @@ export class Dashboard extends React.Component {
             </ul>
             <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
-          </li>
+          </div>
         );
       });
     }
@@ -71,7 +71,7 @@ export class Dashboard extends React.Component {
     if (exercise_array) {
       exercise_totals = exercise_array.map((value, index) => {
         return (
-          <li key = {index} className = "exercise_total">
+          <div key = {index} className = "exercise_total">
             <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
             <ul>
               <li><span className="list-title">Exercise Name :</span> {value.exerciseName}</li>
@@ -80,7 +80,7 @@ export class Dashboard extends React.Component {
             </ul>
             <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
-          </li>
+          </div>
         );
       });
     }
