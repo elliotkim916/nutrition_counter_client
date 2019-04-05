@@ -100,6 +100,7 @@ span {
   color: #363636;
 }
 .link-text:hover, .link-text:focus {
+  cursor: pointer;
   text-decoration: underline;
   outline: none;
 }
