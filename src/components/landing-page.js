@@ -41,8 +41,8 @@ class LandingPage extends React.Component {
     return (
       <div className={`landing-page ${this.state.leaving ? "opacity-out" : ""}`} ref="landingPage">
         <div className="shape-two">
-          <span className="landing-login" onClick={() => this.logIn()}>Log in</span>
-          <span className="landing-signup" onClick={() => this.signUp()}>Sign up</span><br/>
+          <span className="landing-login" onClick={() => this.logIn()} tabIndex="1">Log in</span>
+          <span className="landing-signup" onClick={() => this.signUp()} tabIndex="2">Sign up</span><br/>
 
           <h1 className="landing-page-header expandOpen">Nutrition Counter</h1>
 
