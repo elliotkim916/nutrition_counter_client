@@ -5,6 +5,7 @@ import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
 import Input from './input';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
+import '../stylesheets/components/_login-page.scss';
 
 // why does this cause errors if these variables are within the render function?
 const passwordLength = length({min: 8, max: 72});
@@ -27,7 +28,7 @@ export class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form">
+      <div className="login-form fadeIn">
         <h3 className="login-descriptor">Sign up</h3>
         <form 
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}

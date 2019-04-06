@@ -14,7 +14,7 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form">
+      <div className="login-form fadeIn">
         <h3 className="login-descriptor">Log in</h3>
         <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <Field
