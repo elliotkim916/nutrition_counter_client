@@ -8,8 +8,19 @@ class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      leaving: false
+      leaving: false,
+      mounted: false
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({mounted: true});
+    }, 0.0003);
+  }
+
+  componentWillUnmount() {
+    this.setState({mounted: false});
   }
 
   logIn() {
@@ -44,7 +55,7 @@ class LandingPage extends React.Component {
           <span className="landing-login" onClick={() => this.logIn()} tabIndex="1">Log in</span>
           <span className="landing-signup" onClick={() => this.signUp()} tabIndex="2">Sign up</span><br/>
 
-          <h1 className="landing-page-header expandOpen">Nutrition Counter</h1>
+          <h1 className={`landing-page-header ${this.state.mounted ? "fadeIn" : ""}`}>Nutrition Counter</h1>
 
           <p className="descriptor-header">Stay On Track</p>
           <p className="landing-page-descriptor">The ultimate tool for tracking your diet and workouts</p>
