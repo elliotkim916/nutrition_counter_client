@@ -41,7 +41,7 @@ export class LoginPage extends React.Component {
 
     return (
       <div className={`login-page ${this.state.leaving || this.props.loading ? "opacity-out" : ""}`} ref="loginPage">
-        <h3 className="nutrition-counter-header" onClick={() => this.toLanding()}>Nutrition Counter</h3>
+        <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         <LoginForm />
         {loading}
       </div>

@@ -41,7 +41,7 @@ export class RegistrationPage extends React.Component {
 
     return (
       <div className={`registration-page ${this.state.leaving || this.props.loading ? "opacity-out" : ""}`} ref="registrationPage">
-        <h3 className="nutrition-counter-header" onClick={() => this.toLanding()}>Nutrition Counter</h3>
+        <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         <RegistrationForm/>
         {loading}
       </div>
