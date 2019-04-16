@@ -11,6 +11,11 @@
   letter-spacing: 1px;
 }
 
+.checkmark-icon {
+  width: 15px;
+  margin-right: 10px;
+}
+
 .landing-page-signup-btn {
   position: absolute;
   left: 0;
@@ -130,7 +135,7 @@
 }
 
 .container-list-item {
-  background: url('../images/checkmark.png') 0 2px no-repeat;
+  // background: url('../../images/checkmark.png') 0 2px no-repeat;
   background-size: 21px 17px;
   padding-left: 33px;
   position: relative;
