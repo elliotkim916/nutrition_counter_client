@@ -11,7 +11,7 @@ import ExerciseSearchPage from './exercise-search-page';
 import NutritionResults from './nutrition-results';
 import ExerciseResults from './exercise-results';
 import {refreshAuthToken} from '../actions/auth';
-import '../stylesheets/components/_all.scss';
+import '../index.scss';
 
 export class App extends Component {
   componentDidUpdate(prevProps) {
