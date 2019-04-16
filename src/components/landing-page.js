@@ -1,8 +1,7 @@
 import React from 'react';
-import '../stylesheets/components/_all.scss';
-import '../stylesheets/components/_landing-page.scss';
 import {connect} from 'react-redux';
-// import {Link} from 'react-router-dom';
+import '../index.scss';
+import checkmark from '../stylesheets/images/checkmark.png';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -70,9 +69,9 @@ class LandingPage extends React.Component {
             <h3 className="container-headers">Weight Loss</h3>
             <img src="https://img.icons8.com/color/96/000000/apple.png" className="container-img" alt="apple"/>
             <ul>
-              <li className="container-list-item">Search your meal</li>
-              <li className="container-list-item">See the nutrtion broken down</li>
-              <li className="container-list-item">Save all your food and keep track</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Search your meal</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See the nutrtion broken down</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Save all your food and keep track</li>
             </ul>
           </div>
 
@@ -80,9 +79,9 @@ class LandingPage extends React.Component {
             <h3 className="container-headers">Calorie Counter</h3>
             <img src="https://img.icons8.com/color/96/000000/treadmill.png" className="container-img" alt="treadmill"/>
             <ul>
-              <li className="container-list-item">Enter your workout and duration</li>
-              <li className="container-list-item">Search from a huge database</li>
-              <li className="container-list-item">Track exercises</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Enter your workout and duration</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Search from a huge database</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Track exercises</li>
             </ul>
           </div><br/>
 
@@ -91,9 +90,9 @@ class LandingPage extends React.Component {
             <img src="https://img.icons8.com/color/96/000000/bench-press-with-dumbbells.png" alt="weightlifter" className="benchpress-img"/>
             <img src="https://img.icons8.com/color/96/000000/weightlift.png" alt="weightlifter" className="weightlift-img"/>
             <ul>
-              <li className="container-list-item">Compare calories burned to calories consumed</li>
-              <li className="container-list-item">See if you are eating more than you are burning</li>
-              <li className="container-list-item">Save and delete what you want</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Compare calories burned to calories consumed</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See if you are eating more than you are burning</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Save and delete what you want</li>
             </ul>
           </div>
         </div>
