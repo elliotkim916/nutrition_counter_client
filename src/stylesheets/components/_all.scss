@@ -4,10 +4,17 @@ html {
 
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Questrial;
 }
 
 #root {
   height: 100%;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .App {
