@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from './login-form';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import '../stylesheets/components/_login-page.scss';
+import '../index.scss';
 
 export class LoginPage extends React.Component {
   constructor(props) {
