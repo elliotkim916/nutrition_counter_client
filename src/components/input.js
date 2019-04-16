@@ -1,6 +1,5 @@
 import React from 'react';
-import '../stylesheets/components/_login-page.scss';
-
+import '../index.scss';
 export default class Input extends React.Component {
   render() {
     let error;

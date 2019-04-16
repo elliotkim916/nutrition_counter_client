@@ -3,10 +3,10 @@ import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
-import '../stylesheets/components/_results-page.scss';
 import {connect} from 'react-redux';
 import {addExercise} from '../actions/protected-exercise-data';
 import requiresLogin from './requires-login';
+import '../index.scss';
 
 export class ExerciseResults extends Component {
   constructor(props) {
