@@ -5,7 +5,7 @@ import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
 import Input from './input';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
-import '../stylesheets/components/_login-page.scss';
+import '../index.scss';
 
 // why does this cause errors if these variables are within the render function?
 const passwordLength = length({min: 8, max: 72});
