@@ -32,7 +32,7 @@ export class RegistrationPage extends React.Component {
     if (this.props.loading) {
       return (
         <div className="loading-container">
-          <h3 className="loading-header">Creating account ...</h3>
+          <h3 className="loading-header">Registering ...</h3>
           <div className="loader"></div> 
         </div>
       );
