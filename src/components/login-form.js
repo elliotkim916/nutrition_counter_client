@@ -40,6 +40,12 @@ export class LoginForm extends React.Component {
           </button>
         </form>
         <span>Don't have an account? <Link to="/registration-page" className="link-text">Click here</Link></span>
+        
+        <div className="demo-container">
+          <span className="demo-title">Demo Account</span><br/>
+          <span>username: testone</span><br/>
+          <span>password: testonepassword</span>
+			  </div>
       </div>
     ); 
   }
