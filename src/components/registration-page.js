@@ -29,9 +29,8 @@ export class RegistrationPage extends React.Component {
       return <Redirect to="/dashboard"/>;
     }
 
-    let loading;
     if (this.props.loading) {
-      loading = (
+      return (
         <div className="loading-container">
           <h3 className="loading-header">Creating account ...</h3>
           <div className="loader"></div> 
@@ -40,10 +39,9 @@ export class RegistrationPage extends React.Component {
     }
 
     return (
-      <div className={`registration-page ${this.state.leaving || this.props.loading ? "opacity-out" : ""}`} ref="registrationPage">
+      <div className={`registration-page ${this.state.leaving ? "opacity-out" : ""}`} ref="registrationPage">
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         <RegistrationForm/>
-        {loading}
       </div>
     );
   }
