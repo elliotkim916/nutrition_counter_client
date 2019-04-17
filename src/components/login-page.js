@@ -29,10 +29,9 @@ export class LoginPage extends React.Component {
       return <Redirect to="/dashboard" />;
     }
 
-    let loading;
     if (this.props.loading) {
-      loading = (
-        <div className="loading-container">
+      return (
+        <div className={`loading-container ${this.props.loading ? "opacity-out" : ""}`}>
           <h3 className="loading-header">Logging in ...</h3>
           <div className="loader"></div> 
         </div>
@@ -43,7 +42,6 @@ export class LoginPage extends React.Component {
       <div className={`login-page ${this.state.leaving || this.props.loading ? "opacity-out" : ""}`} ref="loginPage">
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         <LoginForm />
-        {loading}
       </div>
     );
   }
