@@ -9,6 +9,9 @@
   position: relative;
   color: whitesmoke;
   letter-spacing: 1px;
+  @media (max-width: 660px) {
+    font-size: 5.1em;
+  }
 }
 
 .checkmark-icon {
@@ -48,6 +51,16 @@
   color: whitesmoke;
   font-size: 3rem;
   padding-top: 25px;
+  @media (max-width: 387px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 582px) {
+    padding-top: 0px;
+  }
+  @media (max-width: 606px) {
+    font-size: 2.2em;
+    padding-top: 0px;
+  }
 }
 
 .landing-page-descriptor {
@@ -111,6 +124,9 @@
   width: 35%;
   min-width: 240px;
   margin: 50px 50px 50px 0;  
+  @media (max-width: 724px) {
+    margin-right: 0;
+  }
 }
 
 .container-two {
@@ -135,7 +151,6 @@
 }
 
 .container-list-item {
-  // background: url('../../images/checkmark.png') 0 2px no-repeat;
   background-size: 21px 17px;
   padding-left: 33px;
   position: relative;
@@ -206,37 +221,6 @@
 	100% {
 		-webkit-transform: scale(1);
 	}					
-}
-
-@media (max-width: 387px) {
-  .descriptor-header {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 582px) {
-  .descriptor-header {
-    padding-top: 0px;
-  }
-}
-
-@media (max-width: 606px) {
-  .descriptor-header {
-    font-size: 2.2em;
-    padding-top: 0px;
-  }
-}
-
-@media (max-width: 660px) {
-  .landing-page-header {
-    font-size: 5.1em;
-  }
-}
-
-@media (max-width: 724px) {
-  .container-one {
-    margin-right: 0;
-  }
 }
 
 @media (max-width: 1450px) {
