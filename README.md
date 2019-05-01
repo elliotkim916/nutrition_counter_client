@@ -3,8 +3,8 @@
 * Enter in your exercise and duration to see how much calories you burned, save that data, and compare how much your consuming along with how much your burning to see if you are on track to reach your fitness goals! 
 
 ## **Installation**
-* [Link to server side](https://github.com/elliotkim916/nutrition_counter_api) - Go to this link, clone the repo, run npm install, and then run node server.js in your terminal
-* Clone this repo to have the client side & run npm install, then run npm start
+* [Link to server side](https://github.com/elliotkim916/nutrition_counter_api) - Go to this link, clone the repo, run npm install, and then run node server.js in your terminal.
+* Clone this repo to have the client side & run npm install, then run npm start.
 
 ## **Technologies Used**
 
