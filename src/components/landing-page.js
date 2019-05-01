@@ -70,7 +70,7 @@ class LandingPage extends React.Component {
             <img src="https://img.icons8.com/color/96/000000/apple.png" className="container-img" alt="apple"/>
             <ul>
               <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Search your meal</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See the nutrtion broken down</li>
+              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See the nutrtion broken <span className="down">down</span></li>
               <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Save all your food and keep track</li>
             </ul>
           </div>
