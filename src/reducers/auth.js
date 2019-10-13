@@ -5,6 +5,7 @@ import {
   AUTH_SUCCESS,
   AUTH_ERROR
 } from '../actions/auth';
+import { updateObject } from '../util';
 
 const initialState = {
   authToken: null,
@@ -13,34 +14,50 @@ const initialState = {
   error: null
 };
 
+const setAuthToken = (state, action) => {
+  return updateObject(state, {
+    authToken: action.authToken,
+    loading: false,
+    error: null
+  });
+};
+
+const clearAuth = (state, action) => {
+  return updateObject(state, {
+    authToken: null,
+    currentUser: null
+  });
+};
+
+const authRequest = (state, action) => {
+  return updateObject(state, {
+    loading: true,
+    error: null   
+  });
+};
+
+const authSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    currentUser: action.currentUser,
+    error: null
+  });
+};
+
+const authError = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
 export default function authReducer(state=initialState, action) {
-  if (action.type === SET_AUTH_TOKEN) {
-    return Object.assign({}, state, {
-      authToken: action.authToken,
-      loading: false,
-      error: null
-    })
-  } else if (action.type === CLEAR_AUTH) {
-    return Object.assign({}, state, {
-      authToken: null,
-      currentUser: null
-    })
-  } else if (action.type === AUTH_REQUEST) {
-    return Object.assign({}, state, {
-      loading: true,
-      error: null     
-    });
-  } else if (action.type === AUTH_SUCCESS) {
-    return Object.assign({}, state, {
-      loading: false,
-      currentUser: action.currentUser,
-      error: null
-    });
-  } else if (action.type === AUTH_ERROR) {
-    return Object.assign({}, state, {
-      loading: false,
-      error: action.error
-    });
+  switch(action.type) {
+    case SET_AUTH_TOKEN : return setAuthToken(state, action);
+    case CLEAR_AUTH : return clearAuth(state, action);
+    case AUTH_REQUEST : return authRequest(state, action);
+    case AUTH_SUCCESS : return authSuccess(state, action);
+    case AUTH_ERROR : return authError(state, action);
+    default : return state;
   }
-  return state;
 }

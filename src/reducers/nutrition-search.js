@@ -3,6 +3,7 @@ import {
   NUTRITION_SEARCH_SUCCESS,
   NUTRITION_SEARCH_ERROR
 } from '../actions/nutrition-search';
+import { updateObject } from '../util';
 
 const initialState = {
   loading: false,
@@ -10,23 +11,30 @@ const initialState = {
   error: null
 };
 
+const nutritionSearchRequest = (state, action) => {
+  return updateObject(state, {
+    loading: true
+  });
+};
+
+const nutritionSearchSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false,
+    nutrition: action.nutrition
+  });
+};
+
+const nutritionSearchError = (state, action) => {
+  return updateObject(state, {
+    error: action.error
+  });
+};
+
 export function nutritionSearchReducer(state=initialState, action) {
-  if (action.type === NUTRITION_SEARCH_REQUEST) {
-    return Object.assign({}, state, {
-      loading: true
-    });
-  } else if (action.type === NUTRITION_SEARCH_SUCCESS) {
-    return Object.assign({}, state, {
-      loading: false,
-      nutrition: action.nutrition,
-      error: null
-    });
-  } else if (action.type === NUTRITION_SEARCH_ERROR) {
-    return Object.assign({}, state, {
-      error: action.error,
-      nutrition: [],
-      loading: false
-    });
+  switch(action.type) {
+    case NUTRITION_SEARCH_REQUEST : return nutritionSearchRequest(state, action);
+    case NUTRITION_SEARCH_SUCCESS : return nutritionSearchSuccess(state, action);
+    case NUTRITION_SEARCH_ERROR : return nutritionSearchError(state, action);
+    default: return state;
   }
-  return state;
 }
