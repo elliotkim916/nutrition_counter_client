@@ -4,7 +4,7 @@ import {
   ADD_PROTECTED_DATA,
   DELETE_PROTECTED_DATA
 } from '../actions/protected-data';
-import { updateObject } from '../util';
+import { updateObject } from '../utility';
 
 const initialState = {
   protected_data: '',

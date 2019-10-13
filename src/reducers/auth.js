@@ -5,7 +5,7 @@ import {
   AUTH_SUCCESS,
   AUTH_ERROR
 } from '../actions/auth';
-import { updateObject } from '../util';
+import { updateObject } from '../utility';
 
 const initialState = {
   authToken: null,

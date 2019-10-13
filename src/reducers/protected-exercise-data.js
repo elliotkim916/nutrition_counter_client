@@ -4,7 +4,7 @@ import {
   ADD_EXERCISE_DATA,
   DELETE_EXERCISE_DATA
 } from '../actions/protected-exercise-data';
-import { updateObject } from '../util';
+import { updateObject } from '../utility';
 
 const initialState = {
   exerciseData : '',

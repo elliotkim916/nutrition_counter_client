@@ -3,7 +3,7 @@ import {
   NUTRITION_SEARCH_SUCCESS,
   NUTRITION_SEARCH_ERROR
 } from '../actions/nutrition-search';
-import { updateObject } from '../util';
+import { updateObject } from '../utility';
 
 const initialState = {
   loading: false,

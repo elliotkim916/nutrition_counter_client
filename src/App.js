@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Router, Route } from 'react-router-dom';
-import history from '../history';
-import LandingPage from './landing-page';
-import RegistrationPage from './registration-page';
-import LoginPage from './login-page';
-import Dashboard from './dashboard';
+import history from './history';
+import LandingPage from './components/Landing/landing-page';
+import RegistrationPage from './components/Registration/registration-page';
+import LoginPage from './components/Login/login-page';
+import Dashboard from './components/Dashboard/dashboard';
 import NutritionSearchPage from './nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
-import NutritionResults from './nutrition-results';
-import ExerciseResults from './exercise-results';
-import {refreshAuthToken} from '../actions/auth';
+import NutritionResults from './components/Nutrition/nutrition-results';
+import ExerciseResults from './components/Exercise/exercise-results';
+import {refreshAuthToken} from './actions/auth';
 import '../index.scss';
 
 export class App extends Component {
