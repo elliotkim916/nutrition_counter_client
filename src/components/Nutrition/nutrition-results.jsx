@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import '../index.scss';
-import NutritionSearchPage from './nutrition-search-page';
-import NutritionResultsTotals from './nutrition-results-totals';
-import ExerciseSearchPage from './exercise-search-page';
+import '../../index.scss';
+import NutritionSearchPage from '../Nutrition/nutrition-search-page';
+import NutritionResultsTotals from '../Nutrition/nutrition-results-totals';
+import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../../actions/protected-data';
 import requiresLogin from '../Login/requires-login';

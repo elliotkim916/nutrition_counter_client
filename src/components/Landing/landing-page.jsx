@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../index.scss';
-import checkmark from '../stylesheets/images/checkmark.png';
+import '../../index.scss';
+import checkmark from '../../stylesheets/images/checkmark.png';
 
 class LandingPage extends React.Component {
   constructor(props) {

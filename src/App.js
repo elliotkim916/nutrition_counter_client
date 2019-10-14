@@ -6,12 +6,12 @@ import LandingPage from './components/Landing/landing-page';
 import RegistrationPage from './components/Registration/registration-page';
 import LoginPage from './components/Login/login-page';
 import Dashboard from './components/Dashboard/dashboard';
-import NutritionSearchPage from './nutrition-search-page';
-import ExerciseSearchPage from './exercise-search-page';
+import NutritionSearchPage from './components/Nutrition/nutrition-search-page';
+import ExerciseSearchPage from './components/Exercise/exercise-search-page';
 import NutritionResults from './components/Nutrition/nutrition-results';
 import ExerciseResults from './components/Exercise/exercise-results';
 import {refreshAuthToken} from './actions/auth';
-import '../index.scss';
+import './index.scss';
 
 export class App extends Component {
   componentDidUpdate(prevProps) {

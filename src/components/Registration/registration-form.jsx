@@ -1,11 +1,11 @@
 import React from 'react';
 import {reduxForm, Field, focus, SubmissionError} from 'redux-form';
 import {Link} from 'react-router-dom';
-import {required, nonEmpty, isTrimmed, length, matches} from '../validators.js';
-import Input from './input';
-import {registerUser} from '../actions/users';
-import {login} from '../actions/auth';
-import '../index.scss';
+import {required, nonEmpty, isTrimmed, length, matches} from '../../validators.js';
+import Input from '../Input/input';
+import {registerUser} from '../../actions/users';
+import {login} from '../../actions/auth';
+import '../../index.scss';
 
 // why does this cause errors if these variables are within the render function?
 const passwordLength = length({min: 8, max: 72});

@@ -5,14 +5,14 @@ import {clearAuthToken} from '../../local-storage';
 import {fetchProtectedData, deleteData} from '../../actions/protected-data';
 import {getExercise, deleteExercise} from '../../actions/protected-exercise-data';
 import requiresLogin from '../Login/requires-login';
-import NutritionSearchPage from './nutrition-search-page';
-import ExerciseSearchPage from './exercise-search-page';
+import NutritionSearchPage from '../Nutrition/nutrition-search-page';
+import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import NutritionTotals from '../Nutrition/nutrition-totals';
 import ExerciseTotals from '../Exercise/exercise-totals';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import harvest from '../stylesheets/images/harvest.png';
+import harvest from '../../stylesheets/images/harvest.png';
 import "react-tabs/style/react-tabs.css";
-import '../index.scss';
+import '../../index.scss';
 
 export class Dashboard extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get_nutrition} from '../actions/nutrition-search';
-import requiresLogin from './requires-login';
+import {get_nutrition} from '../../actions/nutrition-search';
+import requiresLogin from '../Login/requires-login';
 
 export class NutritionSearchPage extends React.Component {
   constructor(props) {
