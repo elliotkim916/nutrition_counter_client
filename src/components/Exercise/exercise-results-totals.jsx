@@ -19,7 +19,7 @@ const ExerciseResultsTotals = props => {
 
   if (i_count >= 0) {
     return (
-      <div className = {!this.props.loading ? "exercise-totals fadeIn" : "exercise-totals"}>
+      <div className = {!props.loading ? "exercise-totals fadeIn" : "exercise-totals"}>
         <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
           <h4>Total Calories Burned : {exerciseTotals.nf_calories}</h4>
           <h4>Total Duration : {exerciseTotals.duration_min} minutes</h4>
@@ -33,7 +33,8 @@ const ExerciseResultsTotals = props => {
 }
 
 const mapStateToProps = state => ({
-  exerciseResults: state.exerciseSearchReducer.exercise_results
+  exerciseResults: state.exerciseSearchReducer.exercise_results,
+  loading: state.exerciseSearchReducer.loading,
 });
 
 export default connect(mapStateToProps)(ExerciseResultsTotals);

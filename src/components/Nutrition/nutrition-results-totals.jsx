@@ -26,7 +26,7 @@ const NutritionResultsTotals = props => {
 
   if (add_count_of_j) {
     return (
-      <div className= {!this.props.loading ? "nutrition-results-container fadeIn" : "nutrition-results-container"}>
+      <div className= {!props.loading ? "nutrition-results-container fadeIn" : "nutrition-results-container"}>
         <form onSubmit = {(e) => this.onAdd(e, nutritionTotals, props.username, Date.now)}>
         <h3>Nutrition Totals</h3>
           <ul className="nutrition-list">
@@ -48,6 +48,7 @@ const NutritionResultsTotals = props => {
 
 const mapStateToProps = state => ({
   nutritionResults: state.nutritionSearchReducer.nutrition,
+  loading: state.nutritionSearchReducer.loading,
   username: state.authReducer.currentUser.username
 });
 
