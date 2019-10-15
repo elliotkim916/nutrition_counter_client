@@ -7,6 +7,8 @@ import ExerciseResultsTotals from './exercise-results-totals';
 import {connect} from 'react-redux';
 import {addExercise} from '../../actions/protected-exercise-data';
 import requiresLogin from '../Login/requires-login';
+import Error from '../Error/error';
+import Loading from '../Loading/loading';
 import '../../index.scss';
 
 export class ExerciseResults extends Component {
@@ -50,26 +52,6 @@ export class ExerciseResults extends Component {
   }
 
   render() {
-    let error;
-    if (this.props.exerciseResults.length === 0) {
-      error = (
-        <div className="error-msg">
-          <img src="https://img.icons8.com/clouds/100/000000/sad.png" alt="sad face"></img><br/>
-          <h3 className="error-header">Sorry, no results were found.<br/> Try another search!</h3>
-        </div>
-      );
-    }
-
-    let loading;
-    if (this.props.loading) {
-      loading = (
-        <div className="loading-container">
-          <h3 className="loading-header">Loading ...</h3>
-          <div className="loader"></div> 
-        </div>
-      );
-    } 
-
     let exercise_results_array = this.props.exerciseResults;
     let exercise_result = '';
     exercise_result = exercise_results_array.map((result, index) => 
@@ -95,8 +77,16 @@ export class ExerciseResults extends Component {
           {exercise_result}
         </ul>
         <ExerciseResultsTotals/>
-        {loading}
-        {error}
+        {
+          this.props.loading ?
+          <Loading/> :
+          null
+        }
+        {
+          this.props.exerciseResults.length === 0 ? 
+          <Error loading={this.props.loading}/> :
+          null
+        }
       </section>
     );
   }

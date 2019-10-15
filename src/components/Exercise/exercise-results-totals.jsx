@@ -17,9 +17,16 @@ const ExerciseResultsTotals = props => {
     i === props.exerciseResults.length - 1 ? i_count = i : console.log('i error');
   }
 
+  let cssClass;
+  if (!props.loading) {
+    cssClass = "exercise-totals fadeIn"
+  } else {
+    cssClass = "exercise-totals"
+  }
+  
   if (i_count >= 0) {
     return (
-      <div className = {!props.loading ? "exercise-totals fadeIn" : "exercise-totals"}>
+      <div className = {cssClass}>
         <form onSubmit = {(e) => this.onAdd(e, exerciseTotals.name, exerciseTotals.nf_calories, exerciseTotals.duration_min, this.props.username, Date.now)}>
           <h4>Total Calories Burned : {exerciseTotals.nf_calories}</h4>
           <h4>Total Duration : {exerciseTotals.duration_min} minutes</h4>

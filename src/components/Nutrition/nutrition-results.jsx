@@ -8,6 +8,8 @@ import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData} from '../../actions/protected-data';
 import requiresLogin from '../Login/requires-login';
+import Loading from '../Loading/loading';
+import Error from '../Error/error';
 
 export class NutritionResults extends Component {
   constructor(props) {
@@ -50,26 +52,6 @@ export class NutritionResults extends Component {
   }
 
   render() {
-    let error;
-    if (this.props.nutritionError) {
-      error = (
-        <div className={!this.props.loading ? "error-msg fadeIn" : "error-msg"}>
-          <img src="https://img.icons8.com/clouds/100/000000/sad.png" alt="sad face"></img><br/>
-          <h3 className="error-header">Sorry, no results were found.<br/> Try another search!</h3>
-        </div>
-      );
-    } 
-
-    let loading;
-    if (this.props.loading) {
-      loading = (
-        <div className="loading-container">
-          <h3 className="loading-header">Loading ...</h3>
-          <div className="loader"></div> 
-        </div>
-      );
-    } 
-
     let nutrition_results_array = this.props.nutritionResults;
     let nutrition_result = '';  
     nutrition_result = nutrition_results_array.map((result, index) => 
@@ -107,8 +89,16 @@ export class NutritionResults extends Component {
           {nutrition_result}
         </ul>
         <NutritionResultsTotals/>
-        {loading}
-        {error}
+        {
+          this.props.loading && !this.props.nutritionError ?
+          <Loading/> :
+          null
+        }
+        {
+          this.props.nutritionError ? 
+          <Error loading={this.props.loading} /> : 
+          null
+        }
       </section>
     );
   }
