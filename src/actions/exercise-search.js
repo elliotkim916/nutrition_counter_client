@@ -1,9 +1,6 @@
-import {
-  EXERCISE_BASE_URL,
-  APP_ID,
-  APP_KEY
-} from '../config';
+import {EXERCISE_BASE_URL} from '../config';
 import history from '../history';
+import { postData } from '../utility';
 
 export const EXERCISE_SEARCH_REQUEST = 'EXERCISE_SEARCH_REQUEST';
 export const exerciseSearchRequest = () => ({
@@ -22,35 +19,24 @@ export const exerciseSearchError = error => ({
   error
 });
 
-function fetch_exercise(exercise) {
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-app-id': `${APP_ID}`,
-    'x-app-key': `${APP_KEY}`
-  }
-
+export const get_exercise = exercise => dispatch => {
   const body = JSON.stringify({
     'query': exercise
   });
 
-  return fetch (`${EXERCISE_BASE_URL}`, {
-    method: 'POST',
-    body: body,
-    headers: headers
-  })
-  .then(res => {
-    if (!res.ok) {
-      return Promise.reject(res.statusText);
+  dispatch(exerciseSearchRequest());
+  postData(
+    EXERCISE_BASE_URL,
+    body,
+    res => {
+      console.log('exercise search success', res);
+      dispatch(exerciseSearchSuccess(res.exercises));
+      history.push('/exercise-results');
+    },
+    err => {
+      console.log('exercise search fail', err);
+      dispatch(exerciseSearchError(err));
+      history.push('/exercise-results');
     }
-    return res.json();
-  })
-  .then(data => data.exercises);
-}
-
-export const get_exercise = exercise => dispatch => {
-  dispatch(exerciseSearchRequest())
-  fetch_exercise(exercise)
-  .then(exercise => dispatch(exerciseSearchSuccess(exercise)))
-  .then(() => history.push('/exercise-results'))
-  .catch(error => dispatch(exerciseSearchError(error)));
+  );
 }
