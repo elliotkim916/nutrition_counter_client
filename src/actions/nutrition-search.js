@@ -1,9 +1,6 @@
-import {
-  NUTRITIONIX_BASE_URL,
-  APP_ID,
-  APP_KEY
-} from '../config';
+import {NUTRITIONIX_BASE_URL} from '../config';
 import history from '../history';
+import { postData } from '../utility';
 
 export const NUTRITION_SEARCH_REQUEST = 'NUTRITION_SEARCH_REQUEST';
 export const nutrtionSearchRequest = () => ({
@@ -22,37 +19,25 @@ export const nutritionSearchError = error => ({
   error
 });
 
-function fetch_nutrition(meal) {
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-app-id': `${APP_ID}`,
-    'x-app-key': `${APP_KEY}`
-  }
-
+export const get_nutrition = meal => dispatch => {
   const body = JSON.stringify({
     'query': meal,
     'timezone': 'US/Western'
   });
 
-  return fetch(`${NUTRITIONIX_BASE_URL}`, {
-    method: 'POST',
-    body: body,
-    headers: headers
-  })
-  .then(res => {
-    if (!res.ok) {
-      return Promise.reject(res.statusText);
-    }
-    return res.json();
-  })
-  .then(data => data.foods);
-}
-
-export const get_nutrition = meal => dispatch => {
   dispatch(nutrtionSearchRequest());
-  fetch_nutrition(meal)
-  .then(meal => dispatch(nutritionSearchSuccess(meal)))
-  .then(() => history.push('/nutrition-results'))
-  .catch(error => dispatch(nutritionSearchError(error)))
-  .then(() => history.push('/nutrition-results'));
+  postData(
+    NUTRITIONIX_BASE_URL,
+    body,
+    res => {
+      console.log('nutrition search response', res);
+      dispatch(nutritionSearchSuccess(res.foods));
+      history.push('/nutrition-results');
+    },
+    err => {
+      console.log('nutrition search error', err);
+      dispatch(nutritionSearchError(err));
+      history.push('/nutrition-results');
+    }
+  )
 } 
