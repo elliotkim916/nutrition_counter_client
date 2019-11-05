@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {APP_ID, APP_KEY} from './config';
+import { loadAuthToken } from './local-storage';
+
 
 export const updateObject = (oldObject, updatedProperties) => ({
   ...oldObject,
@@ -28,6 +30,32 @@ export const postData = (url, data, onSuccess, onFail, dispatch) => {
     })
     .catch(err => {
       onFail(err);
+    });
+}
+
+export const getData = (url, onSuccess, onFail) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const authToken = loadAuthToken();
+  if (authToken !== null) {
+    config.headers['Authorization'] = `Bearer ${authToken}`
+  }
+
+  axios.get(url, config)
+    .then(res => {
+      try {
+        onSuccess(res.data);
+      } catch(e) {
+        console.log(e);
+      }
+    })
+    .catch(e => {
+      console.log(e);
+      onFail(e);
     });
 }
 

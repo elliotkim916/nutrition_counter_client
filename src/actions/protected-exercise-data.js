@@ -1,5 +1,6 @@
 import {API_BASE_URL} from '../config.js';
 import {normalizeResponseErrors} from './utils.js';
+import { getData } from '../utility.js';
 
 export const FETCH_EXERCISE_DATA = 'FETCH_EXERCISE_DATA';
 export const fetchExerciseData = data => ({
@@ -26,21 +27,19 @@ export const deleteExerciseData = id => ({
 });
 
 export const getExercise = () => (dispatch, getState) => {
-  const authToken = getState().authReducer.authToken;
   const username = getState().authReducer.currentUser.username;
-  const headers = {
-    'Authorization' : `Bearer ${authToken}`,
-    'Content-Type' : 'application/json'
-  };
-
-  return fetch(`${API_BASE_URL}/exercise/${username}`, {
-    headers : headers,
-    method : 'GET'
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then(data => dispatch(fetchExerciseData(data)))
-  .catch(err => fetchExerciseError(err))
+  
+  getData(
+    `${API_BASE_URL}/exercise/${username}`,
+    res => {
+      console.log('fetch exericse data success', res);
+      dispatch(fetchExerciseData(res));
+    },
+    err => {
+      console.log('fetch exercise data error', err);
+      dispatch(fetchExerciseError(err));
+    }
+  )
 };
 
 export const addExercise = (name, calories, duration, username, date) => (dispatch, getState) => {

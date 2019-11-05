@@ -1,5 +1,7 @@
 import {API_BASE_URL} from '../config.js';
 import {normalizeResponseErrors} from './utils';
+import { getData } from '../utility.js';
+
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
@@ -26,20 +28,19 @@ export const deleteProtectedData = id => ({
 });
 
 export const fetchProtectedData = () => (dispatch, getState) => {
-  const authToken = getState().authReducer.authToken;
   const username = getState().authReducer.currentUser.username;
-  return fetch(`${API_BASE_URL}/nutrition/${username}`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${authToken}`
-    }
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  // why is it {data}? because we are using object destructuring , if we weren't object destructuring we would get 
-  // .then(res => dispatch(fetchProtectedDataSuccess(res.data)))
-  .then(data => dispatch(fetchProtectedDataSuccess(data)))
-  .catch(err => fetchProtectedDataError(err));
+
+  getData(
+    `${API_BASE_URL}/nutrition/${username}`,
+    res => {
+      console.log('fetch protected data success', res);
+      dispatch(fetchProtectedDataSuccess(res))
+    },
+    err => {
+      console.log('fetch protected data fail', err);
+      dispatch(fetchProtectedDataError(err))
+    }   
+  )
 }
 
 // order of dispatch, getState is important because in redux thunk, the second parameter in the async action,
