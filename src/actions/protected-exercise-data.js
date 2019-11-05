@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config.js';
-import { getData, postData } from '../utility.js';
+import { getData, postData, removeData } from '../utility.js';
 
 export const FETCH_EXERCISE_DATA = 'FETCH_EXERCISE_DATA';
 export const fetchExerciseData = data => ({
@@ -67,16 +67,15 @@ export const addExercise = exerciseTotals => (dispatch, getState) => {
 };
 
 export const deleteExercise = id => (dispatch, getState) => {
-  const authToken = getState().authReducer.authToken;
-  const headers = {
-    'Authorization' : `Bearer ${authToken}`,
-    'Content-Type' : 'application/json'
-  };
-
-  return fetch(`${API_BASE_URL}/exercise/${id}`, {
-    headers : headers,
-    method : 'DELETE'
-  })
-  .then(() => dispatch(deleteExerciseData(id)))
-  .catch(err => dispatch(fetchExerciseError(err)))
-}
+  removeData(
+    `${API_BASE_URL}/exercise/${id}`,
+    res => {
+      console.log('delete exercise success', res);
+      dispatch(deleteExerciseData(id));
+    },
+    err => {
+      console.log('delete exercise fail', err);
+      dispatch(fetchExerciseError(err));
+    }
+  );
+};

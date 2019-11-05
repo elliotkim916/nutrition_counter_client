@@ -28,11 +28,13 @@ export const get_exercise = exercise => dispatch => {
   postData(
     EXERCISE_BASE_URL,
     body,
+    // this is the onSuccess function
     res => {
       console.log('exercise search success', res.exercises);
       dispatch(exerciseSearchSuccess(res.exercises));
       history.push('/exercise-results');
     },
+    // this is the onFail function
     err => {
       console.log('exercise search fail', err);
       dispatch(exerciseSearchError(err));

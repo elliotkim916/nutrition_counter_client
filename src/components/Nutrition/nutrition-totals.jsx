@@ -19,7 +19,7 @@ const NutritionTotals = props => {
               <li><span className="list-title">Protein : </span> {value.protein} grams</li>
               <li><span className="list-title">Sodium : </span> {value.sodium} mg</li>
             </ul>
-            <button onClick = {e => this.onDelete(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
+            <button onClick = {e => props.deleteNutrition(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
             <div className="line"></div>
           </div>
         );

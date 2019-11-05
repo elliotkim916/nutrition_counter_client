@@ -14,7 +14,7 @@ const ExerciseTotals = props => {
           <li><span className="list-title">Calories Burned :</span> {value.caloriesBurned}</li>
           <li><span className="list-title">Duration of workout :</span> {value.duration} minutes</li>
         </ul>
-        <button onClick = {e => this.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
+        <button onClick = {e => props.deleteExercise(e, value._id)} className="delete-btn"><span className="exit">x</span></button>
         <div className="line"></div>
     </div>
     );

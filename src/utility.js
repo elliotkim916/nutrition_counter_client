@@ -67,3 +67,29 @@ export const getData = (url, onSuccess, onFail) => {
     });
 }
 
+export const removeData = (url, onSuccess, onFail) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const authToken = loadAuthToken();
+  if (authToken !== null) {
+    config.headers['Authorization'] = `Bearer ${authToken}`
+  }
+
+  axios.delete(url, config)
+    .then(res => {
+      try {
+        onSuccess(res.data);
+      } catch(e) {
+        console.log(e);
+      }
+    })
+    .catch(e => {
+      console.log(e);
+      onFail(e);
+    });
+}
+

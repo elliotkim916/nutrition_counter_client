@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config.js';
-import { getData, postData } from '../utility.js';
+import { getData, postData, removeData } from '../utility.js';
 
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
@@ -72,16 +72,15 @@ export const addProtectedData = (nutrition_object, date) => (dispatch, getState)
 }
 
 export const deleteData = id => (dispatch, getState) => {
-  const authToken = getState().authReducer.authToken;
-  const headers = {
-    'Authorization': `Bearer ${authToken}`,
-    'Content-Type': `application/json`
-  };
-
-  return fetch(`${API_BASE_URL}/nutrition/${id}`, {
-    headers,
-    method: 'DELETE'
-  })
-  .then(() => dispatch(deleteProtectedData(id)))
-  .catch(err => dispatch(fetchProtectedDataError(err)))
+  removeData(
+    `${API_BASE_URL}/nutrition/${id}`,
+    res => {
+      console.log('delete successful', res);
+      dispatch(deleteProtectedData(id));
+    },
+    err => {
+      console.log('delete fail', err);
+      dispatch(fetchProtectedDataError(err));
+    }
+  );
 }

@@ -20,6 +20,9 @@ export class Dashboard extends React.Component {
     this.state = {
       leaving: false
     };
+
+    this.deleteNutrition = this.deleteNutrition.bind(this);
+    this.deleteExercise = this.deleteExercise.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +44,7 @@ export class Dashboard extends React.Component {
     });
   }
 
-  onDelete(e, id) {
+  deleteNutrition(e, id) {
     e.preventDefault();
     const result = window.confirm('Are you sure you want to delete?  If so, click OK');
     if (result) {
@@ -73,8 +76,8 @@ export class Dashboard extends React.Component {
           this.props.protectedData.length > 0 ?
           <React.Fragment>
             <div className="totals-container">
-              <NutritionTotals/>
-              <ExerciseTotals/>
+              <NutritionTotals deleteNutrition={this.deleteNutrition}/>
+              <ExerciseTotals deleteExercise={this.deleteExercise}/>
             </div>
 
             <div className ='nutrition-totals-container'>
