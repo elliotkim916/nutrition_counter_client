@@ -20,6 +20,14 @@ export const postData = (url, data, onSuccess, onFail, dispatch) => {
     config.headers['x-app-key'] = `${APP_KEY}`;
   }
 
+  if (url.includes("nutrition") || url.includes("exercise")) {
+    const authToken = loadAuthToken();
+
+    if (authToken !== null) {
+      config.headers['Authorization'] = `Bearer ${authToken}`;
+    }
+  }
+
   axios.post(url, data, config)
     .then(res => {
       try {

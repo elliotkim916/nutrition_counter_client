@@ -29,7 +29,7 @@ export const get_exercise = exercise => dispatch => {
     EXERCISE_BASE_URL,
     body,
     res => {
-      console.log('exercise search success', res);
+      console.log('exercise search success', res.exercises);
       dispatch(exerciseSearchSuccess(res.exercises));
       history.push('/exercise-results');
     },

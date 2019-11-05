@@ -17,6 +17,8 @@ export class ExerciseResults extends Component {
     this.state = {
       leaving: false
     };
+
+    this.onAdd = this.onAdd.bind(this);
   }
 
   logOut() {
@@ -45,9 +47,9 @@ export class ExerciseResults extends Component {
     });
   }
   
-  onAdd(e, cal, dur, username, date) {
+  onAdd(e, exerciseTotals) {
     e.preventDefault();
-    this.props.dispatch(addExercise(cal, dur, username, date));
+    this.props.dispatch(addExercise(exerciseTotals));
     window.alert('You have just saved your exercise!');
   }
 
@@ -76,7 +78,7 @@ export class ExerciseResults extends Component {
         <ul className={!this.props.loading ? "exercise-results fadeIn" : "exercise-results"}>
           {exercise_result}
         </ul>
-        <ExerciseResultsTotals/>
+        <ExerciseResultsTotals onAdd={this.onAdd}/>
         {
           this.props.loading ?
           <Loading/> :

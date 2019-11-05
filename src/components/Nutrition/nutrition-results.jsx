@@ -17,6 +17,8 @@ export class NutritionResults extends Component {
     this.state = {
       leaving: false
     };
+
+    this.onAdd = this.onAdd.bind(this);
   }
 
   logOut() {
@@ -45,9 +47,9 @@ export class NutritionResults extends Component {
     });
   }
 
-  onAdd(e, nutritionObject, username, date) {
+  onAdd(e, nutritionObject, date) {
     e.preventDefault();
-    this.props.dispatch(addProtectedData(nutritionObject, username, date));
+    this.props.dispatch(addProtectedData(nutritionObject, date));
     window.alert('You have just saved your nutrition!');
   }
 
@@ -88,7 +90,7 @@ export class NutritionResults extends Component {
         <ul className = {!this.props.loading ? "nutrition-results fadeIn" : "nutrition-results"}>
           {nutrition_result}
         </ul>
-        <NutritionResultsTotals/>
+        <NutritionResultsTotals onAdd={this.onAdd}/>
         {
           this.props.loading && !this.props.nutritionError ?
           <Loading/> :

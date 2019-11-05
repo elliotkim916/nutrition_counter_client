@@ -1,6 +1,5 @@
 import {API_BASE_URL} from '../config.js';
-import {normalizeResponseErrors} from './utils';
-import { getData } from '../utility.js';
+import { getData, postData } from '../utility.js';
 
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
@@ -43,12 +42,9 @@ export const fetchProtectedData = () => (dispatch, getState) => {
   )
 }
 
-// order of dispatch, getState is important because in redux thunk, the second parameter in the async action,
-// the first parameter is for dispatch, and the second is for getState
-export const addProtectedData = (nutrition_object, username, date) => (dispatch, getState) => {
-  // why when doing object destructuring, do the keys have to match my actual object?
+export const addProtectedData = (nutrition_object, date) => (dispatch, getState) => {
+  const username = getState().authReducer.currentUser.username;
   const {food_name, nf_calories, nf_total_fat, nf_total_carbohydrate, nf_protein, nf_sugars, nf_sodium} = nutrition_object;
-  const authToken = getState().authReducer.authToken;
   const data = JSON.stringify({
     food_name : food_name, 
     calories : nf_calories,
@@ -60,20 +56,19 @@ export const addProtectedData = (nutrition_object, username, date) => (dispatch,
     created : date,
     username : username
   });
-  const headers = {
-    'Authorization': `Bearer ${authToken}`,
-    'Content-Type': `application/json`
-  };
- 
-  return fetch(`${API_BASE_URL}/nutrition/${username}`, {
-    headers,
-    method: 'POST',
-    body: data
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then(data => dispatch(addProtectedDataSuccess(data)))
-  .catch(err => dispatch(fetchProtectedDataError(err)));
+
+  postData(
+    `${API_BASE_URL}/nutrition/${username}`,
+    data,
+    res => {
+      console.log('add protected data success', res)
+      dispatch(addProtectedDataSuccess(res));
+    },
+    err => {
+      console.log('add protected data fail', err);
+      dispatch(fetchProtectedDataError(err));
+    }
+  )
 }
 
 export const deleteData = id => (dispatch, getState) => {

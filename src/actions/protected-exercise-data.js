@@ -1,6 +1,5 @@
 import {API_BASE_URL} from '../config.js';
-import {normalizeResponseErrors} from './utils.js';
-import { getData } from '../utility.js';
+import { getData, postData } from '../utility.js';
 
 export const FETCH_EXERCISE_DATA = 'FETCH_EXERCISE_DATA';
 export const fetchExerciseData = data => ({
@@ -32,7 +31,7 @@ export const getExercise = () => (dispatch, getState) => {
   getData(
     `${API_BASE_URL}/exercise/${username}`,
     res => {
-      console.log('fetch exericse data success', res);
+      console.log('fetch exercise data success', res);
       dispatch(fetchExerciseData(res));
     },
     err => {
@@ -42,29 +41,29 @@ export const getExercise = () => (dispatch, getState) => {
   )
 };
 
-export const addExercise = (name, calories, duration, username, date) => (dispatch, getState) => {
-  const authToken = getState().authReducer.authToken;
-  const body = JSON.stringify({
+export const addExercise = exerciseTotals => (dispatch, getState) => {
+  const {name, nf_calories, duration_min, created} = exerciseTotals;
+  const username = getState().authReducer.currentUser.username;
+  const data = JSON.stringify({
     exerciseName : name,
-    caloriesBurned : calories,
-    duration : duration,
+    caloriesBurned : nf_calories,
+    duration : duration_min,
     username : username,
-    created : date
+    created : created
   });
-  const headers = {
-    'Authorization' : `Bearer ${authToken}`,
-    'Content-Type' : 'application/json'
-  };
 
-  return fetch(`${API_BASE_URL}/exercise/${username}`, {
-    headers: headers,
-    body : body,
-    method : 'POST'
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then(data => dispatch(addExerciseData(data)))
-  .catch(err => dispatch(fetchExerciseError(err)))
+  postData(
+    `${API_BASE_URL}/exercise/${username}`,
+    data,
+    res => {
+      console.log('add exercise success', res);
+      dispatch(addExerciseData(res));
+    },
+    err => {
+      console.log('add exercise fail', err);
+      dispatch(fetchExerciseError(err));
+    }
+  );
 };
 
 export const deleteExercise = id => (dispatch, getState) => {
