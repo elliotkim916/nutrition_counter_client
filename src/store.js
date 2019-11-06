@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
@@ -10,6 +10,8 @@ import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   combineReducers({
     nutritionSearchReducer : nutritionSearchReducer,
@@ -19,7 +21,7 @@ const store = createStore(
     protected : protectedDataReducer,
     exerciseDataReducer : exerciseDataReducer
   }),
-  applyMiddleware(thunk)
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 // With the JWT stored, for persistance to work is to reload the token when the application loads
