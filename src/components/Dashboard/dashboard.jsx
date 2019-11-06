@@ -26,8 +26,10 @@ export class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchProtectedData());
-    this.props.dispatch(getExercise());
+    setTimeout(() => {
+      this.props.dispatch(fetchProtectedData());
+      this.props.dispatch(getExercise());
+    }, 50);
   }
 
   logOut() {
