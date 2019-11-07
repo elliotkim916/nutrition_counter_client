@@ -4,8 +4,8 @@ import '../../index.scss';
 
 const AuthError = props => {
   return (
-    <div className="error-container">
-      <div className="error-form">
+    <div className="backdrop">
+      <div className="backdrop-form">
         <h3 className="error-message">{props.authErrorMessage}</h3>
         <button 
           type="button" 

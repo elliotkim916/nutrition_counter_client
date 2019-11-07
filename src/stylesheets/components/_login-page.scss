@@ -144,7 +144,7 @@ span {
   animation-name: fadeIn;
 }
 
-.error-container {
+.backdrop {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -152,7 +152,7 @@ span {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.error-form {
+.backdrop-form {
   width: 300px;
   position: fixed;
   top: 50%;
@@ -163,6 +163,7 @@ span {
   border-radius: 4px;
   text-align: center;
 }
+
 .error-message {
   font-size: 1.75rem;
 }
