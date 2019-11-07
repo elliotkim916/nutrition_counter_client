@@ -3,7 +3,9 @@ import LoginForm from './login-form';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {clearAuthError} from '../../actions/auth';
+import Loading from '../Loading/loading';
 import '../../index.scss';
+import AuthError from '../Error/authError';
 
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -31,12 +33,7 @@ export class LoginPage extends React.Component {
     }
 
     if (this.props.loading) {
-      return (
-        <div className="loading-container">
-          <h3 className="loading-header">Logging in ...</h3>
-          <div className="loader"></div> 
-        </div>
-      );
+      return <Loading loadingMessage={'Logging in..'}/>;
     }
 
     return (
@@ -44,18 +41,10 @@ export class LoginPage extends React.Component {
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         {
           this.props.loginError ? 
-          <div className="error-container">
-            <div className="error-form">
-              <h3 className="error-message">Login failed due to incorrect username or password..</h3>
-              <button 
-                type="button" 
-                className="login-btn" 
-                onClick={() => this.props.dispatch(clearAuthError())}
-              >
-                Okay
-              </button>
-            </div>
-          </div> :
+          <AuthError 
+            authErrorMessage={'Login failed due to incorrect username or password..'}
+            clearError={clearAuthError}
+          /> :
           null
         }
         <LoginForm />

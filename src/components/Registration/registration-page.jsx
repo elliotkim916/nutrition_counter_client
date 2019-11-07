@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import RegistrationForm from './registration-form';
 import {clearCreateUserError} from '../../actions/users';
+import AuthError from '../Error/authError';
+import Loading from '../Loading/loading';
 import '../../index.scss';
 
 export class RegistrationPage extends React.Component {
@@ -31,12 +33,7 @@ export class RegistrationPage extends React.Component {
     }
 
     if (this.props.loading) {
-      return (
-        <div className="loading-container">
-          <h3 className="loading-header">Registering ...</h3>
-          <div className="loader"></div> 
-        </div>
-      );
+      return <Loading loadingMessage={'Creating user..'}/>;
     }
 
     return (
@@ -44,18 +41,10 @@ export class RegistrationPage extends React.Component {
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         {
           this.props.createUserError ? 
-          <div className="error-container">
-            <div className="error-form">
-              <h3 className="error-message">User already exists, please try a different username..</h3>
-                <button 
-                  type="button" 
-                  className="login-btn" 
-                  onClick={() => this.props.dispatch(clearCreateUserError())}
-                >
-                  Okay
-                </button>
-            </div>
-          </div> :
+          <AuthError 
+            authErrorMessage={'User already exists, please try a different username..'}
+            clearError={clearCreateUserError}
+          /> :
           null
         }
         <RegistrationForm/>

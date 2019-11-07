@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../index.scss';
 
-const Loading = () => {
+const Loading = props => {
   return (
     <div className="loading-container">
-      <h3 className="loading-header">Loading ...</h3>
+      <h3 className="loading-header">{props.loadingMessage}</h3>
       <div className="loader"></div> 
     </div>
   );

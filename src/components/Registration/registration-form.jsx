@@ -55,21 +55,28 @@ export class RegistrationForm extends React.Component {
 
     if (username.length > 0 && password.length > 0 && passwordConfirm.length > 0) {
       const user = {username, password}; 
-      console.log(user);
       this.props.dispatch(registerUser(user));
-      this.setState({username: '', password: '', passwordConfirm: ''});
-    }
-    
-    if (this.props.newUser) {
-      if (this.props.newUser.username) {
-        this.props.dispatch(login(username, password));
-      }
+
+      setTimeout(() => {
+        if (this.props.newUser && !this.props.error) {
+          this.props.dispatch(login(username, password));
+        }
+
+        this.setState({username: '', password: '', passwordConfirm: ''});
+      }, 500);
     }
   }
 
   render() {
+    let cssClass;
+    if (this.props.error) {
+      cssClass = "login-form";
+    } else {
+      cssClass = "login-form fadeIn";
+    }
+
     return (
-      <div className="login-form fadeIn">
+      <div className={cssClass}>
         <h3 className="login-descriptor">Sign up</h3>
         <form onSubmit={(e) => this.onSubmit(e)} className="form">
           <input 
