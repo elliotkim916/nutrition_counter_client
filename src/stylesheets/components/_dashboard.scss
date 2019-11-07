@@ -95,6 +95,11 @@ textarea {
   color: #41cd8c;
   padding-left: 10px;
   padding-top: 4px;
+  transition: 0.4s;
+}
+.delete-btn:hover {
+  background-color: #41cd8c;
+  color: white;
 }
 
 .exit {
@@ -105,6 +110,10 @@ textarea {
   left: 1px;
   font-size: .8rem;
   font-weight: bolder;
+  transition: 0.4s;
+}
+.exit:hover {
+  color: white;
 }
 
 .line {
