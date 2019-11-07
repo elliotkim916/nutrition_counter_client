@@ -1,12 +1,10 @@
 import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunk from 'redux-thunk';
-// import logger from 'redux-logger';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {protectedDataReducer} from './reducers/protected-data';
 import {exerciseDataReducer} from './reducers/protected-exercise-data';
 import {createUser} from './reducers/users';
-import {reducer as formReducer} from 'redux-form';
 import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
@@ -18,7 +16,6 @@ const store = createStore(
     nutritionSearchReducer : nutritionSearchReducer,
     exerciseSearchReducer : exerciseSearchReducer,
     authReducer : authReducer,
-    form : formReducer,
     protected : protectedDataReducer,
     exerciseDataReducer : exerciseDataReducer,
     createUser : createUser
