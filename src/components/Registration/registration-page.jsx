@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import RegistrationForm from './registration-form';
+import {clearCreateUserError} from '../../actions/users';
 import '../../index.scss';
 
 export class RegistrationPage extends React.Component {
@@ -41,6 +42,22 @@ export class RegistrationPage extends React.Component {
     return (
       <div className={`registration-page ${this.state.leaving ? "opacity-out" : ""}`} ref="registrationPage">
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
+        {
+          this.props.createUserError ? 
+          <div className="error-container">
+            <div className="error-form">
+              <h3 className="error-message">User already exists, please try a different username..</h3>
+                <button 
+                  type="button" 
+                  className="login-btn" 
+                  onClick={() => this.props.dispatch(clearCreateUserError())}
+                >
+                  Okay
+                </button>
+            </div>
+          </div> :
+          null
+        }
         <RegistrationForm/>
       </div>
     );
@@ -49,7 +66,8 @@ export class RegistrationPage extends React.Component {
 
 const mapStateToProps = state => ({
   loggedIn: state.authReducer.currentUser !== null,
-  loading: state.authReducer.loading
+  loading: state.authReducer.loading,
+  createUserError: state.createUser.error
 });
 
 export default connect(mapStateToProps)(RegistrationPage);          

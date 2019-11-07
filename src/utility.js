@@ -32,12 +32,13 @@ export const postData = (url, data, onSuccess, onFail, dispatch) => {
     .then(res => {
       try {
         onSuccess(res.data);
-      } catch(e) {
-        console.error(e);
+      } catch(err) {
+        console.error(err.response);
+        onFail(err.response);
       }
     })
     .catch(err => {
-      onFail(err);
+      onFail(err.response);
     });
 }
 

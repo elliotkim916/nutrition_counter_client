@@ -5,6 +5,7 @@ import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {protectedDataReducer} from './reducers/protected-data';
 import {exerciseDataReducer} from './reducers/protected-exercise-data';
+import {createUser} from './reducers/users';
 import {reducer as formReducer} from 'redux-form';
 import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
@@ -19,7 +20,8 @@ const store = createStore(
     authReducer : authReducer,
     form : formReducer,
     protected : protectedDataReducer,
-    exerciseDataReducer : exerciseDataReducer
+    exerciseDataReducer : exerciseDataReducer,
+    createUser : createUser
   }),
   composeEnhancers(applyMiddleware(thunk))
 );

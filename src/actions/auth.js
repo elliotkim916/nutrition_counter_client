@@ -1,8 +1,7 @@
 import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
-import {SubmissionError} from 'redux-form';
 import jwtDecode from 'jwt-decode';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
+import { postData } from '../utility';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -32,6 +31,11 @@ export const authError = error => ({
   error
 });
 
+export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
+export const clearAuthError = () => ({
+  type: CLEAR_AUTH_ERROR
+});
+
 const storeAuthInfo = (authToken, dispatch) => {
   // decode turns JWT to object with id, user info, etc
   const decodedToken = jwtDecode(authToken);
@@ -41,55 +45,42 @@ const storeAuthInfo = (authToken, dispatch) => {
 }
 
 export const login = (username, password) => dispatch => {
+  const data = JSON.stringify({username, password});
+
   dispatch(authRequest());
-  return (
-    fetch(`${API_BASE_URL}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
-    .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-    .catch(err => {
-      // If the credentials are incorrect or if there is a server error, we normalize the error messages & 
-      // return a SubmissionError for redux form
-      const {code} = err;
-      const message = code === 401 ? 'Incorrect username or password' : 'Unable to login, please try again';
-
+  postData(
+    `${API_BASE_URL}/auth/login`,
+    data,
+    res => {
+      console.log('login successful', res);
+      const {authToken} = res;
+      storeAuthInfo(authToken, dispatch);
+    },
+    err => {
+      console.log('login fail', err);
       dispatch(authError(err));
-
-      return Promise.reject(
-        new SubmissionError({
-          _error: message
-        })
-      );
-    })
+    }
   );
 }
-// no curly brackets because with ES6, if its just one line of code we can do without the curly brackets
-// if its more than one line of code, we need curly brackets or code will break
 
 export const refreshAuthToken = () => (dispatch, getState) => {
+  let currentToken;
+
   dispatch(authRequest());
-  const authToken = getState().authReducer.authToken;
-  return fetch(`${API_BASE_URL}/auth/refresh`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${authToken}`
+  postData(
+    `${API_BASE_URL}/auth/refresh`,
+    null,
+    res => {
+      console.log('refresh token successful', res);
+      const {authToken} = res;
+      currentToken = authToken;
+      storeAuthInfo(currentToken, dispatch);
+    },
+    err => {
+      console.log('refresh token fail', err);
+      dispatch(authError(err));
+      dispatch(clearAuth());
+      clearAuthToken(currentToken);
     }
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-  .catch(err => {
-    dispatch(authError(err))
-    dispatch(clearAuth());
-    clearAuthToken(authToken);
-  });
-};
+  );
+}

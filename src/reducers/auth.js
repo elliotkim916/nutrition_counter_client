@@ -3,7 +3,8 @@ import {
   CLEAR_AUTH,
   AUTH_REQUEST,
   AUTH_SUCCESS,
-  AUTH_ERROR
+  AUTH_ERROR,
+  CLEAR_AUTH_ERROR
 } from '../actions/auth';
 import { updateObject } from '../utility';
 
@@ -51,6 +52,12 @@ const authError = (state, action) => {
   });
 };
 
+const clearAuthError = (state, action) => {
+  return updateObject(state, {
+    error: null
+  });
+};
+
 export default function authReducer(state=initialState, action) {
   switch(action.type) {
     case SET_AUTH_TOKEN : return setAuthToken(state, action);
@@ -58,6 +65,7 @@ export default function authReducer(state=initialState, action) {
     case AUTH_REQUEST : return authRequest(state, action);
     case AUTH_SUCCESS : return authSuccess(state, action);
     case AUTH_ERROR : return authError(state, action);
+    case CLEAR_AUTH_ERROR : return clearAuthError(state, action);
     default : return state;
   }
 }
