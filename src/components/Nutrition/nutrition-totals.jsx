@@ -2,15 +2,36 @@ import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import { deleteNutritionData, resetNutritionDelete } from '../../actions/protected-data';
+import { DeleteSuccess, DeleteQuestion } from '../../shared/delete';
 import '../../index.scss';
 
 class NutritionTotals extends React.Component {
   state = {
     deleteId: null
-  }  
+  }
 
   render () {
     let nutritionTotals = '';
+    let deleteStart = (
+      this.props.deleteStart ? 
+      <DeleteQuestion 
+        question='Are you sure you want to delete this?'
+        yesDelete={deleteNutritionData}
+        resetDelete={resetNutritionDelete}  
+        dispatch={this.props.dispatch}
+        deleteId={this.state.deleteId}
+      /> :
+      null
+    );
+    let deleteSuccess = (
+      this.props.deleteFinish ? 
+      <DeleteSuccess 
+        message='Nutrition delete successful!' 
+        dispatch={this.props.dispatch} 
+        resetDelete={resetNutritionDelete}
+      /> :
+      null
+    )
 
     if (this.props.protectedData) {
         nutritionTotals = this.props.protectedData.map((value, index) => {
@@ -45,45 +66,8 @@ class NutritionTotals extends React.Component {
     if (this.props.tab) {
       return (
         <React.Fragment>
-          {
-            this.props.deleteStart ? 
-            <div className="backdrop">
-              <div className="backdrop-form">
-                <h3>Are you sure you want to delete?</h3>
-                <button 
-                  type="button" 
-                  className="login-btn" 
-                  onClick={() => {
-                    this.props.dispatch(deleteNutritionData(this.state.deleteId));
-                    this.setState({deleteId: null});
-                  }}
-                >
-                  Yes
-                </button>
-                <button 
-                  type="button" 
-                  className="login-btn" 
-                  onClick={() => {
-                    this.props.dispatch(resetNutritionDelete());
-                    this.setState({deleteId: null});
-                  }}
-                >
-                  No
-                </button>
-              </div>
-            </div> : 
-            null
-          }
-          {
-            this.props.deleteFinish ? 
-            <div className="backdrop">
-              <div className="backdrop-form">
-                <h3>Nutrition delete successful!</h3>
-                <button type="button" className="login-btn" onClick={() => this.props.dispatch(resetNutritionDelete())}>Okay</button>
-              </div>
-            </div> : 
-            null
-          }
+          {deleteStart}
+          {deleteSuccess}
           {nutritionTotals}
         </React.Fragment>
       )
@@ -92,45 +76,8 @@ class NutritionTotals extends React.Component {
     return (
       <div className='nutrition-totals-container'>
         <h3>Nutrition Totals</h3>
-        {
-          this.props.deleteStart ? 
-          <div className="backdrop">
-            <div className="backdrop-form">
-              <h3>Are you sure you want to delete?</h3>
-              <button 
-                type="button" 
-                className="login-btn" 
-                onClick={() => {
-                  this.props.dispatch(deleteNutritionData(this.state.deleteId));
-                  this.setState({deleteId: null});
-                }}
-              >
-                Yes
-              </button>
-              <button 
-                type="button" 
-                className="login-btn" 
-                onClick={() => {
-                  this.props.dispatch(resetNutritionDelete());
-                  this.setState({deleteId: null});
-                }}
-              >
-                No
-              </button>
-            </div>
-          </div> : 
-          null
-        }
-        {
-          this.props.deleteFinish ? 
-          <div className="backdrop">
-            <div className="backdrop-form">
-              <h3>Nutrition delete successful!</h3>
-              <button type="button" className="login-btn" onClick={() => this.props.dispatch(resetNutritionDelete())}>Okay</button>
-            </div>
-          </div> : 
-          null
-        }
+        {deleteStart}
+        {deleteSuccess}
         {nutritionTotals}
       </div>
     )

@@ -88,7 +88,6 @@ export const addProtectedData = (nutrition_object, date) => (dispatch, getState)
 }
 
 export const deleteNutritionData = id => (dispatch, getState) => {
-  // dispatch(deleteNutritionDataStart());
   removeData(
     `${API_BASE_URL}/nutrition/${id}`,
     res => {
