@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config';
-import { postData } from '../utility';
+import { postData } from '../shared/utility';
 
 export const CREATE_USER_REQUEST = 'CREATE_USER_REQUEST';
 export const createUserRequest = () => ({

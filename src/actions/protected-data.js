@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config.js';
-import { getData, postData, removeData } from '../utility.js';
+import { getData, postData, removeData } from '../shared/utility';
 
 
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';

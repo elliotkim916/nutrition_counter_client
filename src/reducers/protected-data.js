@@ -7,7 +7,7 @@ import {
   DELETE_NUTRITION_DATA_ERROR,
   RESET_NUTRITION_DELETE
 } from '../actions/protected-data';
-import { updateObject } from '../utility';
+import { updateObject } from '../shared/utility';
 
 const initialState = {
   protected_data: '',

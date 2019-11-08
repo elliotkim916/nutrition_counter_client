@@ -3,7 +3,7 @@ import {
   EXERCISE_SEARCH_SUCCESS,
   EXERCISE_SEARCH_ERROR
 } from '../actions/exercise-search';
-import { updateObject } from '../utility';
+import { updateObject } from '../shared/utility';
 
 const initialState = {
   loading: false,

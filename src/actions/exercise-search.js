@@ -1,6 +1,6 @@
 import {EXERCISE_BASE_URL} from '../config';
 import history from '../history';
-import { postData } from '../utility';
+import { postData } from '../shared/utility';
 
 export const EXERCISE_SEARCH_REQUEST = 'EXERCISE_SEARCH_REQUEST';
 export const exerciseSearchRequest = () => ({

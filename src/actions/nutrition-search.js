@@ -1,6 +1,6 @@
 import {NUTRITIONIX_BASE_URL} from '../config';
 import history from '../history';
-import { postData } from '../utility';
+import { postData } from '../shared/utility';
 
 export const NUTRITION_SEARCH_REQUEST = 'NUTRITION_SEARCH_REQUEST';
 export const nutrtionSearchRequest = () => ({
