@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import {fetchProtectedData, deleteData} from '../../actions/protected-data';
+import {fetchProtectedData, deleteNutritionDataStart} from '../../actions/protected-data';
 import {getExercise, deleteExercise} from '../../actions/protected-exercise-data';
 import requiresLogin from '../Login/requires-login';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
@@ -46,12 +46,8 @@ export class Dashboard extends React.Component {
     });
   }
 
-  deleteNutrition(e, id) {
-    e.preventDefault();
-    const result = window.confirm('Are you sure you want to delete?  If so, click OK');
-    if (result) {
-      this.props.dispatch(deleteData(id));
-    }
+  deleteNutrition() {
+    this.props.dispatch(deleteNutritionDataStart());
   }
 
   deleteExercise(e, id) {
@@ -91,7 +87,7 @@ export class Dashboard extends React.Component {
           
                 <TabPanel>
                   <div>  
-                    <NutritionTotals tab={true}/>
+                    <NutritionTotals tab={true} deleteNutrition={this.deleteNutrition}/>
                   </div>
                 </TabPanel>
                 <TabPanel>

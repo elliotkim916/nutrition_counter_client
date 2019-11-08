@@ -8,6 +8,7 @@ import {createUser} from './reducers/users';
 import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
+// import {reducer as formReducer} from 'redux-form';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -18,7 +19,8 @@ const store = createStore(
     authReducer : authReducer,
     protected : protectedDataReducer,
     exerciseDataReducer : exerciseDataReducer,
-    createUser : createUser
+    createUser : createUser,
+    // form : formReducer
   }),
   composeEnhancers(applyMiddleware(thunk))
 );

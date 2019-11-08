@@ -20,10 +20,26 @@ export const addProtectedDataSuccess = addedProtectedData => ({
   addedProtectedData
 });
 
-export const DELETE_PROTECTED_DATA = 'DELETE_PROTECTED_DATA';
-export const deleteProtectedData = id => ({
-  type: DELETE_PROTECTED_DATA,
+export const DELETE_NUTRITION_DATA_START = 'DELETE_NUTRITION_DATA_START';
+export const deleteNutritionDataStart = () => ({
+  type: DELETE_NUTRITION_DATA_START
+})
+
+export const DELETE_NUTRITION_DATA_SUCCESS = 'DELETE_NUTRITION_DATA_SUCCESS';
+export const deleteNutritionDataSuccess = id => ({
+  type: DELETE_NUTRITION_DATA_SUCCESS,
   id
+});
+
+export const DELETE_NUTRITION_DATA_ERROR = 'DELETE_NUTRITION_DATA_ERROR';
+export const deleteNutritionDataError = error => ({
+  type: DELETE_NUTRITION_DATA_ERROR,
+  error
+})
+
+export const RESET_NUTRITION_DELETE = 'RESET_NUTRITION_DELETE';
+export const resetNutritionDelete = () => ({
+  type: RESET_NUTRITION_DELETE
 });
 
 export const fetchProtectedData = () => (dispatch, getState) => {
@@ -71,16 +87,17 @@ export const addProtectedData = (nutrition_object, date) => (dispatch, getState)
   )
 }
 
-export const deleteData = id => (dispatch, getState) => {
+export const deleteNutritionData = id => (dispatch, getState) => {
+  // dispatch(deleteNutritionDataStart());
   removeData(
     `${API_BASE_URL}/nutrition/${id}`,
     res => {
       console.log('delete successful', res);
-      dispatch(deleteProtectedData(id));
+      dispatch(deleteNutritionDataSuccess(id));
     },
     err => {
       console.log('delete fail', err);
-      dispatch(fetchProtectedDataError(err));
+      dispatch(deleteNutritionDataError(err));
     }
   );
 }
