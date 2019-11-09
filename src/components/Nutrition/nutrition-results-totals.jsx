@@ -20,6 +20,7 @@ const NutritionResultsTotals = props => {
       typeof nutritionTotals[keys[j]] === 'string' ? 
       nutritionTotals[keys[j]] = nutritionTotals[keys[j]] += foodName + (props.nutritionResults[i + 1] ? ', ' : '') : 
       nutritionTotals[keys[j]] = Math.floor(nutritionTotals[keys[j]] += props.nutritionResults[i][keys[j]]);
+      nutritionTotals['created'] = Date.now;
       j === keys.length - 1 ? add_count_of_j = j : console.log('j error');
     }     
   }
@@ -27,7 +28,7 @@ const NutritionResultsTotals = props => {
   if (add_count_of_j) {
     return (
       <div className= {!props.loading ? "nutrition-results-container fadeIn" : "nutrition-results-container"}>
-        <form onSubmit = {(e) => props.onAdd(e, nutritionTotals, Date.now)}>
+        <form onSubmit = {(e) => props.onAdd(e, nutritionTotals)}>
         <h3>Nutrition Totals</h3>
           <ul className="nutrition-list">
             <li>{nutritionTotals.nf_calories} calories</li>

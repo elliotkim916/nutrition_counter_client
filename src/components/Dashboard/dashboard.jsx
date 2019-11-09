@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import {fetchProtectedData, deleteNutritionDataStart} from '../../actions/protected-data';
-import {getExercise, deleteExercise} from '../../actions/protected-exercise-data';
+import {getProtectedData, deleteDataStart} from '../../actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from '../Exercise/exercise-search-page';
@@ -21,14 +20,13 @@ export class Dashboard extends React.Component {
       leaving: false
     };
 
-    this.deleteNutrition = this.deleteNutrition.bind(this);
-    this.deleteExercise = this.deleteExercise.bind(this);
+    this.deleteStart = this.deleteStart.bind(this);
   }
 
   componentDidMount() {
     setTimeout(() => {
-      this.props.dispatch(fetchProtectedData());
-      this.props.dispatch(getExercise());
+      this.props.dispatch(getProtectedData('nutrition'));
+      this.props.dispatch(getProtectedData('exercise'));
     }, 50);
   }
 
@@ -46,16 +44,8 @@ export class Dashboard extends React.Component {
     });
   }
 
-  deleteNutrition() {
-    this.props.dispatch(deleteNutritionDataStart());
-  }
-
-  deleteExercise(e, id) {
-    e.preventDefault();
-    const result = window.confirm('Are you sure you want to delete?  If so, click OK');
-    if (result) {
-      this.props.dispatch(deleteExercise(id));
-    }
+  deleteStart() {
+    this.props.dispatch(deleteDataStart());
   }
 
   render() {    
@@ -71,11 +61,11 @@ export class Dashboard extends React.Component {
         <img src={harvest} alt="nutrition" className="tossing" />
         <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         {
-          this.props.protectedData.length > 0 ?
+          this.props.nutritionData|| this.props.exerciseData ?
           <React.Fragment>
             <div className="totals-container">
-              <NutritionTotals deleteNutrition={this.deleteNutrition}/>
-              <ExerciseTotals deleteExercise={this.deleteExercise}/>
+              <NutritionTotals deleteNutrition={this.deleteStart}/>
+              <ExerciseTotals deleteExercise={this.deleteStart}/>
             </div>
 
             <div className ='nutrition-totals-container'>
@@ -87,12 +77,12 @@ export class Dashboard extends React.Component {
           
                 <TabPanel>
                   <div>  
-                    <NutritionTotals tab={true} deleteNutrition={this.deleteNutrition}/>
+                    <NutritionTotals tab={true} deleteNutrition={this.deleteStart}/>
                   </div>
                 </TabPanel>
                 <TabPanel>
                   <div>
-                    <ExerciseTotals tab={true}/>  
+                    <ExerciseTotals tab={true} deleteExercise={this.deleteStart}/>  
                   </div>
                 </TabPanel>
               </Tabs>
@@ -106,8 +96,8 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  exerciseData : state.exerciseDataReducer.exerciseData, 
-  protectedData : state.protected.protected_data,
+  exerciseData : state.protected.exerciseData, 
+  nutritionData : state.protected.nutritionData,
   username : state.authReducer.currentUser.username
 });
 

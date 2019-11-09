@@ -1,40 +1,44 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import { deleteNutritionData, resetNutritionDelete } from '../../actions/protected-data';
+import { deleteData, resetDelete } from '../../actions/protected-data';
 import { DeleteSuccess, DeleteQuestion } from '../../shared/delete';
 import '../../index.scss';
 
 class NutritionTotals extends React.Component {
   state = {
-    deleteId: null
+    deleteId: null,
+    option: null
   }
 
   render () {
-    let nutritionTotals = '';
-    let deleteStart = (
-      this.props.deleteStart ? 
+    const deleteStart = (
+      this.props.deleteStart && this.state.option === 'nutrition' ? 
       <DeleteQuestion 
         question='Are you sure you want to delete this?'
-        yesDelete={deleteNutritionData}
-        resetDelete={resetNutritionDelete}  
+        yesDelete={deleteData}
+        resetDelete={resetDelete}  
         dispatch={this.props.dispatch}
         deleteId={this.state.deleteId}
+        option={this.state.option}
       /> :
       null
     );
-    let deleteSuccess = (
-      this.props.deleteFinish ? 
+
+    const deleteSuccess = (
+      this.props.deleteFinish && this.state.option === 'nutrition' ? 
       <DeleteSuccess 
         message='Nutrition delete successful!' 
         dispatch={this.props.dispatch} 
-        resetDelete={resetNutritionDelete}
+        resetDelete={resetDelete}
+        resetOption={() => this.setState({option: null})}
       /> :
       null
-    )
+    );
 
-    if (this.props.protectedData) {
-        nutritionTotals = this.props.protectedData.map((value, index) => {
+    let nutritionTotals = '';
+    if (this.props.nutritionData) {
+        nutritionTotals = this.props.nutritionData.map((value, index) => {
           return (
             <div key = {index} className = "nutrition_total">
               <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
@@ -50,9 +54,9 @@ class NutritionTotals extends React.Component {
               <button 
                 className="delete-btn"
                 onClick = {() => {
-                  this.setState({deleteId: value._id});
-                  this.props.deleteNutrition()}
-                }
+                  this.setState({deleteId: value._id, option: 'nutrition'});
+                  this.props.deleteNutrition();
+                }}
               >
                 <span className="exit">x</span>
               </button>
@@ -72,7 +76,7 @@ class NutritionTotals extends React.Component {
         </React.Fragment>
       )
     }
-
+    
     return (
       <div className='nutrition-totals-container'>
         <h3>Nutrition Totals</h3>
@@ -85,7 +89,7 @@ class NutritionTotals extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  protectedData : state.protected.protected_data,
+  nutritionData : state.protected.nutritionData,
   deleteFinish : state.protected.deleteFinish,
   deleteStart: state.protected.deleteStart
 });

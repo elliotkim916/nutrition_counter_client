@@ -9,7 +9,7 @@ export const DeleteQuestion = props => {
         <button 
           type="button" 
           className="login-btn" 
-          onClick={() => props.dispatch(props.yesDelete(props.deleteId))}
+          onClick={() => props.dispatch(props.yesDelete(props.deleteId, props.option))}
         >
           Yes
         </button>
@@ -33,7 +33,10 @@ export const DeleteSuccess = props => {
         <button 
           type="button" 
           className="login-btn" 
-          onClick={() => props.dispatch(props.resetDelete())}
+          onClick={() => {
+            props.dispatch(props.resetDelete());
+            props.resetOption();
+          }}
         >
           Okay
         </button>

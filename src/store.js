@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import {nutritionSearchReducer} from './reducers/nutrition-search';
 import {exerciseSearchReducer} from './reducers/exercise-search';
 import {protectedDataReducer} from './reducers/protected-data';
-import {exerciseDataReducer} from './reducers/protected-exercise-data';
+// import {exerciseDataReducer} from './reducers/protected-exercise-data';
 import {createUser} from './reducers/users';
 import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
@@ -17,7 +17,7 @@ const store = createStore(
     exerciseSearchReducer : exerciseSearchReducer,
     authReducer : authReducer,
     protected : protectedDataReducer,
-    exerciseDataReducer : exerciseDataReducer,
+    // exerciseDataReducer : exerciseDataReducer,
     createUser : createUser
   }),
   composeEnhancers(applyMiddleware(thunk))
