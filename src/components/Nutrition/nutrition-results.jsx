@@ -47,9 +47,9 @@ export class NutritionResults extends Component {
     });
   }
 
-  onAdd(e, nutritionObject, date) {
+  onAdd(e, nutritionTotals, option) {
     e.preventDefault();
-    this.props.dispatch(addProtectedData(nutritionObject, date));
+    this.props.dispatch(addProtectedData(nutritionTotals, option));
     window.alert('You have just saved your nutrition!');
   }
 

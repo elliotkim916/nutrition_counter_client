@@ -13,7 +13,7 @@ const ExerciseResultsTotals = props => {
     exerciseTotals['created'] = Date.now;
     i === props.exerciseResults.length - 1 ? i_count = i : console.log('i error');
   }
-
+  
   let cssClass;
   if (!props.loading) {
     cssClass = "exercise-totals fadeIn"
@@ -24,7 +24,7 @@ const ExerciseResultsTotals = props => {
   if (i_count >= 0) {
     return (
       <div className = {cssClass}>
-        <form onSubmit = {(e) => props.onAdd(e, exerciseTotals)}>
+        <form onSubmit = {(e) => props.onAdd(e, exerciseTotals, 'exercise')}>
           <h4>Total Calories Burned : {exerciseTotals.nf_calories}</h4>
           <h4>Total Duration : {exerciseTotals.duration_min} minutes</h4>
           <button type = "submit" className="save-btn">Save Exercise</button>

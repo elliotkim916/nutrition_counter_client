@@ -28,8 +28,8 @@ const NutritionResultsTotals = props => {
   if (add_count_of_j) {
     return (
       <div className= {!props.loading ? "nutrition-results-container fadeIn" : "nutrition-results-container"}>
-        <form onSubmit = {(e) => props.onAdd(e, nutritionTotals)}>
-        <h3>Nutrition Totals</h3>
+        <form onSubmit = {(e) => props.onAdd(e, nutritionTotals, 'nutrition')}>
+          <h3>Nutrition Totals</h3>
           <ul className="nutrition-list">
             <li>{nutritionTotals.nf_calories} calories</li>
             <li>{nutritionTotals.nf_total_fat} grams of fat</li>

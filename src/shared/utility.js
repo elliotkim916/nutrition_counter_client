@@ -56,11 +56,11 @@ export const getData = (url, onSuccess, onFail) => {
 
   axios.get(url, config)
     .then(res => {
-      // try {
+      try {
         onSuccess(res.data);
-      // } catch(e) {
-      //   console.log(e);
-      // }
+      } catch(e) {
+        console.log(e);
+      }
     })
     .catch(e => {
       console.log(e);

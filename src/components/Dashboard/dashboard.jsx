@@ -61,7 +61,7 @@ export class Dashboard extends React.Component {
         <img src={harvest} alt="nutrition" className="tossing" />
         <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
         {
-          this.props.nutritionData|| this.props.exerciseData ?
+          this.props.nutritionData || this.props.exerciseData ?
           <React.Fragment>
             <div className="totals-container">
               <NutritionTotals deleteNutrition={this.deleteStart}/>

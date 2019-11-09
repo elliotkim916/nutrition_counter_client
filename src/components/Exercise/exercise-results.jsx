@@ -5,7 +5,7 @@ import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import ExerciseResultsTotals from './exercise-results-totals';
 import {connect} from 'react-redux';
-import {addExercise} from '../../actions/protected-exercise-data';
+import { addProtectedData } from '../../actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import Error from '../Error/error';
 import Loading from '../Loading/loading';
@@ -47,9 +47,9 @@ export class ExerciseResults extends Component {
     });
   }
   
-  onAdd(e, exerciseTotals) {
+  onAdd(e, exerciseTotals, option) {
     e.preventDefault();
-    this.props.dispatch(addExercise(exerciseTotals));
+    this.props.dispatch(addProtectedData(exerciseTotals, option));
     window.alert('You have just saved your exercise!');
   }
 

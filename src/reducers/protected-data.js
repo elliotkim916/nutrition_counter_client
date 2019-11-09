@@ -2,7 +2,8 @@ import {
   GET_NUTRITION_DATA_SUCCESS,
   GET_EXERCISE_DATA_SUCCESS,
   GET_DATA_ERROR,
-  ADD_PROTECTED_DATA,
+  ADD_NUTRITION_DATA_SUCCESS,
+  ADD_EXERCISE_DATA_SUCCESS,
   DELETE_DATA_START,
   DELETE_NUTRITION_DATA_SUCCESS,
   DELETE_EXERCISE_DATA_SUCCESS,
@@ -12,8 +13,8 @@ import {
 import { updateObject } from '../shared/utility';
 
 const initialState = {
-  nutritionData: '',
-  exerciseData: '',
+  nutritionData: null,
+  exerciseData: null,
   deleteStart: false,
   deleteFinish: false,
   loading: false,
@@ -36,13 +37,19 @@ const getExerciseDataSuccess = (state, action) => {
   })
 }
 
-const addProtectedData = (state, action) => {
+const addNutritionData = (state, action) => {
   return updateObject(state, {
-      // Not directly altering state, can't do that in react/redux
-      // Taking copy of all contents within state.protected_data & including action.addedProtectedData
       nutritionData: [...state.protected_data, action.addedProtectedData],
       loading: false,
       error: null
+  });
+};
+
+const addExerciseData = (state, action) => {
+  return updateObject(state, {
+    exerciseData: [...state.exerciseData, action.exerciseData],
+    loading: false,
+    error: null
   });
 };
 
@@ -73,14 +80,6 @@ const deleteExerciseDataSuccess = (state, action) => {
   });
 }
 
-const deleteDataError = (state, action) => {
-  return updateObject(state, {
-    error: action.error,
-    deleteStart: false,
-    deleteFinish: false
-  })
-}
-
 const resetDelete = (state, action) => {
   return updateObject(state, {
     deleteStart: false,
@@ -88,10 +87,12 @@ const resetDelete = (state, action) => {
   });
 };
 
-const getDataError = (state, action) => {
+const dataError = (state, action) => {
   return updateObject(state, {
     error: action.error,
     loading: false,
+    deleteStart: false,
+    deleteFinish: false
   });
 };
 
@@ -99,13 +100,14 @@ export function protectedDataReducer(state=initialState, action) {
   switch(action.type) {
     case GET_NUTRITION_DATA_SUCCESS : return getNutritionDataSuccess(state, action);
     case GET_EXERCISE_DATA_SUCCESS : return getExerciseDataSuccess(state, action);
-    case ADD_PROTECTED_DATA : return addProtectedData(state, action);
+    case ADD_NUTRITION_DATA_SUCCESS : return addNutritionData(state, action);
+    case ADD_EXERCISE_DATA_SUCCESS : return addExerciseData(state, action);
     case DELETE_DATA_START : return deleteDataStart(state, action);
     case DELETE_NUTRITION_DATA_SUCCESS : return deleteNutritionDataSuccess(state, action);
     case DELETE_EXERCISE_DATA_SUCCESS : return deleteExerciseDataSuccess(state, action);
-    case DELETE_DATA_ERROR : return deleteDataError(state, action);
+    case DELETE_DATA_ERROR : return dataError(state, action);
     case RESET_DELETE : return resetDelete(state, action);
-    case GET_DATA_ERROR : return getDataError(state, action);
+    case GET_DATA_ERROR : return dataError(state, action);
     default : return state;
   }
 }
