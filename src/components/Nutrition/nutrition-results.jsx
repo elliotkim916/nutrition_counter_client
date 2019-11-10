@@ -58,8 +58,7 @@ export class NutritionResults extends Component {
 
   render() {
     let nutrition_results_array = this.props.nutritionResults;
-    let nutrition_result = '';  
-    nutrition_result = nutrition_results_array.map((result, index) => 
+    let nutrition_result = nutrition_results_array.map((result, index) => 
       <li key = {index} className="nutrition-list-item">
         <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <img src = {`${result.photo.thumb}`} className = "result-image" alt = "food item"/>
@@ -78,6 +77,46 @@ export class NutritionResults extends Component {
       </li>
     );
 
+    let addSuccess, addError, loading, searchError;
+    if (this.state.addSuccess) {
+      addSuccess = (
+        <AddSuccess 
+          message='You have successfully saved your nutrition!' 
+          clearAddSuccess={() => this.setState({addSuccess: false})}
+        />
+      );
+    } else {
+      addSuccess = null;
+    }
+
+    if (this.props.addError) {
+      addError = (
+        <Error
+          errorMessage='Sorry, your nutrition was unable to be saved..'
+          clearError={clearError}
+        /> 
+      );
+    } else {
+      addError = null;
+    }
+
+    if (this.props.loading && !this.props.nutritionError) {
+      loading = <Loading message='Nutrition result loading..' />;
+    } else {
+      loading = null;
+    }
+
+    if (this.props.nutritionError) {
+      searchError = (
+        <Error 
+          errorMessage='Sorry, no results were found..'
+          clearError={clearSearchError}
+        /> 
+      );
+    } else {
+      searchError = null;
+    }
+
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
       // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
@@ -95,36 +134,10 @@ export class NutritionResults extends Component {
         </ul>  
         <NutritionResultsTotals onAdd={this.onAdd}/>
 
-        {
-          this.state.addSuccess ? 
-          <AddSuccess 
-            message='You have successfully saved your nutrition!'
-            clearAddSuccess={() => this.setState({addSuccess: false})}
-          />
-          :
-          null
-        }
-        {
-          this.props.addError ? 
-          <Error
-            errorMessage='Sorry, your nutrition was unable to be saved..'
-            clearError={clearError}
-          /> : 
-          null
-        }
-        {
-          this.props.loading && !this.props.nutritionError ?
-          <Loading message='Nutrition result loading..' /> :
-          null
-        }
-        {
-          this.props.nutritionError ? 
-          <Error 
-            errorMessage='Sorry, no results were found..'
-            clearError={clearSearchError}
-          /> : 
-          null
-        }
+        {addSuccess}
+        {addError}
+        {loading}
+        {searchError}
       </section>
     );
   }
