@@ -20,7 +20,7 @@ export const postData = (url, data, onSuccess, onFail, dispatch) => {
     config.headers['x-app-key'] = `${APP_KEY}`;
   }
 
-  if (url.includes("nutrition") || url.includes("exercise")) {
+  if (url.includes("nutrition") || url.includes("exercise") || url.includes("refresh")) {
     const authToken = loadAuthToken();
 
     if (authToken !== null) {
