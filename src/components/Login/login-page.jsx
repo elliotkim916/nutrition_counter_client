@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom';
 import {clearAuthError} from '../../actions/auth';
 import Loading from '../Loading/loading';
 import '../../index.scss';
-import AuthError from '../Error/authError';
+import Error from '../Error/error';
 
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -41,8 +41,8 @@ export class LoginPage extends React.Component {
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         {
           this.props.loginError ? 
-          <AuthError 
-            authErrorMessage={'Login failed due to incorrect username or password..'}
+          <Error 
+            errorMessage={'Login failed due to incorrect username or password..'}
             clearError={clearAuthError}
           /> :
           null

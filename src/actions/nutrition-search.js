@@ -19,6 +19,11 @@ export const nutritionSearchError = error => ({
   error
 });
 
+export const CLEAR_SEARCH_ERROR = 'CLEAR_SEARCH_ERROR';
+export const clearSearchError = () => ({
+  type: CLEAR_SEARCH_ERROR
+});
+
 export const get_nutrition = meal => dispatch => {
   const body = JSON.stringify({
     'query': meal,

@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import '../../index.scss';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import NutritionResultsTotals from '../Nutrition/nutrition-results-totals';
 import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import {connect} from 'react-redux';
-import {addProtectedData} from '../../actions/protected-data';
+import {addProtectedData, clearError} from '../../actions/protected-data';
+import {clearSearchError} from '../../actions/nutrition-search';
+import {AddSuccess} from '../../shared/add';
 import requiresLogin from '../Login/requires-login';
 import Loading from '../Loading/loading';
 import Error from '../Error/error';
+import '../../index.scss';
 
 export class NutritionResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leaving: false
+      leaving: false,
+      addSuccess: false
     };
 
     this.onAdd = this.onAdd.bind(this);
@@ -50,7 +53,7 @@ export class NutritionResults extends Component {
   onAdd(e, nutritionTotals, option) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(nutritionTotals, option));
-    window.alert('You have just saved your nutrition!');
+    this.setState({addSuccess: true});
   }
 
   render() {
@@ -74,7 +77,7 @@ export class NutritionResults extends Component {
         </ul>
       </li>
     );
-    
+
     return (
       // callback function automatically binds the this.onSubmit method to this particular component 
       // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
@@ -89,16 +92,37 @@ export class NutritionResults extends Component {
 
         <ul className = {!this.props.loading ? "nutrition-results fadeIn" : "nutrition-results"}>
           {nutrition_result}
-        </ul>
+        </ul>  
         <NutritionResultsTotals onAdd={this.onAdd}/>
+
+        {
+          this.state.addSuccess ? 
+          <AddSuccess 
+            message='You have successfully saved your nutrition!'
+            clearAddSuccess={() => this.setState({addSuccess: false})}
+          />
+          :
+          null
+        }
+        {
+          this.props.addError ? 
+          <Error
+            errorMessage='Sorry, your nutrition was unable to be saved..'
+            clearError={clearError}
+          /> : 
+          null
+        }
         {
           this.props.loading && !this.props.nutritionError ?
-          <Loading/> :
+          <Loading message='Nutrition result loading..' /> :
           null
         }
         {
           this.props.nutritionError ? 
-          <Error loading={this.props.loading} /> : 
+          <Error 
+            errorMessage='Sorry, no results were found..'
+            clearError={clearSearchError}
+          /> : 
           null
         }
       </section>
@@ -113,7 +137,9 @@ const mapStateToProps = state => ({
   loading: state.nutritionSearchReducer.loading,
   nutritionError: state.nutritionSearchReducer.error,
   nutritionResults: state.nutritionSearchReducer.nutrition,
-  username: state.authReducer.currentUser.username
+  username: state.authReducer.currentUser.username,
+  addSuccess: state.protected.addSuccess,
+  addError: state.protected.error
 });
 
 export default requiresLogin()(connect(mapStateToProps)(NutritionResults));

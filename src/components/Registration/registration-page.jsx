@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import RegistrationForm from './registration-form';
 import {clearCreateUserError} from '../../actions/users';
-import AuthError from '../Error/authError';
+import Error from '../Error/error';
 import Loading from '../Loading/loading';
 import '../../index.scss';
 
@@ -41,8 +41,8 @@ export class RegistrationPage extends React.Component {
         <h3 className="nutrition-counter-header" onClick={() => this.toLanding()} tabIndex="1">Nutrition Counter</h3>
         {
           this.props.createUserError ? 
-          <AuthError 
-            authErrorMessage={'User already exists, please try a different username..'}
+          <Error 
+            errorMessage={'User already exists, please try a different username..'}
             clearError={clearCreateUserError}
           /> :
           null

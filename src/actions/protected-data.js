@@ -51,9 +51,21 @@ export const addNutritionDataSuccess = nutritionData => ({
 
 export const ADD_EXERCISE_DATA_SUCCESS = 'ADD_EXERCISE_DATA_SUCCESS';
 export const addExerciseDataSuccess = exerciseData => ({
-  type : ADD_EXERCISE_DATA_SUCCESS,
+  type: ADD_EXERCISE_DATA_SUCCESS,
   exerciseData
 });
+
+export const ADD_DATA_ERROR = 'ADD_DATA_ERROR';
+export const addDataError = error => ({
+  type: ADD_DATA_ERROR,
+  error
+});
+
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const clearError = () => ({
+  type: CLEAR_ERROR,
+  error: null
+})
 
 export const addProtectedData = (totals, option) => (dispatch, getState) => {
   const username = getState().authReducer.currentUser.username;
@@ -100,7 +112,7 @@ export const addProtectedData = (totals, option) => (dispatch, getState) => {
     },
     err => {
       console.log('add protected data fail', err);
-      dispatch(getDataError(err));
+      dispatch(addDataError(err));
     }
   )
 }
