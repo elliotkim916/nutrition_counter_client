@@ -56,23 +56,30 @@ export class NutritionResults extends Component {
     this.setState({addSuccess: true});
   }
 
+  nutritionTotal(nutrition) {
+    if (nutrition === null) {
+      return 0;
+    } else {
+      return nutrition;
+    }
+  }
+
   render() {
-    let nutrition_results_array = this.props.nutritionResults;
-    let nutrition_result = nutrition_results_array.map((result, index) => 
+    let nutrition_result = this.props.nutritionResults.map((result, index) => 
       <li key = {index} className="nutrition-list-item">
         <h3 className = "food-name">{result.food_name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <img src = {`${result.photo.thumb}`} className = "result-image" alt = "food item"/>
         <ul className = "nutrition-facts">
-          <li><span>Calories : </span>{result.nf_calories === null ? 0 : result.nf_calories}</li>
-          <li><span>Total Fat : </span>{result.nf_total_fat === null ? 0 : result.nf_total_fat}g</li>
-          <li><span>Saturated Fat : </span>{result.nf_saturated_fat === null ? 0 : result.nf_saturated_fat}g</li>
-          <li><span>Cholesterol : </span>{result.nf_cholesterol === null ? 0 : result.nf_cholesterol}mg</li>
-          <li><span>Sodium : </span>{result.nf_sodium === null ? 0 : result.nf_sodium}mg</li>
-          <li><span>Potassium : </span>{result.nf_potassium === null ? 0 : result.nf_potassium}mg</li>
-          <li><span>Carbohydrates : </span>{result.nf_total_carbohydrate === null ? 0 : result.nf_total_carbohydrate}g</li>
-          <li><span>Dietary Fiber : </span>{result.nf_dietary_fiber === null ? 0 : result.nf_dietary_fiber}g</li>
-          <li><span>Sugars : </span>{result.nf_sugars === null ? 0 : result.nf_sugars}g</li>
-          <li><span>Protein : </span>{result.nf_protein === null ? 0 : result.nf_protein}g</li>
+          <li><span>Calories : </span>{this.nutritionTotal(result.nf_calories)}</li>
+          <li><span>Total Fat : </span>{this.nutritionTotal(result.nf_total_fat)}g</li>
+          <li><span>Saturated Fat : </span>{this.nutritionTotal(result.nf_saturated_fat)}g</li>
+          <li><span>Cholesterol : </span>{this.nutritionTotal(result.nf_cholesterol)}mg</li>
+          <li><span>Sodium : </span>{this.nutritionTotal(result.nf_sodium)}mg</li>
+          <li><span>Potassium : </span>{this.nutritionTotal(result.nf_potassium)}mg</li>
+          <li><span>Carbohydrates : </span>{this.nutritionTotal(result.nf_total_carbohydrate)}g</li>
+          <li><span>Dietary Fiber : </span>{this.nutritionTotal(result.nf_dietary_fiber)}g</li>
+          <li><span>Sugars : </span>{this.nutritionTotal(result.nf_sugars)}g</li>
+          <li><span>Protein : </span>{this.nutritionTotal(result.nf_protein)}g</li>
         </ul>
       </li>
     );
@@ -150,7 +157,6 @@ const mapStateToProps = state => ({
   nutritionError: state.nutritionSearchReducer.error,
   nutritionResults: state.nutritionSearchReducer.nutrition,
   username: state.authReducer.currentUser.username,
-  addSuccess: state.protected.addSuccess,
   addError: state.protected.error
 });
 

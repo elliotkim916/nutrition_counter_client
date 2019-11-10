@@ -17,6 +17,7 @@ import { updateObject } from '../shared/utility';
 const initialState = {
   nutritionData: null,
   exerciseData: null,
+  addSuccess: false,
   deleteStart: false,
   deleteFinish: false,
   loading: false,
