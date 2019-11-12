@@ -93,3 +93,32 @@ export const removeData = (url, onSuccess, onFail) => {
     });
 }
 
+export const putData = (url, data, onSuccess, onFail) => {
+  const config = {
+    headers: {
+        "Content-Type": "application/json"
+    }
+  };
+  
+  const authToken = localStorage.getItem("authToken");
+  if (authToken !== null) {
+      config.headers["Authorization"] = authToken
+  }
+
+  axios.put(url, data, config)
+    .then(response => {
+        try {
+            onSuccess(response);
+        } catch(error) {
+            console.error(error);
+        }
+    })
+    .catch(err => {
+        if (!err.response) {
+            onFail({response: {message: "Something unexpected went wrong"}});
+            return;
+        }
+    
+        onFail(err);
+    });
+}
