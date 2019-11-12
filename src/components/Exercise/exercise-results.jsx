@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
-import {clearAuth} from '../../actions/auth';
-import {clearAuthToken} from '../../local-storage';
+import React, { Component } from 'react';
+import { clearAuth } from '../../actions/auth';
+import { clearAuthToken } from '../../local-storage';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import ExerciseResultsTotals from './exercise-results-totals';
-import {connect} from 'react-redux';
-import { addProtectedData } from '../../actions/protected-data';
+import { connect } from 'react-redux';
+import { addProtectedData, clearError } from '../../actions/protected-data';
 import requiresLogin from '../Login/requires-login';
+import { AddSuccess } from '../../shared/add';
+import { clearSearchError } from '../../actions/search';
 import Error from '../Error/error';
 import Loading from '../Loading/loading';
 import '../../index.scss';
@@ -15,7 +17,8 @@ export class ExerciseResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leaving: false
+      leaving: false,
+      addSuccess: false
     };
 
     this.onAdd = this.onAdd.bind(this);
@@ -50,13 +53,51 @@ export class ExerciseResults extends Component {
   onAdd(e, exerciseTotals, option) {
     e.preventDefault();
     this.props.dispatch(addProtectedData(exerciseTotals, option));
-    window.alert('You have just saved your exercise!');
+    this.setState({addSuccess: true});
   }
 
   render() {
-    let exercise_results_array = this.props.exerciseResults;
-    let exercise_result = '';
-    exercise_result = exercise_results_array.map((result, index) => 
+    let addSuccess, addError, loading, searchFail;
+    if (this.state.addSuccess) {
+      addSuccess = (
+        <AddSuccess 
+          message='You have successfully saved your workout!' 
+          clearAddSuccess={() => this.setState({addSuccess: false})}
+        />
+      );
+    } else {
+      addSuccess = null;
+    }
+
+    if (this.props.addError) {
+      addError = (
+        <Error
+          errorMessage='Sorry, your workout was unable to be saved..'
+          clearError={clearError}
+        /> 
+      );
+    } else {
+      addError = null;
+    }
+
+    if (this.props.loading) {
+      loading = <Loading message='Exercise result loading..' />;
+    } else {
+      loading = null;
+    }
+
+    if (this.props.exerciseError) {
+      searchFail = (
+        <Error 
+          errorMessage='Sorry, no results were found..'
+          clearError={clearSearchError}
+        /> 
+      );
+    } else {
+      searchFail = null;
+    }
+
+    let exercise_result = this.props.exerciseResults.map((result, index) => 
       <li key={index} className="exercise-list-item">
         <h3 className="exercise-name">{result.name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h3>
         <p className="calories-burned"><span>Estimated Calories Burned :</span> {Math.floor(result.nf_calories)}</p>
@@ -79,16 +120,11 @@ export class ExerciseResults extends Component {
           {exercise_result}
         </ul>
         <ExerciseResultsTotals onAdd={this.onAdd}/>
-        {
-          this.props.loading ?
-          <Loading/> :
-          null
-        }
-        {
-          this.props.exerciseResults.length === 0 ? 
-          <Error loading={this.props.loading}/> :
-          null
-        }
+
+        {addSuccess}
+        {addError}
+        {loading}
+        {searchFail}
       </section>
     );
   }
@@ -96,9 +132,11 @@ export class ExerciseResults extends Component {
 
 
 const mapStateToProps = state => ({
-  loading: state.exerciseSearchReducer.loading,
-  exerciseResults: state.exerciseSearchReducer.exercise_results,
-  username: state.authReducer.currentUser.username
+  loading: state.searchReducer.loading,
+  exerciseError: state.searchReducer.error,
+  exerciseResults: state.searchReducer.exercise,
+  username: state.authReducer.currentUser.username,
+  addError: state.protected.error
 });
 
 export default requiresLogin()(connect(mapStateToProps)(ExerciseResults));

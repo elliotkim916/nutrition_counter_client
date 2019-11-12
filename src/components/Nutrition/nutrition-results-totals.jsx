@@ -48,8 +48,8 @@ const NutritionResultsTotals = props => {
 }
 
 const mapStateToProps = state => ({
-  nutritionResults: state.nutritionSearchReducer.nutrition,
-  loading: state.nutritionSearchReducer.loading,
+  nutritionResults: state.searchReducer.nutrition,
+  loading: state.searchReducer.loading,
   username: state.authReducer.currentUser.username
 });
 

@@ -6,7 +6,7 @@ import {
   AUTH_ERROR,
   CLEAR_AUTH_ERROR
 } from '../actions/auth';
-import { updateObject } from '../shared/utility';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
   authToken: null,

@@ -11,7 +11,13 @@ const Error = props => {
         <button 
           type="button" 
           className="login-btn" 
-          onClick={() => props.dispatch(props.clearError())}
+          onClick={() => {
+            if (!props.removeError) {
+              props.dispatch(props.clearError());
+            } else {
+              props.removeError();
+            }
+          }}
         >
           Okay
         </button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get_nutrition} from '../../actions/nutrition-search';
+import {searchFor} from '../../actions/search';
 import requiresLogin from '../Login/requires-login';
 
 export class NutritionSearchPage extends React.Component {
@@ -21,7 +21,7 @@ export class NutritionSearchPage extends React.Component {
   
   calculateMeal(e) {
     e.preventDefault();
-    this.props.dispatch(get_nutrition(this.state.meal_value));
+    this.props.dispatch(searchFor(this.state.meal_value, 'nutrition'));
     this.setState({meal_value : ''});
   }
   
@@ -50,7 +50,7 @@ export class NutritionSearchPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  nutritionResults: state.nutritionSearchReducer.nutrition
+  nutritionResults: state.searchReducer.nutrition
 });
 
 export default requiresLogin()(connect(mapStateToProps)(NutritionSearchPage));

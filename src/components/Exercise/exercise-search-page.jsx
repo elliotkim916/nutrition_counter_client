@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get_exercise} from '../../actions/exercise-search';
+import {searchFor} from '../../actions/search';
 
 export class ExerciseSearchPage extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export class ExerciseSearchPage extends React.Component {
 
   calculateActivity(e) {
     e.preventDefault();
-    this.props.dispatch(get_exercise(this.state.exercise_value));
+    this.props.dispatch(searchFor(this.state.exercise_value, 'exercise'));
     this.setState({exercise_value : ''});
   }
 

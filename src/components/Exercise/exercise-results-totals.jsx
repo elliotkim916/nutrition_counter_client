@@ -37,8 +37,8 @@ const ExerciseResultsTotals = props => {
 }
 
 const mapStateToProps = state => ({
-  exerciseResults: state.exerciseSearchReducer.exercise_results,
-  loading: state.exerciseSearchReducer.loading,
+  exerciseResults: state.searchReducer.exercise,
+  loading: state.searchReducer.loading,
 });
 
 export default connect(mapStateToProps)(ExerciseResultsTotals);

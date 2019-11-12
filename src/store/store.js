@@ -1,19 +1,17 @@
 import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import thunk from 'redux-thunk';
-import {nutritionSearchReducer} from './reducers/nutrition-search';
-import {exerciseSearchReducer} from './reducers/exercise-search';
+import {searchReducer} from './reducers/search';
 import {protectedDataReducer} from './reducers/protected-data';
 import {createUser} from './reducers/users';
 import authReducer from './reducers/auth';
-import {loadAuthToken} from './local-storage';
+import {loadAuthToken} from '../local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combineReducers({
-    nutritionSearchReducer : nutritionSearchReducer,
-    exerciseSearchReducer : exerciseSearchReducer,
+    searchReducer : searchReducer,
     authReducer : authReducer,
     protected : protectedDataReducer,
     createUser : createUser

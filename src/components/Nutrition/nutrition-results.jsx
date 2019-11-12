@@ -6,7 +6,7 @@ import NutritionResultsTotals from '../Nutrition/nutrition-results-totals';
 import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import {connect} from 'react-redux';
 import {addProtectedData, clearError} from '../../actions/protected-data';
-import {clearSearchError} from '../../actions/nutrition-search';
+import {clearSearchError} from '../../actions/search';
 import {AddSuccess} from '../../shared/add';
 import requiresLogin from '../Login/requires-login';
 import Loading from '../Loading/loading';
@@ -153,9 +153,9 @@ export class NutritionResults extends Component {
 
 
 const mapStateToProps = state => ({
-  loading: state.nutritionSearchReducer.loading,
-  nutritionError: state.nutritionSearchReducer.error,
-  nutritionResults: state.nutritionSearchReducer.nutrition,
+  loading: state.searchReducer.loading,
+  nutritionError: state.searchReducer.error,
+  nutritionResults: state.searchReducer.nutrition,
   username: state.authReducer.currentUser.username,
   addError: state.protected.error
 });

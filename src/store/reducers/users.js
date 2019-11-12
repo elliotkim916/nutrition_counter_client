@@ -4,7 +4,7 @@ import {
   CREATE_USER_ERROR,
   CLEAR_CREATE_USER_ERROR
 } from '../actions/users';
-import { updateObject } from '../shared/utility';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
   user: null,

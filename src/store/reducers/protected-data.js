@@ -12,7 +12,7 @@ import {
   DELETE_DATA_ERROR,
   RESET_DELETE
 } from '../actions/protected-data';
-import { updateObject } from '../shared/utility';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
   nutritionData: null,

@@ -1,5 +1,5 @@
-import {API_BASE_URL} from '../config.js';
-import { getData, postData, removeData } from '../shared/utility';
+import {API_BASE_URL} from '../../config.js';
+import { getData, postData, removeData } from '../../shared/utility';
 
 // all actions associated with getting nutrition/exercise data
 export const GET_NUTRITION_DATA_SUCCESS = 'GET_NUTRITION_DATA_SUCCESS';
