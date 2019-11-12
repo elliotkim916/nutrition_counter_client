@@ -108,7 +108,7 @@ export class NutritionResults extends Component {
     }
 
     if (this.props.loading && !this.props.nutritionError) {
-      loading = <Loading message='Nutrition result loading..' />;
+      loading = <Loading loadingMessage='Result is loading..' />;
     } else {
       loading = null;
     }

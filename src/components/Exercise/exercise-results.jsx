@@ -81,7 +81,7 @@ export class ExerciseResults extends Component {
     }
 
     if (this.props.loading) {
-      loading = <Loading message='Exercise result loading..' />;
+      loading = <Loading loadingMessage='Result is loading..' />;
     } else {
       loading = null;
     }
