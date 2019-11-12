@@ -37,6 +37,7 @@ input::placeholder {
   color: whitesmoke;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
+  font-size: 1rem;
 }
 .login-btn:hover, 
 .login-btn:focus,
@@ -170,4 +171,16 @@ span {
 }
 .login-error-msg {
   margin-top: -10px;
+}
+
+@media (max-width: 320px) {
+  .backdrop-form {
+    width: 280px;
+  }
+}
+
+@media (min-width: 401px) {
+  .backdrop-form {
+    padding: 10px;
+  }
 }

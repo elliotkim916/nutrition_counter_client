@@ -88,7 +88,7 @@ export class NutritionResults extends Component {
     if (this.state.addSuccess) {
       addSuccess = (
         <AddSuccess 
-          message='You have successfully saved your nutrition!' 
+          message='You have saved your nutrition!' 
           clearAddSuccess={() => this.setState({addSuccess: false})}
         />
       );

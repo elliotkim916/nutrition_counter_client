@@ -8,14 +8,14 @@ export const DeleteQuestion = props => {
         <h3>{props.question}</h3>
         <button 
           type="button" 
-          className="login-btn" 
+          className="choice-btn" 
           onClick={() => props.dispatch(props.yesDelete(props.deleteId, props.option))}
         >
           Yes
         </button>
         <button 
           type="button" 
-          className="login-btn" 
+          className="choice-btn" 
           onClick={() => props.dispatch(props.resetDelete())}
         >
           No
