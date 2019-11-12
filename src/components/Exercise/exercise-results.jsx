@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { clearAuth } from '../../actions/auth';
+import { clearAuth } from '../../store/actions/auth';
 import { clearAuthToken } from '../../local-storage';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import ExerciseResultsTotals from './exercise-results-totals';
 import { connect } from 'react-redux';
-import { addProtectedData, clearError } from '../../actions/protected-data';
+import { addProtectedData, clearError } from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import { AddSuccess } from '../../shared/add';
-import { clearSearchError } from '../../actions/search';
+import { clearSearchError } from '../../store/actions/search';
 import Error from '../Error/error';
 import Loading from '../Loading/loading';
 import '../../index.scss';

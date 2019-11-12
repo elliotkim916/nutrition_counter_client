@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {searchFor} from '../../actions/search';
+import {searchFor} from '../../store/actions/search';
 import requiresLogin from '../Login/requires-login';
 
 export class NutritionSearchPage extends React.Component {

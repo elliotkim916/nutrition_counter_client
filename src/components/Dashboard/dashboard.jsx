@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {clearAuth} from '../../actions/auth';
+import {clearAuth} from '../../store/actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import {getProtectedData, deleteDataStart} from '../../actions/protected-data';
+import {getProtectedData, deleteDataStart} from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from '../Exercise/exercise-search-page';

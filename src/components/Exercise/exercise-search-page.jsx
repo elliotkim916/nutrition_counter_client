@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {searchFor} from '../../actions/search';
+import {searchFor} from '../../store/actions/search';
 
 export class ExerciseSearchPage extends React.Component {
   constructor(props) {

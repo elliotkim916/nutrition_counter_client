@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from './login-form';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {clearAuthError} from '../../actions/auth';
+import {clearAuthError} from '../../store/actions/auth';
 import Loading from '../Loading/loading';
 import '../../index.scss';
 import Error from '../Error/error';

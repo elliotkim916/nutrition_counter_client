@@ -10,7 +10,7 @@ import NutritionSearchPage from './components/Nutrition/nutrition-search-page';
 import ExerciseSearchPage from './components/Exercise/exercise-search-page';
 import NutritionResults from './components/Nutrition/nutrition-results';
 import ExerciseResults from './components/Exercise/exercise-results';
-import {refreshAuthToken} from './actions/auth';
+import {refreshAuthToken} from './store/actions/auth';
 import './index.scss';
 
 export class App extends Component {

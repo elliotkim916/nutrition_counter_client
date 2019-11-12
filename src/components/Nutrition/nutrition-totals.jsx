@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import { deleteData, resetDelete } from '../../actions/protected-data';
+import { deleteData, resetDelete } from '../../store/actions/protected-data';
 import { DeleteSuccess, DeleteQuestion } from '../../shared/delete';
 import '../../index.scss';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import RegistrationForm from './registration-form';
-import {clearCreateUserError} from '../../actions/users';
+import {clearCreateUserError} from '../../store/actions/users';
 import Error from '../Error/error';
 import Loading from '../Loading/loading';
 import '../../index.scss';
