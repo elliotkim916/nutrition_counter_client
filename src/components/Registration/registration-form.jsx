@@ -62,7 +62,14 @@ export class RegistrationForm extends React.Component {
           this.props.dispatch(login(username, password));
         }
 
-        this.setState({username: '', password: '', passwordConfirm: ''});
+        this.setState({
+          username: '', 
+          password: '', 
+          passwordConfirm: '', 
+          usernameError: '',
+          passwordError: '',
+          passwordConfirmError: ''
+        });
       }, 500);
     }
   }
