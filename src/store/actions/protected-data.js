@@ -1,22 +1,20 @@
 import {API_BASE_URL} from '../../config.js';
 import { getData, postData, removeData } from '../../shared/utility';
+import * as actionTypes from './actionTypes';
 
 // all actions associated with getting nutrition/exercise data
-export const GET_NUTRITION_DATA_SUCCESS = 'GET_NUTRITION_DATA_SUCCESS';
 export const getNutritionDataSuccess = data => ({
-  type: GET_NUTRITION_DATA_SUCCESS,
+  type: actionTypes.GET_NUTRITION_DATA_SUCCESS,
   data
 });
 
-export const GET_EXERCISE_DATA_SUCCESS = 'GET_EXERCISE_DATA_SUCCESS';
 export const getExerciseDataSuccess = data => ({
-  type: GET_EXERCISE_DATA_SUCCESS,
+  type: actionTypes.GET_EXERCISE_DATA_SUCCESS,
   data
 });
 
-export const GET_DATA_ERROR = 'GET_DATA_ERROR';
 export const getDataError = error => ({
-  type: GET_DATA_ERROR,
+  type: actionTypes.GET_DATA_ERROR,
   error
 });
 
@@ -43,27 +41,23 @@ export const getProtectedData = (option) => (dispatch, getState) => {
 }
 
 // all actions associated with adding new exercise/nutrition data
-export const ADD_NUTRITION_DATA_SUCCESS = 'ADD_NUTRITION_DATA_SUCCESS';
 export const addNutritionDataSuccess = nutritionData => ({
-  type: ADD_NUTRITION_DATA_SUCCESS,
+  type: actionTypes.ADD_NUTRITION_DATA_SUCCESS,
   nutritionData
 });
 
-export const ADD_EXERCISE_DATA_SUCCESS = 'ADD_EXERCISE_DATA_SUCCESS';
 export const addExerciseDataSuccess = exerciseData => ({
-  type: ADD_EXERCISE_DATA_SUCCESS,
+  type: actionTypes.ADD_EXERCISE_DATA_SUCCESS,
   exerciseData
 });
 
-export const ADD_DATA_ERROR = 'ADD_DATA_ERROR';
 export const addDataError = error => ({
-  type: ADD_DATA_ERROR,
+  type: actionTypes.ADD_DATA_ERROR,
   error
 });
 
-export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const clearError = () => ({
-  type: CLEAR_ERROR,
+  type: actionTypes.CLEAR_ERROR,
   error: null
 })
 
@@ -118,32 +112,27 @@ export const addProtectedData = (totals, option) => (dispatch, getState) => {
 }
 
 // all actions associated with deleting nutrition/exercise data
-export const DELETE_DATA_START = 'DELETE_DATA_START';
 export const deleteDataStart = () => ({
-  type: DELETE_DATA_START
+  type: actionTypes.DELETE_DATA_START
 });
 
-export const DELETE_NUTRITION_DATA_SUCCESS = 'DELETE_NUTRITION_DATA_SUCCESS';
 export const deleteNutritionDataSuccess = id => ({
-  type: DELETE_NUTRITION_DATA_SUCCESS,
+  type: actionTypes.DELETE_NUTRITION_DATA_SUCCESS,
   id
 });
 
-export const DELETE_EXERCISE_DATA_SUCCESS = 'DELETE_EXERCISE_DATA_SUCCESS';
 export const deleteExerciseDataSuccess = id => ({
-  type: DELETE_EXERCISE_DATA_SUCCESS,
+  type: actionTypes.DELETE_EXERCISE_DATA_SUCCESS,
   id
 });
 
-export const DELETE_DATA_ERROR = 'DELETE_DATA_ERROR';
 export const deleteDataError = error => ({
-  type: DELETE_DATA_ERROR,
+  type: actionTypes.DELETE_DATA_ERROR,
   error
 })
 
-export const RESET_DELETE = 'RESET_DELETE';
 export const resetDelete = () => ({
-  type: RESET_DELETE
+  type: actionTypes.RESET_DELETE
 });
 
 export const deleteData = (id, option) => (dispatch, getState) => {

@@ -1,33 +1,29 @@
 import { NUTRITIONIX_BASE_URL, EXERCISE_BASE_URL } from '../../config';
 import history from '../../history';
 import { postData } from '../../shared/utility';
+import * as actionTypes from './actionTypes';
 
-export const SEARCH_REQUEST = 'SEARCH_REQUEST';
 export const searchRequest = () => ({
-  type: SEARCH_REQUEST
+  type: actionTypes.SEARCH_REQUEST
 });
 
-export const NUTRITION_SEARCH_SUCCESS = 'NUTRITION_SEARCH_SUCCESS';
 export const nutritionSearchSuccess = nutrition => ({
-  type: NUTRITION_SEARCH_SUCCESS,
+  type: actionTypes.NUTRITION_SEARCH_SUCCESS,
   nutrition
 });
 
-export const EXERCISE_SEARCH_SUCCESS = 'EXERCISE_SEARCH_SUCCESS';
 export const exerciseSearchSuccess = exercise => ({
-  type: EXERCISE_SEARCH_SUCCESS,
+  type: actionTypes.EXERCISE_SEARCH_SUCCESS,
   exercise
 });
 
-export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const searchError = error => ({
-  type: SEARCH_ERROR,
+  type: actionTypes.SEARCH_ERROR,
   error
 });
 
-export const CLEAR_SEARCH_ERROR = 'CLEAR_SEARCH_ERROR';
 export const clearSearchError = () => ({
-  type: CLEAR_SEARCH_ERROR
+  type: actionTypes.CLEAR_SEARCH_ERROR
 });
 
 export const searchFor = (searchValue, option) => dispatch => {

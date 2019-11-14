@@ -1,10 +1,4 @@
-import {
-  SEARCH_REQUEST,
-  NUTRITION_SEARCH_SUCCESS,
-  EXERCISE_SEARCH_SUCCESS,
-  SEARCH_ERROR,
-  CLEAR_SEARCH_ERROR
-} from '../actions/search';
+import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
@@ -50,11 +44,11 @@ const clearSearchError = (state, action) => {
 
 export function searchReducer(state=initialState, action) {
   switch(action.type) {
-    case SEARCH_REQUEST : return searchRequest(state, action);
-    case NUTRITION_SEARCH_SUCCESS : return nutritionSearchSuccess(state, action);
-    case EXERCISE_SEARCH_SUCCESS : return exerciseSearchSuccess(state, action);
-    case SEARCH_ERROR : return searchError(state, action);
-    case CLEAR_SEARCH_ERROR : return clearSearchError(state, action);
+    case actionTypes.SEARCH_REQUEST : return searchRequest(state, action);
+    case actionTypes.NUTRITION_SEARCH_SUCCESS : return nutritionSearchSuccess(state, action);
+    case actionTypes.EXERCISE_SEARCH_SUCCESS : return exerciseSearchSuccess(state, action);
+    case actionTypes.SEARCH_ERROR : return searchError(state, action);
+    case actionTypes.CLEAR_SEARCH_ERROR : return clearSearchError(state, action);
     default: return state;
   }
 }

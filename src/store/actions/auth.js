@@ -2,38 +2,33 @@ import {API_BASE_URL} from '../../config';
 import jwtDecode from 'jwt-decode';
 import {saveAuthToken, clearAuthToken} from '../../local-storage';
 import { postData } from '../../shared/utility';
+import * as actionTypes from './actionTypes';
 
-export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
-  type: SET_AUTH_TOKEN,
+  type: actionTypes.SET_AUTH_TOKEN,
   authToken
 });
 
-export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
-  type: CLEAR_AUTH
+  type: actionTypes.CLEAR_AUTH
 });
 
-export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const authRequest = () => ({
-  type: AUTH_REQUEST
+  type: actionTypes.AUTH_REQUEST
 });
 
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const authSuccess = currentUser => ({
-  type: AUTH_SUCCESS,
+  type: actionTypes.AUTH_SUCCESS,
   currentUser
 });
 
-export const AUTH_ERROR = 'AUTH_ERROR';
 export const authError = error => ({
-  type: AUTH_ERROR,
+  type: actionTypes.AUTH_ERROR,
   error
 });
 
-export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
 export const clearAuthError = () => ({
-  type: CLEAR_AUTH_ERROR
+  type: actionTypes.CLEAR_AUTH_ERROR
 });
 
 const storeAuthInfo = (authToken, dispatch) => {

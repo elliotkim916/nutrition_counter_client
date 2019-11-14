@@ -1,9 +1,4 @@
-import {
-  CREATE_USER_REQUEST,
-  CREATE_USER_SUCCESS,
-  CREATE_USER_ERROR,
-  CLEAR_CREATE_USER_ERROR
-} from '../actions/users';
+import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
@@ -40,10 +35,10 @@ const clearCreateUserError = (state, action) => {
 
 export function createUser(state=initialState, action) {
   switch(action.type) {
-    case CREATE_USER_REQUEST : return createUserRequest(state, action);
-    case CREATE_USER_SUCCESS : return createUserSuccess(state, action);
-    case CREATE_USER_ERROR : return createUserError(state, action);
-    case CLEAR_CREATE_USER_ERROR : return clearCreateUserError(state, action);
+    case actionTypes.CREATE_USER_REQUEST : return createUserRequest(state, action);
+    case actionTypes.CREATE_USER_SUCCESS : return createUserSuccess(state, action);
+    case actionTypes.CREATE_USER_ERROR : return createUserError(state, action);
+    case actionTypes.CLEAR_CREATE_USER_ERROR : return clearCreateUserError(state, action);
     default: return state;
   }
 }
