@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {APP_ID, APP_KEY} from '../config';
-import { loadAuthToken } from '../local-storage';
-
+import { loadAuthToken } from './local-storage';
 
 export const updateObject = (oldObject, updatedProperties) => ({
   ...oldObject,

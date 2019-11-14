@@ -4,7 +4,7 @@ import {searchReducer} from './reducers/search';
 import {protectedDataReducer} from './reducers/protected-data';
 import {createUser} from './reducers/users';
 import authReducer from './reducers/auth';
-import {loadAuthToken} from '../local-storage';
+import {loadAuthToken} from '../shared/local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

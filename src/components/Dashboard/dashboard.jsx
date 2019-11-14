@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../../store/actions/auth';
-import {clearAuthToken} from '../../local-storage';
+import {clearAuthToken} from '../../shared/local-storage';
 import {getProtectedData, deleteDataStart} from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';

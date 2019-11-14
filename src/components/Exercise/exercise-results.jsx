@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { clearAuth } from '../../store/actions/auth';
-import { clearAuthToken } from '../../local-storage';
+import { clearAuthToken } from '../../shared/local-storage';
 import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import ExerciseSearchPage from './exercise-search-page';
 import ExerciseResultsTotals from './exercise-results-totals';

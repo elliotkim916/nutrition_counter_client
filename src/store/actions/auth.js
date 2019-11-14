@@ -1,6 +1,6 @@
 import {API_BASE_URL} from '../../config';
 import jwtDecode from 'jwt-decode';
-import {saveAuthToken, clearAuthToken} from '../../local-storage';
+import {saveAuthToken, clearAuthToken} from '../../shared/local-storage';
 import { postData } from '../../shared/utility';
 import * as actionTypes from './actionTypes';
 
