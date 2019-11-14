@@ -45,3 +45,23 @@ ul {
     opacity: 0;
   }
 }
+
+.choice-btn {
+  display: inline-block;
+  width: 25%;
+  border-radius: 12px;
+  padding: 5px;
+  background-color: #41cd8c;
+  border: 1px solid #41cd8c;
+  color: whitesmoke;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  margin: 15px;
+  font-size: 1rem;
+}
+.choice-btn:hover {
+  outline: none;
+  cursor: pointer;
+  background-color:#7eddb1;
+  border: 1px solid #7eddb1; 
+}

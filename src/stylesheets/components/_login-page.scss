@@ -37,6 +37,7 @@ input::placeholder {
   color: whitesmoke;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
+  font-size: 1rem;
 }
 .login-btn:hover, 
 .login-btn:focus,
@@ -92,6 +93,13 @@ input::placeholder {
   }
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 span {
   color: #363636;
   font-weight: bolder;
@@ -135,4 +143,44 @@ span {
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+.backdrop-form {
+  width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  border: 1px solid whitesmoke;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.error-message {
+  font-size: 1.75rem;
+}
+.login-error-msg {
+  margin-top: -10px;
+}
+
+@media (max-width: 320px) {
+  .backdrop-form {
+    width: 280px;
+  }
+}
+
+@media (min-width: 401px) {
+  .backdrop-form {
+    padding: 10px;
+  }
 }
