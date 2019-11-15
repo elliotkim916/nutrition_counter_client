@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Description from './description';
 import '../../index.scss';
-import checkmark from '../../stylesheets/images/checkmark.png';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -48,6 +48,10 @@ class LandingPage extends React.Component {
 
 
   render() {
+    const listOne = ["Search your meal", "See the nutrition broken down", "Save all your food and keep track"];
+    const listTwo = ["Enter your workout and duration", "Search from a huge database", "Track exercises"];
+    const listThree = ["Compare calories burned to calories consumed", "See if you are eating more than you are burning", "Save and delete what you want"];
+
     return (
       <div className={`landing-page ${this.state.leaving ? "opacity-out" : ""}`} ref="landingPage">
         <div className="shape-two">
@@ -65,36 +69,25 @@ class LandingPage extends React.Component {
         </div>
 
         <div className="parent-container">
-          <div className="container-one">
-            <h3 className="container-headers">Weight Loss</h3>
-            <img src="https://img.icons8.com/color/96/000000/apple.png" className="container-img" alt="apple"/>
-            <ul>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Search your meal</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See the nutrtion broken down</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Save all your food and keep track</li>
-            </ul>
-          </div>
-
-          <div className="container-two">
-            <h3 className="container-headers">Calorie Counter</h3>
-            <img src="https://img.icons8.com/color/96/000000/treadmill.png" className="container-img" alt="treadmill"/>
-            <ul>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Enter your workout and duration</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Search from a huge database</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Track exercises</li>
-            </ul>
-          </div><br/>
-
-          <div className="container-three">
-            <h3 className="container-headers">Get Fit</h3>
-            <img src="https://img.icons8.com/color/96/000000/bench-press-with-dumbbells.png" alt="weightlifter" className="benchpress-img"/>
-            <img src="https://img.icons8.com/color/96/000000/weightlift.png" alt="weightlifter" className="weightlift-img"/>
-            <ul>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Compare calories burned to calories consumed</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>See if you are eating more than you are burning</li>
-              <li className="container-list-item"><img src={checkmark} className="checkmark-icon" alt="checkmark"/>Save and delete what you want</li>
-            </ul>
-          </div>
+          <Description 
+            cssClass="container-one"
+            header="Weight Loss"
+            imgData={{imgSrc:"https://img.icons8.com/color/96/000000/apple.png", imgClass: "container-img", imgAlt: "apple"}}
+            list={listOne}
+          />
+          <Description 
+            cssClass="container-two"
+            header="Calorie Counter"
+            imgData={{imgSrc: "https://img.icons8.com/color/96/000000/treadmill.png", imgClass: "container-img", imgAlt: "treadmill"}}
+            list={listTwo}
+          />
+          <Description 
+            cssClass="container-three"
+            header="Get Fit"
+            imgData={{imgSrc: "https://img.icons8.com/color/96/000000/bench-press-with-dumbbells.png", imgClass: "benchpress-img", imgAlt: "weightlifter"}}
+            addlImgData={{imgSrc: "https://img.icons8.com/color/96/000000/weightlift.png", imgClass: "weightlift-img", imgAlt: "weightlifter"}}
+            list={listThree}
+          />
         </div>
       </div>
     );
