@@ -15,9 +15,10 @@ input, .login-btn, .registration-btn {
 }
 
 input {
-  border: none;
-  background-color: #f4f3f0;
+  border-style: none;
   border-bottom: 1px solid #00bb95;
+  border-radius: 0;
+  background-color: #f4f3f0;
   padding: 5px;
 }
 input:focus {
@@ -54,7 +55,7 @@ input::placeholder {
 
 .nutrition-counter-header {
   font-family: Lobster;
-  font-size: 3rem;
+  font-size: 2.7rem;
   max-width: 322px;
   color: #41cd8c;
   text-align: center;
