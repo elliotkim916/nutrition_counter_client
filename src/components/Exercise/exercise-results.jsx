@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { clearAuth } from '../../store/actions/auth';
 import { clearAuthToken } from '../../shared/local-storage';
-import NutritionSearchPage from '../Nutrition/nutrition-search-page';
-import ExerciseSearchPage from './exercise-search-page';
+import Search from '../Dashboard/search';
 import ExerciseResultsTotals from './exercise-results-totals';
 import { connect } from 'react-redux';
 import { addProtectedData, clearError } from '../../store/actions/protected-data';
@@ -112,8 +111,7 @@ export class ExerciseResults extends Component {
           <span onClick={() => this.toDashboard()} tabIndex="1" className="go-home-btn">Home</span>
           <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
+          <Search location="exercise-results"/>
         </div>
 
         <ul className={!this.props.loading ? "exercise-results fadeIn" : "exercise-results"}>
@@ -129,7 +127,6 @@ export class ExerciseResults extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   loading: state.searchReducer.loading,

@@ -4,8 +4,7 @@ import {clearAuth} from '../../store/actions/auth';
 import {clearAuthToken} from '../../shared/local-storage';
 import {getProtectedData, deleteDataStart} from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
-import NutritionSearchPage from '../Nutrition/nutrition-search-page';
-import ExerciseSearchPage from '../Exercise/exercise-search-page';
+import Search from './search';
 import NutritionTotals from '../Nutrition/nutrition-totals';
 import ExerciseTotals from '../Exercise/exercise-totals';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -54,8 +53,7 @@ export class Dashboard extends React.Component {
         <div className="shape">
           <span className="log-out" onClick={() => this.logOut()} tabIndex="1">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
+          <Search/>
         </div>
 
         <img src={harvest} alt="nutrition" className="tossing" />
@@ -68,7 +66,7 @@ export class Dashboard extends React.Component {
               <ExerciseTotals deleteExercise={this.deleteStart}/>
             </div>
 
-            <div className ='nutrition-totals-container'>
+            <div className ="nutrition-totals-container">
               <Tabs>
                 <TabList>
                   <Tab>Nutrition Totals</Tab>

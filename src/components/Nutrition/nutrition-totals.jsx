@@ -41,7 +41,10 @@ class NutritionTotals extends React.Component {
         nutritionTotals = this.props.nutritionData.map((value, index) => {
           return (
             <div key = {index} className = "nutrition_total">
-              <h3 className="date">{moment(value.created).format('dddd MMMM Do YYYY, h:mm a')}</h3>
+              <ul className="date">
+                <li>{moment(value.created).format('dddd, MMMM Do YYYY')}</li>
+                <li>{moment(value.created).format('h:mm a')}</li>
+              </ul>
               <ul>
                 <li><span className="list-title">Foods : </span> {value.food_name}</li>
                 <li><span className="list-title">Calories : </span> {value.calories} grams</li>

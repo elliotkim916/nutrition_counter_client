@@ -50,7 +50,7 @@ li {
 }
 
 .nutrition-page {
-  margin-right: 100px;
+  margin-right: 55px;
 }
 
 textarea {
@@ -123,7 +123,7 @@ textarea {
 
 .shape {
   position: relative;
-  height: 650px;
+  height: 700px;
   background: linear-gradient(130deg, #66b9ea, #6d78e7);
   border-bottom-left-radius: 1000px 25px;
   border-bottom-right-radius: 1000px 25px;
@@ -197,7 +197,12 @@ textarea::placeholder {
   color: whitesmoke;
   letter-spacing: 1px;
   font-size: 3em;
-  margin-left: 75px;
+}
+.nutrition-header {
+  margin-left: 100px;
+}
+.exercise-header {
+  margin-left: 90px;
 }
 
 .food-image {
@@ -316,14 +321,17 @@ textarea::placeholder {
 }
 
 @media (min-width: 740px) {
-  .react-tabs {
+  .nutrition-totals-container {
     display: none;
   }
 }
 
 @media (max-width: 879px) {
-  .shape {
-    height: 1150px;
+  .search-tabs-container {
+    display: block;
+  }
+  .search-container {
+    display: none;
   }
 
   .nutrition-page, .exercise-page {
@@ -334,5 +342,20 @@ textarea::placeholder {
 
   .totals-container > div {
     width: 300px;
+  }
+}
+
+@media (min-width: 880px) {
+  .search-tabs-container {
+    display: none;
+  }
+  .search-container {
+    display: block;
+  }
+}
+
+@media (max-width: 1110px) {
+  .date {
+    font-size: 1.15rem;
   }
 }

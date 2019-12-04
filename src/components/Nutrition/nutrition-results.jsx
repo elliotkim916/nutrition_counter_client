@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {clearAuth} from '../../store/actions/auth';
 import {clearAuthToken} from '../../shared/local-storage';
-import NutritionSearchPage from '../Nutrition/nutrition-search-page';
 import NutritionResultsTotals from '../Nutrition/nutrition-results-totals';
-import ExerciseSearchPage from '../Exercise/exercise-search-page';
+import Search from '../Dashboard/search';
 import {connect} from 'react-redux';
 import {addProtectedData, clearError} from '../../store/actions/protected-data';
 import {clearSearchError} from '../../store/actions/search';
@@ -131,10 +130,9 @@ export class NutritionResults extends Component {
           <span onClick={() => this.toDashboard()} tabIndex="1" className="go-home-btn">Home</span>
           <span onClick={() => this.logOut()} tabIndex="2" className="logout-btn">Log Out</span><br/>
           <h1 className="title-header">Nutrition Counter</h1>
-          <NutritionSearchPage/>
-          <ExerciseSearchPage/><br/>
+          <Search location="nutrition-results"/>
         </div>
-
+        
         <ul className = {!this.props.loading ? "nutrition-results fadeIn" : "nutrition-results"}>
           {nutrition_result}
         </ul>  
@@ -148,9 +146,6 @@ export class NutritionResults extends Component {
     );
   }
 }
-
-  
-
 
 const mapStateToProps = state => ({
   loading: state.searchReducer.loading,

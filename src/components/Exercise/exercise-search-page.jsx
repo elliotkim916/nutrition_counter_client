@@ -26,7 +26,7 @@ export class ExerciseSearchPage extends React.Component {
         <img src="https://img.icons8.com/dusk/64/000000/dumbbell.png" alt="dumbbell" className="exercise-image"/>
         <p className="exercise-header">Exercise</p>
         <form onSubmit = {(e) => this.calculateActivity(e)} className="exercise-form">
-          <label htmlFor = "exercise">Enter your workout.  It can be anything from 30 min of weight lifting, 1 hour of yoga, or a 2 hour walk!</label><br/>
+          <label htmlFor = "exercise">Enter your workout.  Anything from 30 min of weight lifting, 1 hour of yoga, or a 2 hour walk!</label><br/>
           <textarea 
             id="exercise"
             type="textarea" 
