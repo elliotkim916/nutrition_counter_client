@@ -29,6 +29,7 @@ export class RegistrationPage extends React.Component {
 
   render() {
     if (this.props.loggedIn) {
+      console.log('Registration success!');
       return <Redirect to="/dashboard"/>;
     }
 

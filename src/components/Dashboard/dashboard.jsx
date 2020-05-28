@@ -23,10 +23,8 @@ export class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.dispatch(getProtectedData('nutrition'));
-      this.props.dispatch(getProtectedData('exercise'));
-    }, 50);
+    this.props.dispatch(getProtectedData('nutrition'));
+    this.props.dispatch(getProtectedData('exercise'));
   }
 
   logOut() {
