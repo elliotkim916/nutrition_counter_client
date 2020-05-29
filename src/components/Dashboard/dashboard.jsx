@@ -48,6 +48,44 @@ export class Dashboard extends React.Component {
   }
 
   render() {    
+    let fullPageTotals, tabs;
+
+    if (this.props.nutritionData || this.props.exerciseData) {
+      if (this.props.nutritionData.length < 1 && this.props.exerciseData.length < 1) {
+        fullPageTotals = null;
+        tabs = null;
+      } else {
+        fullPageTotals = (
+          <div className="totals-container">
+            <NutritionTotals deleteNutrition={this.deleteStart} />
+            <ExerciseTotals deleteExercise={this.deleteStart} />
+          </div>
+        );
+
+        tabs = (
+          <div className ="nutrition-totals-container">
+            <Tabs>
+              <TabList>
+                <Tab>Nutrition Totals</Tab>
+                <Tab>Exercise Totals</Tab>
+              </TabList>
+        
+              <TabPanel>
+                <div>  
+                  <NutritionTotals tab={true} deleteNutrition={this.deleteStart}/>
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div>
+                  <ExerciseTotals tab={true} deleteExercise={this.deleteStart}/>  
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        );
+      }
+    }
+ 
     return (
       <div className={`dashboard ${this.state.leaving ? "opacity-out" : ""}`} ref="thisDashboard">
         <div className="shape">
@@ -58,36 +96,8 @@ export class Dashboard extends React.Component {
 
         <img src={harvest} alt="nutrition" className="tossing" />
         <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-        {
-          this.props.nutritionData || this.props.exerciseData ?
-          <React.Fragment>
-            <div className="totals-container">
-              <NutritionTotals deleteNutrition={this.deleteStart}/>
-              <ExerciseTotals deleteExercise={this.deleteStart}/>
-            </div>
-
-            <div className ="nutrition-totals-container">
-              <Tabs>
-                <TabList>
-                  <Tab>Nutrition Totals</Tab>
-                  <Tab>Exercise Totals</Tab>
-                </TabList>
-          
-                <TabPanel>
-                  <div>  
-                    <NutritionTotals tab={true} deleteNutrition={this.deleteStart}/>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div>
-                    <ExerciseTotals tab={true} deleteExercise={this.deleteStart}/>  
-                  </div>
-                </TabPanel>
-              </Tabs>
-            </div>
-          </React.Fragment> :
-          null
-        }
+        {fullPageTotals}
+        {tabs}        
       </div>
     );
   }
