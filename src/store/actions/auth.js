@@ -47,7 +47,7 @@ export const login = (username, password) => dispatch => {
     `${API_BASE_URL}/auth/login`,
     data,
     res => {
-      console.log('login successful', res);
+      console.log('login successful');
       const {authToken} = res;
       storeAuthInfo(authToken, dispatch);
     },
