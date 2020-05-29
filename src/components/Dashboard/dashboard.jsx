@@ -84,22 +84,24 @@ export class Dashboard extends React.Component {
           </div>
         );
       }
-    }
- 
-    return (
-      <div className={`dashboard ${this.state.leaving ? "opacity-out" : ""}`} ref="thisDashboard">
-        <div className="shape">
-          <span className="log-out" onClick={() => this.logOut()} tabIndex="1">Log Out</span><br/>
-          <h1 className="title-header">Nutrition Counter</h1>
-          <Search/>
-        </div>
 
-        <img src={harvest} alt="nutrition" className="tossing" />
-        <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
-        {fullPageTotals}
-        {tabs}        
-      </div>
-    );
+      return (
+        <div className={`dashboard ${this.state.leaving ? "opacity-out" : ""}`} ref="thisDashboard">
+          <div className="shape">
+            <span className="log-out" onClick={() => this.logOut()} tabIndex="1">Log Out</span><br/>
+            <h1 className="title-header">Nutrition Counter</h1>
+            <Search/>
+          </div>
+  
+          <img src={harvest} alt="nutrition" className="tossing" />
+          <h1 className="welcome-header">Welcome {this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}</h1>
+          {fullPageTotals}
+          {tabs}        
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
