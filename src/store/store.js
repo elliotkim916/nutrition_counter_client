@@ -19,8 +19,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-// With the JWT stored, for persistance to work is to reload the token when the application loads
-// this is done in the store
 const authToken = loadAuthToken();
 if (authToken) {
   const token = authToken;
