@@ -124,7 +124,6 @@ export class NutritionResults extends Component {
     }
 
     return (
-      // a href doesnt work because a tags refresh the browser, which means the state will be empty while this.props.history.push does not
       <section className = {`nutrition-search-results ${this.state.leaving ? "opacity-out" : ""}`} ref="nutritionSearchResults">
         <div className="shape">
           <span onClick={() => this.toDashboard()} tabIndex="1" className="go-home-btn">Home</span>
