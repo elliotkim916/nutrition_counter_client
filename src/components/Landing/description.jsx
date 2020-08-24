@@ -1,25 +1,37 @@
 import React from 'react';
-import ListItem from './listItem';
+import ListItem from './ListItem';
 
-const Description = props => {
-  let additionalImage;
-  if (props.addlImgData) {
-    additionalImage = <img src={props.addlImgData.imgSrc} className={props.addlImgData.imgClass} alt={props.addlImgData.imgAlt} />
-  } else {
-    additionalImage = null;
+const Description = React.memo(
+  ({ addlImgData, imgData, cssClass, header, list }) => {
+    let additionalImage;
+    if (addlImgData) {
+      additionalImage = (
+        <img
+          src={addlImgData.imgSrc}
+          className={addlImgData.imgClass}
+          alt={addlImgData.imgAlt}
+        />
+      );
+    } else {
+      additionalImage = null;
+    }
+
+    return (
+      <div className={cssClass}>
+        <h3 className="container-headers">{header}</h3>
+        <img
+          src={imgData.imgSrc}
+          className={imgData.imgClass}
+          alt={imgData.imgAlt}
+        />
+        {additionalImage}
+
+        <ul>
+          <ListItem list={list} />
+        </ul>
+      </div>
+    );
   }
-  
-  return (
-    <div className={props.cssClass}>
-      <h3 className="container-headers">{props.header}</h3>
-      <img src={props.imgData.imgSrc} className={props.imgData.imgClass} alt={props.imgData.imgAlt}/>
-      {additionalImage}
-      
-      <ul>
-        <ListItem list={props.list}/>
-      </ul>
-    </div>
-  );
-}
+);
 
 export default Description;
