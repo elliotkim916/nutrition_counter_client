@@ -9,7 +9,7 @@ import {
   clearError,
 } from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
-import { AddSuccess } from '../../shared/add';
+import AddSuccess from '../../shared/add';
 import { clearSearchError } from '../../store/actions/search';
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
