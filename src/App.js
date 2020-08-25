@@ -6,7 +6,7 @@ import LandingPage from './components/Landing/LandingPage';
 import RegistrationPage from './components/Registration/registration-page';
 import LoginPage from './components/Login/login-page';
 import Dashboard from './components/Dashboard/Dashboard';
-import NutritionSearchPage from './components/Nutrition/nutrition-search-page';
+import NutritionSearchPage from './components/Nutrition/NutritionSearchPage';
 import ExerciseSearchPage from './components/Exercise/exercise-search-page';
 import NutritionResults from './components/Nutrition/nutrition-results';
 import ExerciseResults from './components/Exercise/exercise-results';

@@ -11,8 +11,8 @@ import {
 import requiresLogin from '../Login/requires-login';
 import { AddSuccess } from '../../shared/add';
 import { clearSearchError } from '../../store/actions/search';
-import Error from '../Error/error';
-import Loading from '../Loading/loading';
+import Error from '../Error/Error';
+import Loading from '../Loading/Loading';
 import '../../index.scss';
 
 export class ExerciseResults extends Component {

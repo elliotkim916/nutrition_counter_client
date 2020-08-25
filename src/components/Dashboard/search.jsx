@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NutritionSearchPage from '../Nutrition/nutrition-search-page';
+import NutritionSearchPage from '../Nutrition/NutritionSearchPage';
 import ExerciseSearchPage from '../Exercise/exercise-search-page';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';

@@ -11,8 +11,8 @@ import {
 import { clearSearchError } from '../../store/actions/search';
 import { AddSuccess } from '../../shared/add';
 import requiresLogin from '../Login/requires-login';
-import Loading from '../Loading/loading';
-import Error from '../Error/error';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
 import '../../index.scss';
 
 export class NutritionResults extends Component {
