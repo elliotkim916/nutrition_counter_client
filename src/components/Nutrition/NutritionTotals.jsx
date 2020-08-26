@@ -1,100 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { deleteData, resetDelete } from '../../store/actions/protected-data';
 import { DeleteSuccess, DeleteQuestion } from '../../shared/delete';
+import NutritionDashboardListItem from './NutritionDashboardListItem';
 import '../../index.scss';
 
-const NutritionTotals = React.memo(
-  ({
-    deleteStart,
-    deleteFinish,
-    dispatch,
-    nutritionData,
-    deleteNutrition,
-    tab,
-  }) => {
-    const [deleteId, setDeleteId] = useState(null);
-    const [option, setOption] = useState('');
+class NutritionTotals extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleteId: null,
+      option: null,
+    };
 
-    const deleteToStart =
-      deleteStart && option === 'nutrition' ? (
+    this.updateIdAndOption = this.updateIdAndOption.bind(this);
+  }
+
+  updateIdAndOption(id, option) {
+    this.setState({
+      deleteId: id,
+      option,
+    });
+  }
+
+  render() {
+    const deleteStart =
+      this.props.deleteStart && this.state.option === 'nutrition' ? (
         <DeleteQuestion
           question="Are you sure you want to delete this?"
           yesDelete={deleteData}
           resetDelete={resetDelete}
-          dispatch={dispatch}
-          deleteId={deleteId}
-          option={option}
+          dispatch={this.props.dispatch}
+          deleteId={this.state.deleteId}
+          option={this.state.option}
         />
       ) : null;
 
     const deleteSuccess =
-      deleteFinish && option === 'nutrition' ? (
+      this.props.deleteFinish && this.state.option === 'nutrition' ? (
         <DeleteSuccess
           message="Nutrition delete successful!"
-          dispatch={dispatch}
+          dispatch={this.props.dispatch}
           resetDelete={resetDelete}
-          resetOption={() => setOption(null)}
+          resetOption={() => this.setState({ option: null })}
         />
       ) : null;
 
     let nutritionTotals = '';
-    if (nutritionData) {
-      nutritionTotals = nutritionData.map((value, index) => {
+    if (this.props.nutritionData) {
+      nutritionTotals = this.props.nutritionData.map((value, index) => {
         return (
-          <div key={index} className="nutrition_total">
-            <ul className="date">
-              <li>{moment(value.created).format('dddd, MMMM Do YYYY')}</li>
-              <li>{moment(value.created).format('h:mm a')}</li>
-            </ul>
-            <ul>
-              <li>
-                <span className="list-title">Foods : </span> {value.food_name}
-              </li>
-              <li>
-                <span className="list-title">Calories : </span> {value.calories}{' '}
-                grams
-              </li>
-              <li>
-                <span className="list-title">Fat : </span> {value.fat} grams
-              </li>
-              <li>
-                <span className="list-title">Carbohydrates : </span>{' '}
-                {value.carbs} grams
-              </li>
-              <li>
-                <span className="list-title">Sugar : </span> {value.sugar} grams
-              </li>
-              <li>
-                <span className="list-title">Protein : </span> {value.protein}{' '}
-                grams
-              </li>
-              <li>
-                <span className="list-title">Sodium : </span> {value.sodium} mg
-              </li>
-            </ul>
-            <button
-              className="delete-btn"
-              onClick={() => {
-                setDeleteId(value._id);
-                setOption('nutrition');
-                deleteNutrition();
-              }}
-            >
-              <span className="exit">x</span>
-            </button>
-            <div className="line"></div>
-          </div>
+          <NutritionDashboardListItem
+            index={index}
+            value={value}
+            updateIdAndOption={this.updateIdAndOption}
+            deleteNutrition={this.props.deleteNutrition}
+          />
         );
       });
     }
 
     // when in tab format
-    if (tab) {
+    if (this.props.tab) {
       return (
         <React.Fragment>
-          {deleteToStart}
+          {deleteStart}
           {deleteSuccess}
           {nutritionTotals}
         </React.Fragment>
@@ -110,7 +80,7 @@ const NutritionTotals = React.memo(
       </div>
     );
   }
-);
+}
 
 const mapStateToProps = (state) => ({
   nutritionData: state.protected.nutritionData,
