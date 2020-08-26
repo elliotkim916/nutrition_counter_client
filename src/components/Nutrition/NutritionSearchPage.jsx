@@ -19,11 +19,13 @@ const NutritionSearchPage = ({ dispatch }) => {
         className="food-image"
       />
       <p className="nutrition-header">Food</p>
+
       <Formik
         initialValues={{ meal: '' }}
-        onSubmit={(values, actions) =>
-          dispatch(searchFor(values.meal, 'nutrition'))
-        }
+        onSubmit={(values, { resetForm }) => {
+          dispatch(searchFor(values.meal, 'nutrition'));
+          resetForm();
+        }}
       >
         {({ handleSubmit, handleChange, values }) => (
           <Form onSubmit={handleSubmit} className="nutrition-form">

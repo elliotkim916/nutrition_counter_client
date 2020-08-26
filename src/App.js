@@ -7,7 +7,7 @@ import RegistrationPage from './components/Registration/registration-page';
 import LoginPage from './components/Login/login-page';
 import Dashboard from './components/Dashboard/Dashboard';
 import NutritionSearchPage from './components/Nutrition/NutritionSearchPage';
-import ExerciseSearchPage from './components/Exercise/exercise-search-page';
+import ExerciseSearchPage from './components/Exercise/ExerciseSearchPage';
 import NutritionResults from './components/Nutrition/NutritionResults';
 import ExerciseResults from './components/Exercise/exercise-results';
 import { refreshAuthToken } from './store/actions/auth';
