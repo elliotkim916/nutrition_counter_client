@@ -9,7 +9,7 @@ import {
 import requiresLogin from '../Login/requires-login';
 import Search from './Search';
 import NutritionTotals from '../Nutrition/NutritionTotals';
-import ExerciseTotals from '../Exercise/exercise-totals';
+import ExerciseTotals from '../Exercise/ExerciseTotals';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import harvest from '../../stylesheets/images/harvest.png';
 import 'react-tabs/style/react-tabs.css';
