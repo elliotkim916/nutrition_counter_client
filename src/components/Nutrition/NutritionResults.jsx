@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo, Suspense } from 'react';
 import { clearAuth } from '../../store/actions/auth';
 import { clearAuthToken } from '../../shared/local-storage';
-import NutritionResultsTotals from '../Nutrition/nutrition-results-totals';
+import NutritionResultsTotals from '../Nutrition/NutritionResultsTotals';
 import Search from '../Dashboard/Search';
 import { connect } from 'react-redux';
 import {
@@ -201,7 +201,7 @@ const NutritionResults = ({
       >
         {nutritionList}
       </ul>
-      <NutritionResultsTotals onAdd={onAdd} />
+      <NutritionResultsTotals onAdd={onAdd} errorStatus={errorStatus} />
 
       {addSuccessful}
       {isError}
@@ -215,7 +215,6 @@ const mapStateToProps = (state) => ({
   loading: state.searchReducer.loading,
   nutritionError: state.searchReducer.error,
   nutritionResults: state.searchReducer.nutrition,
-  username: state.authReducer.currentUser.username,
   addError: state.protected.error,
 });
 

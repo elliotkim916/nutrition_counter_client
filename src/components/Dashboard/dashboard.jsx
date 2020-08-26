@@ -8,7 +8,7 @@ import {
 } from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
 import Search from './Search';
-import NutritionTotals from '../Nutrition/nutrition-totals';
+import NutritionTotals from '../Nutrition/NutritionTotals';
 import ExerciseTotals from '../Exercise/exercise-totals';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import harvest from '../../stylesheets/images/harvest.png';
