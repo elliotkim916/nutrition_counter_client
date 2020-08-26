@@ -23,9 +23,9 @@ class NutritionTotals extends React.Component {
     });
   }
 
-  render() {
-    const deleteStart =
-      this.props.deleteStart && this.state.option === 'nutrition' ? (
+  deleteStart() {
+    if (this.props.deleteStart && this.state.option === 'nutrition') {
+      return (
         <DeleteQuestion
           question="Are you sure you want to delete this?"
           yesDelete={deleteData}
@@ -34,39 +34,50 @@ class NutritionTotals extends React.Component {
           deleteId={this.state.deleteId}
           option={this.state.option}
         />
-      ) : null;
+      );
+    } else {
+      return null;
+    }
+  }
 
-    const deleteSuccess =
-      this.props.deleteFinish && this.state.option === 'nutrition' ? (
+  deleteSuccess() {
+    if (this.props.deleteFinish && this.state.option === 'nutrition') {
+      return (
         <DeleteSuccess
           message="Nutrition delete successful!"
           dispatch={this.props.dispatch}
           resetDelete={resetDelete}
           resetOption={() => this.setState({ option: null })}
         />
-      ) : null;
-
-    let nutritionTotals = '';
-    if (this.props.nutritionData) {
-      nutritionTotals = this.props.nutritionData.map((value, index) => {
-        return (
-          <NutritionDashboardListItem
-            index={index}
-            value={value}
-            updateIdAndOption={this.updateIdAndOption}
-            deleteNutrition={this.props.deleteNutrition}
-          />
-        );
-      });
+      );
+    } else {
+      return null;
     }
+  }
 
+  nutritionData() {
+    if (this.props.nutritionData) {
+      return this.props.nutritionData.map((value, index) => (
+        <NutritionDashboardListItem
+          index={index}
+          value={value}
+          updateIdAndOption={this.updateIdAndOption}
+          deleteNutrition={this.props.deleteNutrition}
+        />
+      ));
+    } else {
+      return null;
+    }
+  }
+
+  render() {
     // when in tab format
     if (this.props.tab) {
       return (
         <React.Fragment>
-          {deleteStart}
-          {deleteSuccess}
-          {nutritionTotals}
+          {this.deleteStart()}
+          {this.deleteSuccess()}
+          {this.nutritionData()}
         </React.Fragment>
       );
     }
@@ -74,9 +85,9 @@ class NutritionTotals extends React.Component {
     return (
       <div className="nutrition-totals-container">
         <h3>Nutrition Totals</h3>
-        {deleteStart}
-        {deleteSuccess}
-        {nutritionTotals}
+        {this.deleteStart()}
+        {this.deleteSuccess()}
+        {this.nutritionData()}
       </div>
     );
   }
