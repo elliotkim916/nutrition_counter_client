@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { connect } from 'react-redux';
-import { clearAuth } from '../../store/actions/auth';
-import { clearAuthToken } from '../../shared/local-storage';
 import {
   getProtectedData,
   deleteDataStart,
 } from '../../store/actions/protected-data';
 import requiresLogin from '../Login/requires-login';
-import Search from './Search';
 import NutritionTotals from '../Nutrition/NutritionTotals';
 import ExerciseTotals from '../Exercise/ExerciseTotals';
+import Header from '../Header/Header';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import harvest from '../../stylesheets/images/harvest.png';
 import 'react-tabs/style/react-tabs.css';
@@ -35,19 +33,6 @@ const Dashboard = ({
       clearTimeout(timer);
     };
   }, []);
-
-  const logOut = () => {
-    setLeaving(true);
-    DashboardElement.current.addEventListener('animationend', (e) => {
-      if (e.animationName === 'opacity_out') {
-        dispatch(clearAuth());
-        clearAuthToken();
-        history.push('/login-page');
-      } else {
-        return;
-      }
-    });
-  };
 
   const deleteStart = useCallback(() => {
     dispatch(deleteDataStart());
@@ -96,14 +81,13 @@ const Dashboard = ({
       className={`dashboard ${leaving ? 'opacity-out' : ''}`}
       ref={DashboardElement}
     >
-      <div className="shape">
-        <span className="log-out" onClick={() => logOut()} tabIndex="1">
-          Log Out
-        </span>
-        <br />
-        <h1 className="title-header">Nutrition Counter</h1>
-        <Search />
-      </div>
+      <Header
+        element={DashboardElement}
+        dispatch={dispatch}
+        history={history}
+        setLeaving={setLeaving}
+        location="dashboard"
+      />
 
       <img src={harvest} alt="nutrition" className="tossing" />
       <h1 className="welcome-header">

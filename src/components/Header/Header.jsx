@@ -32,18 +32,21 @@ const Header = React.memo(
 
     return (
       <div className="shape">
-        <span
-          onClick={() => toDashboard()}
-          tabIndex="1"
-          className="go-home-btn"
-        >
-          Home
-        </span>
+        {location === 'dashboard' ? null : (
+          <span
+            onClick={() => toDashboard()}
+            tabIndex="1"
+            className="go-home-btn"
+          >
+            Home
+          </span>
+        )}
         <span onClick={() => logOut()} tabIndex="2" className="logout-btn">
           Log Out
         </span>
         <br />
         <h1 className="title-header">Nutrition Counter</h1>
+
         <Search location={location} />
       </div>
     );
