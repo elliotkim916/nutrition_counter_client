@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { clearAuth } from '../../store/actions/auth';
 import { clearAuthToken } from '../../shared/local-storage';
 import Search from '../Dashboard/Search';
-import ExerciseResultsTotals from './exercise-results-totals';
+import ExerciseResultsTotals from './ExerciseResultsTotals';
 import { connect } from 'react-redux';
 import {
   addProtectedData,
