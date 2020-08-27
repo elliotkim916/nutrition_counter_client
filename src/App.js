@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import NutritionSearchPage from './components/Nutrition/NutritionSearchPage';
 import ExerciseSearchPage from './components/Exercise/ExerciseSearchPage';
 import NutritionResults from './components/Nutrition/NutritionResults';
-import ExerciseResults from './components/Exercise/exercise-results';
+import ExerciseResults from './components/Exercise/ExerciseResults';
 import { refreshAuthToken } from './store/actions/auth';
 import './index.scss';
 

@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExerciseSaveTotals from './ExerciseSaveTotals';
 
-const ExerciseResultsTotals = ({ exerciseResults, onAdd, loading }) => {
+const ExerciseResultsTotals = ({
+  exerciseResults,
+  onAdd,
+  loading,
+  exerciseError,
+}) => {
   const exerciseTotals = {
     name: '',
     nf_calories: 0,
@@ -29,7 +34,7 @@ const ExerciseResultsTotals = ({ exerciseResults, onAdd, loading }) => {
   }
 
   let cssClass;
-  if (!loading) {
+  if (!loading && exerciseError === null) {
     cssClass = 'exercise-totals fadeIn';
   } else {
     cssClass = 'exercise-totals';

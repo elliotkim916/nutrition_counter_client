@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExerciseSaveTotals = React.memo(({ cssClass, exerciseTotals, onAdd }) => {
+const ExerciseSaveTotals = ({ cssClass, exerciseTotals, onAdd }) => {
   return (
     <div className={cssClass}>
       <form onSubmit={(e) => onAdd(e, exerciseTotals, 'exercise')}>
@@ -12,6 +12,6 @@ const ExerciseSaveTotals = React.memo(({ cssClass, exerciseTotals, onAdd }) => {
       </form>
     </div>
   );
-});
+};
 
 export default ExerciseSaveTotals;
