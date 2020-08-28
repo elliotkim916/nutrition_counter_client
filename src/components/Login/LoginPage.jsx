@@ -1,5 +1,5 @@
 import React, { useState, useRef, Suspense } from 'react';
-import LoginForm from './login-form';
+import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { clearAuthError } from '../../store/actions/auth';
