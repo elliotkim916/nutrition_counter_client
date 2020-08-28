@@ -19,11 +19,7 @@ const LoginForm = ({ authError, dispatch }) => {
   }, []);
 
   let cssClass;
-  if (authError) {
-    cssClass = 'login-form';
-  } else {
-    cssClass = 'login-form fadeIn';
-  }
+  authError ? (cssClass = 'login-form') : (cssClass = 'login-form fadeIn');
 
   return (
     <div className={cssClass}>
@@ -39,7 +35,7 @@ const LoginForm = ({ authError, dispatch }) => {
           resetForm();
         }}
       >
-        {({ handleChange, values, errors, touched }) => (
+        {({ handleChange, values, errors, touched, isValid }) => (
           <Form className="form">
             <Field
               type="text"
@@ -64,7 +60,11 @@ const LoginForm = ({ authError, dispatch }) => {
               <span className="login-error-msg">{errors.password}</span>
             )}
 
-            <button type="submit" className="login-btn">
+            <button
+              type="submit"
+              className={!isValid ? 'login-btn disabled' : 'login-btn'}
+              disabled={!isValid}
+            >
               LOG IN
             </button>
           </Form>
