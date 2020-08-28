@@ -4,7 +4,7 @@ import {
   getProtectedData,
   deleteDataStart,
 } from '../../store/actions/protected-data';
-import requiresLogin from '../Login/requires-login';
+import requiresLogin from '../Login/RequiresLogin';
 import NutritionTotals from '../Nutrition/NutritionTotals';
 import ExerciseTotals from '../Exercise/ExerciseTotals';
 import Header from '../Header/Header';

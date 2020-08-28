@@ -5,7 +5,7 @@ import {
   addProtectedData,
   clearError,
 } from '../../store/actions/protected-data';
-import requiresLogin from '../Login/requires-login';
+import requiresLogin from '../Login/RequiresLogin';
 import { clearSearchError } from '../../store/actions/search';
 import Loading from '../Loading/Loading';
 import Header from '../Header/Header';

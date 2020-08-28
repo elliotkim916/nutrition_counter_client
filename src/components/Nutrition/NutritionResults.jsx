@@ -6,7 +6,7 @@ import {
   clearError,
 } from '../../store/actions/protected-data';
 import { clearSearchError } from '../../store/actions/search';
-import requiresLogin from '../Login/requires-login';
+import requiresLogin from '../Login/RequiresLogin';
 import Loading from '../Loading/Loading';
 import NutritionResult from './NutritionResult';
 import Header from '../Header/Header';

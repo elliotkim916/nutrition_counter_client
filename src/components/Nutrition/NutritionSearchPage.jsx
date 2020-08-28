@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { searchFor } from '../../store/actions/search';
-import requiresLogin from '../Login/requires-login';
+import requiresLogin from '../Login/RequiresLogin';
 import { Formik, Form, Field } from 'formik';
 
 const NutritionSearchPage = ({ dispatch }) => {
