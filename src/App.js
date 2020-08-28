@@ -4,7 +4,7 @@ import { Router, Route } from 'react-router-dom';
 import history from './history';
 import LandingPage from './components/Landing/LandingPage';
 import RegistrationPage from './components/Registration/registration-page';
-import LoginPage from './components/Login/login-page';
+import LoginPage from './components/Login/LoginPage';
 import Dashboard from './components/Dashboard/Dashboard';
 import NutritionSearchPage from './components/Nutrition/NutritionSearchPage';
 import ExerciseSearchPage from './components/Exercise/ExerciseSearchPage';

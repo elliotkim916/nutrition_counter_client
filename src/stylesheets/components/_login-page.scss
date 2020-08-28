@@ -1,8 +1,11 @@
-form, .form-input {
+form,
+.form-input {
   text-align: center;
 }
 
-.login-page, .registration-page, .loading-container {
+.login-page,
+.registration-page,
+.loading-container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -10,8 +13,15 @@ form, .form-input {
   align-items: center;
 }
 
-input, .login-btn, .registration-btn {
+input,
+.login-btn,
+.registration-btn {
   margin-bottom: 15px;
+}
+
+.login-btn,
+.registration-btn {
+  margin-top: 10px;
 }
 
 input {
@@ -24,13 +34,14 @@ input {
 }
 input:focus {
   outline: none;
-  border-bottom: 2px solid #5E9ED6;
+  border-bottom: 2px solid #5e9ed6;
 }
 input::placeholder {
-  color:#999999;
+  color: #999999;
 }
 
-.login-btn, .registration-btn {
+.login-btn,
+.registration-btn {
   width: 57%;
   border-radius: 12px;
   padding: 5px;
@@ -41,14 +52,14 @@ input::placeholder {
   -webkit-transition-duration: 0.4s;
   font-size: 1rem;
 }
-.login-btn:hover, 
+.login-btn:hover,
 .login-btn:focus,
-.registration-btn:hover, 
+.registration-btn:hover,
 .registration-btn:focus {
   outline: none;
   cursor: pointer;
-  background-color:#7eddb1;
-  border: 1px solid #7eddb1; 
+  background-color: #7eddb1;
+  border: 1px solid #7eddb1;
 }
 .registration-btn {
   width: 66%;
@@ -73,7 +84,7 @@ input::placeholder {
 }
 .nutrition-counter-header:focus {
   outline: none;
-  border-bottom: 2px solid #5E9ED6;
+  border-bottom: 2px solid #5e9ed6;
 }
 
 .login-descriptor {
@@ -111,7 +122,8 @@ span {
   text-decoration: none;
   color: #363636;
 }
-.link-text:hover, .link-text:focus {
+.link-text:hover,
+.link-text:focus {
   cursor: pointer;
   text-decoration: underline;
   outline: none;
