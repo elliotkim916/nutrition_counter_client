@@ -51,15 +51,13 @@ input::placeholder {
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
   font-size: 1rem;
-}
-.login-btn:hover,
-.login-btn:focus,
-.registration-btn:hover,
-.registration-btn:focus {
-  outline: none;
-  cursor: pointer;
-  background-color: #7eddb1;
-  border: 1px solid #7eddb1;
+  &:not(.disabled):hover,
+  focus {
+    outline: none;
+    cursor: pointer;
+    background-color: #7eddb1;
+    border: 1px solid #7eddb1;
+  }
 }
 .registration-btn {
   width: 66%;
