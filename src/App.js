@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import history from './history';
 import LandingPage from './components/Landing/LandingPage';
-import RegistrationPage from './components/Registration/registration-page';
+import RegistrationPage from './components/Registration/RegistrationPage';
 import LoginPage from './components/Login/LoginPage';
 import Dashboard from './components/Dashboard/Dashboard';
 import NutritionSearchPage from './components/Nutrition/NutritionSearchPage';
