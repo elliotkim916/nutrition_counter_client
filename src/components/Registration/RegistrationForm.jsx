@@ -73,6 +73,7 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
               placeholder="Enter username"
               onChange={handleChange}
               value={values.username}
+              autoComplete="username"
               innerRef={inputElement}
             />
             {errors.username && touched.username && (
@@ -85,6 +86,7 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
               placeholder="Enter password"
               onChange={handleChange}
               value={values.password}
+              autoComplete="new-password"
             />
             {errors.password && touched.password && (
               <span className="login-error-msg">{errors.password}</span>
@@ -96,6 +98,7 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
               placeholder="Confirm password"
               onChange={handleChange}
               value={values.passwordConfirm}
+              autoComplete="new-password"
               validate={(value) =>
                 validateConfirmPassword(values.password, value)
               }
@@ -128,7 +131,6 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
 });
 
 const mapStateToProps = (state) => ({
-  loading: state.createUser.loading,
   newUser: state.createUser.user,
   error: state.createUser.error,
 });
