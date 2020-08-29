@@ -24,7 +24,7 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
   useEffect(() => {
     inputElement.current.focus();
 
-    if (newUser && !error) {
+    if (newUser && !error && formRef.current) {
       if (newUser !== '') {
         dispatch(login(formRef.current.username, formRef.current.password));
       }
