@@ -24,14 +24,8 @@ const Dashboard = ({
   const DashboardElement = useRef();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(getProtectedData('nutrition'));
-      dispatch(getProtectedData('exercise'));
-    }, 400);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    dispatch(getProtectedData('nutrition'));
+    dispatch(getProtectedData('exercise'));
   }, []);
 
   const deleteStart = useCallback(() => {
