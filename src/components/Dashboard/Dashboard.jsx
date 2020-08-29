@@ -21,7 +21,6 @@ const Dashboard = ({
   username,
 }) => {
   const [leaving, setLeaving] = useState(false);
-  const [index, setTabIndex] = useState(0);
   const DashboardElement = useRef();
 
   useEffect(() => {
@@ -53,17 +52,10 @@ const Dashboard = ({
 
       tabs = (
         <div className="nutrition-totals-container">
-          <Tabs
-            selectedIndex={index}
-            onSelect={(index, lastIndex, event) => {
-              if (event.nativeEvent.type === 'click' && index !== lastIndex) {
-                setTabIndex(index);
-              }
-            }}
-          >
+          <Tabs>
             <TabList>
-              <Tab>Nutrition Totals</Tab>
-              <Tab>Exercise Totals</Tab>
+              <Tab style={{ borderWidth: '1px' }}>Nutrition Totals</Tab>
+              <Tab style={{ borderWidth: '1px' }}>Exercise Totals</Tab>
             </TabList>
 
             <TabPanel>
