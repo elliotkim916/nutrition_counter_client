@@ -18,10 +18,13 @@ const RegistrationSchema = Yup.object().shape({
 });
 
 const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
+  const inputElement = useRef();
   const newlyCreatedUser = useRef();
   const creationError = useRef();
 
   useEffect(() => {
+    inputElement.current.focus();
+
     newlyCreatedUser.current = newUser;
     creationError.current = error;
   }, [newUser, error]);
@@ -73,6 +76,7 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
               placeholder="Enter username"
               onChange={handleChange}
               value={values.username}
+              innerRef={inputElement}
             />
             {errors.username && touched.username && (
               <span className="login-error-msg">{errors.username}</span>

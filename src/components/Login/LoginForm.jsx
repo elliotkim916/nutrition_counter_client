@@ -11,7 +11,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-const LoginForm = ({ authError, dispatch }) => {
+const LoginForm = React.memo(({ authError, dispatch }) => {
   const inputElement = useRef();
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const LoginForm = ({ authError, dispatch }) => {
       </div>
     </div>
   );
-};
+});
 
 const mapStateToProps = (state) => ({
   authError: state.authReducer.error,
