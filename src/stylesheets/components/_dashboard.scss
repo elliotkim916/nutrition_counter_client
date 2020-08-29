@@ -22,6 +22,7 @@
 .nutrition-totals-container,
 .exercise-totals-container {
   visibility: visible;
+  padding: 0 0 25px 0;
 }
 .invisible {
   visibility: hidden;
@@ -315,7 +316,7 @@ textarea::placeholder {
   }
 }
 
-@media (max-width: 739px) {
+@media (max-width: 753px) {
   .totals-container {
     display: none;
   }
@@ -337,7 +338,7 @@ textarea::placeholder {
   }
 }
 
-@media (min-width: 740px) {
+@media (min-width: 754px) {
   .nutrition-totals-container {
     display: none;
   }
