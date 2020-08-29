@@ -1,7 +1,7 @@
 import React, { useState, useRef, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import RegistrationForm from './registration-form';
+import RegistrationForm from './RegistrationForm';
 import { clearCreateUserError } from '../../store/actions/users';
 import Loading from '../Loading/Loading';
 import '../../index.scss';
@@ -31,19 +31,6 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
     return <Loading loadingMessage={'Creating user..'} />;
   }
 
-  if (createUserError) {
-    return (
-      <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
-        <ErrorCmp
-          errorMessage={
-            'User already exists, please try a different username..'
-          }
-          clearError={clearCreateUserError}
-        />
-      </Suspense>
-    );
-  }
-
   return (
     <div
       className={`registration-page ${leaving ? 'opacity-out' : ''}`}
@@ -56,6 +43,16 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
       >
         Nutrition Counter
       </h3>
+      {createUserError && (
+        <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
+          <ErrorCmp
+            errorMessage={
+              'User already exists, please try a different username..'
+            }
+            clearError={clearCreateUserError}
+          />
+        </Suspense>
+      )}
       <RegistrationForm />
     </div>
   );

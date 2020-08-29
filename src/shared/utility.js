@@ -1,25 +1,29 @@
 import axios from 'axios';
-import {APP_ID, APP_KEY} from '../config';
+import { APP_ID, APP_KEY } from '../config';
 import { loadAuthToken } from './local-storage';
 
 export const updateObject = (oldObject, updatedProperties) => ({
   ...oldObject,
-  ...updatedProperties
+  ...updatedProperties,
 });
 
 export const postData = (url, data, onSuccess, onFail, dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
   };
 
-  if (url.includes("exercise") || url.includes("nutrients")) {
+  if (url.includes('exercise') || url.includes('nutrients')) {
     config.headers['x-app-id'] = `${APP_ID}`;
     config.headers['x-app-key'] = `${APP_KEY}`;
   }
 
-  if (url.includes("nutrition") || url.includes("exercise") || url.includes("refresh")) {
+  if (
+    url.includes('nutrition') ||
+    url.includes('exercise') ||
+    url.includes('refresh')
+  ) {
     const authToken = loadAuthToken();
 
     if (authToken !== null) {
@@ -27,97 +31,101 @@ export const postData = (url, data, onSuccess, onFail, dispatch) => {
     }
   }
 
-  axios.post(url, data, config)
-    .then(res => {
+  axios
+    .post(url, data, config)
+    .then((res) => {
       try {
         onSuccess(res.data);
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
     })
-    .catch(e => {
+    .catch((e) => {
       onFail(e.response);
     });
-}
+};
 
 export const getData = (url, onSuccess, onFail) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const authToken = loadAuthToken();
   if (authToken !== null) {
-    config.headers['Authorization'] = `Bearer ${authToken}`
+    config.headers['Authorization'] = `Bearer ${authToken}`;
   }
 
-  axios.get(url, config)
-    .then(res => {
+  axios
+    .get(url, config)
+    .then((res) => {
       try {
         onSuccess(res.data);
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
     })
-    .catch(e => {
+    .catch((e) => {
       console.log(e);
       onFail(e);
     });
-}
+};
 
 export const removeData = (url, onSuccess, onFail) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const authToken = loadAuthToken();
   if (authToken !== null) {
-    config.headers['Authorization'] = `Bearer ${authToken}`
+    config.headers['Authorization'] = `Bearer ${authToken}`;
   }
 
-  axios.delete(url, config)
-    .then(res => {
+  axios
+    .delete(url, config)
+    .then((res) => {
       try {
         onSuccess(res.data);
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
     })
-    .catch(e => {
+    .catch((e) => {
       console.log(e);
       onFail(e);
     });
-}
+};
 
 export const putData = (url, data, onSuccess, onFail) => {
   const config = {
     headers: {
-        "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+    },
   };
-  
-  const authToken = localStorage.getItem("authToken");
+
+  const authToken = localStorage.getItem('authToken');
   if (authToken !== null) {
-      config.headers["Authorization"] = authToken
+    config.headers['Authorization'] = authToken;
   }
 
-  axios.put(url, data, config)
-    .then(response => {
-        try {
-            onSuccess(response);
-        } catch(error) {
-            console.error(error);
-        }
+  axios
+    .put(url, data, config)
+    .then((response) => {
+      try {
+        onSuccess(response);
+      } catch (error) {
+        console.error(error);
+      }
     })
-    .catch(err => {
-        if (!err.response) {
-            onFail({response: {message: "Something unexpected went wrong"}});
-            return;
-        }
-    
-        onFail(err);
+    .catch((err) => {
+      if (!err.response) {
+        onFail({ response: { message: 'Something unexpected went wrong' } });
+        return;
+      }
+
+      onFail(err);
     });
-}
+};
