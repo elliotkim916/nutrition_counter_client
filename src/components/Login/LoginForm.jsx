@@ -18,6 +18,9 @@ const LoginForm = React.memo(({ authError, dispatch }) => {
     inputElement.current.focus();
   }, []);
 
+  const onSubmit = (values) =>
+    dispatch(login(values.username, values.password));
+
   let cssClass;
   authError ? (cssClass = 'login-form') : (cssClass = 'login-form fadeIn');
 
@@ -30,10 +33,7 @@ const LoginForm = React.memo(({ authError, dispatch }) => {
           username: '',
           password: '',
         }}
-        onSubmit={(values, { resetForm }) => {
-          dispatch(login(values.username, values.password));
-          resetForm();
-        }}
+        onSubmit={onSubmit}
       >
         {({ handleChange, values, errors, touched, isValid }) => (
           <Form className="form">
@@ -44,6 +44,7 @@ const LoginForm = React.memo(({ authError, dispatch }) => {
               onChange={handleChange}
               value={values.username}
               innerRef={inputElement}
+              autoComplete="username"
             />
             {errors.username && touched.username && (
               <span className="login-error-msg">{errors.username}</span>
@@ -55,6 +56,7 @@ const LoginForm = React.memo(({ authError, dispatch }) => {
               placeholder="Enter password"
               onChange={handleChange}
               value={values.password}
+              autoComplete="current-password"
             />
             {errors.password && touched.password && (
               <span className="login-error-msg">{errors.password}</span>
