@@ -34,11 +34,8 @@ const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
     dispatch(registerUser(user));
 
     setTimeout(() => {
-      if (newlyCreatedUser.current) {
-        if (
-          newlyCreatedUser.current.username === user.username &&
-          creationError.current === null
-        ) {
+      if (newlyCreatedUser.current && creationError.current === null) {
+        if (newlyCreatedUser.current.username === user.username) {
           dispatch(login(user.username, user.password));
         }
       }
