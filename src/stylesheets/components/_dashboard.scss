@@ -17,7 +17,7 @@
   vertical-align: top;
   width: 40%;
   text-align: left;
-  padding: 0 35px;
+  padding: 0 35px 35px 35px;
 }
 .nutrition-totals-container,
 .exercise-totals-container {
@@ -286,7 +286,7 @@ textarea::placeholder {
   .welcome-header {
     font-size: 2rem;
     overflow-wrap: break-word;
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 35px 20px;
   }
   h3 {
     font-size: 2rem;
