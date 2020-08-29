@@ -31,19 +31,6 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
     return <Loading loadingMessage={'Creating user..'} />;
   }
 
-  if (createUserError) {
-    return (
-      <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
-        <ErrorCmp
-          errorMessage={
-            'User already exists, please try a different username..'
-          }
-          clearError={clearCreateUserError}
-        />
-      </Suspense>
-    );
-  }
-
   return (
     <div
       className={`registration-page ${leaving ? 'opacity-out' : ''}`}
@@ -56,6 +43,16 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
       >
         Nutrition Counter
       </h3>
+      {createUserError && (
+        <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
+          <ErrorCmp
+            errorMessage={
+              'User already exists, please try a different username..'
+            }
+            clearError={clearCreateUserError}
+          />
+        </Suspense>
+      )}
       <RegistrationForm />
     </div>
   );
