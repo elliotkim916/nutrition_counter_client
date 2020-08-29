@@ -34,8 +34,8 @@ const Search = ({ location }) => {
           }}
         >
           <TabList style={{ borderBottom: 'none' }}>
-            <Tab>Nutrition Search</Tab>
-            <Tab>Exercise Search</Tab>
+            <Tab style={{ border: 'none' }}>Nutrition Search</Tab>
+            <Tab style={{ border: 'none' }}>Exercise Search</Tab>
           </TabList>
 
           <TabPanel>
