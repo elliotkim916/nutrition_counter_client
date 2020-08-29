@@ -19,28 +19,22 @@ const RegistrationSchema = Yup.object().shape({
 
 const RegistrationForm = React.memo(({ dispatch, newUser, error }) => {
   const inputElement = useRef();
-  const newlyCreatedUser = useRef();
-  const creationError = useRef();
+  const formRef = useRef();
 
   useEffect(() => {
     inputElement.current.focus();
 
-    newlyCreatedUser.current = newUser;
-    creationError.current = error;
+    if (newUser && !error) {
+      if (newUser !== '') {
+        dispatch(login(formRef.current.username, formRef.current.password));
+      }
+    }
   }, [newUser, error]);
 
   const onSubmit = (values, { resetForm }) => {
     const user = { username: values.username, password: values.password };
+    formRef.current = user;
     dispatch(registerUser(user));
-
-    setTimeout(() => {
-      if (newlyCreatedUser.current && creationError.current === null) {
-        if (newlyCreatedUser.current.username === user.username) {
-          dispatch(login(user.username, user.password));
-        }
-      }
-    }, 500);
-
     resetForm();
   };
 
