@@ -18,8 +18,10 @@ const LoginForm = React.memo(({ authError, dispatch }) => {
     inputElement.current.focus();
   }, []);
 
-  const onSubmit = (values) =>
+  const onSubmit = (values, { resetForm }) => {
     dispatch(login(values.username, values.password));
+    resetForm();
+  };
 
   let cssClass;
   authError ? (cssClass = 'login-form') : (cssClass = 'login-form fadeIn');
