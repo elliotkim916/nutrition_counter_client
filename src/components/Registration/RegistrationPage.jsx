@@ -27,10 +27,6 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
     return <Redirect to="/dashboard" />;
   }
 
-  if (loading) {
-    return <Loading loadingMessage={'Creating user..'} />;
-  }
-
   return (
     <div
       className={`registration-page ${leaving ? 'opacity-out' : ''}`}
@@ -43,6 +39,7 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
       >
         Nutrition Counter
       </h3>
+      {loading && <Loading loadingMessage={'Creating user..'} />}
       {createUserError && (
         <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
           <ErrorCmp

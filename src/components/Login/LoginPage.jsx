@@ -27,21 +27,6 @@ const LoginPage = ({ loggedIn, loading, loginError, history }) => {
     return <Redirect to="/dashboard" />;
   }
 
-  if (loading) {
-    return <Loading loadingMessage={'Logging in..'} />;
-  }
-
-  if (loginError) {
-    return (
-      <Suspense fallback={<Loading loadingMessage="Loggin in.." />}>
-        <ErrorCmp
-          errorMessage={'Login failed due to incorrect username or password..'}
-          clearError={clearAuthError}
-        />
-      </Suspense>
-    );
-  }
-
   return (
     <div
       className={`login-page ${leaving ? 'opacity-out' : ''}`}
@@ -54,6 +39,17 @@ const LoginPage = ({ loggedIn, loading, loginError, history }) => {
       >
         Nutrition Counter
       </h3>
+      {loading && <Loading loadingMessage={'Logging in..'} />}
+      {loginError && (
+        <Suspense fallback={<Loading loadingMessage="Loggin in.." />}>
+          <ErrorCmp
+            errorMessage={
+              'Login failed due to incorrect username or password..'
+            }
+            clearError={clearAuthError}
+          />
+        </Suspense>
+      )}
       <LoginForm />
     </div>
   );
