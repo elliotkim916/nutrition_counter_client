@@ -19,7 +19,8 @@
   text-align: left;
   padding: 0 35px;
 }
-.nutrition-totals-container, .exercise-totals-container {
+.nutrition-totals-container,
+.exercise-totals-container {
   visibility: visible;
 }
 .invisible {
@@ -41,7 +42,8 @@ li {
   color: #2f2f2f;
 }
 
-.nutrition-page, .exercise-page {
+.nutrition-page,
+.exercise-page {
   position: relative;
   display: inline-block;
   width: 335px;
@@ -69,15 +71,18 @@ textarea {
   letter-spacing: 1px;
 }
 
-
-.log-out:hover, .log-out:focus, 
-.landing-login:hover, .landing-login:focus,
-.landing-signup:hover, .landing-signup:focus {
+.log-out:hover,
+.log-out:focus,
+.landing-login:hover,
+.landing-login:focus,
+.landing-signup:hover,
+.landing-signup:focus {
   outline: none;
   text-decoration: underline;
 }
 
-.nutrition_total, .exercise_total {
+.nutrition_total,
+.exercise_total {
   position: relative;
   list-style-type: none;
 }
@@ -130,7 +135,7 @@ textarea {
 .title-header {
   font-family: Lobster;
   font-size: 3rem;
-  color:whitesmoke;
+  color: whitesmoke;
   position: relative;
 }
 
@@ -138,12 +143,13 @@ textarea {
   position: relative;
   font-size: 5rem;
   color: #2f2f2f;
+  overflow-wrap: break-word;
 }
 
 label {
   color: whitesmoke;
   font-size: 1.2rem;
-  letter-spacing: .45px;
+  letter-spacing: 0.45px;
 }
 
 .calculate-btn {
@@ -162,7 +168,8 @@ label {
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s;
 }
-.calculate-btn:hover, .calculate-btn:focus {
+.calculate-btn:hover,
+.calculate-btn:focus {
   outline: none;
   background-color: #ffb300;
   cursor: pointer;
@@ -184,14 +191,16 @@ textarea:focus {
 textarea::placeholder {
   font-size: 1rem;
   font-family: Questrial;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
-.nutrition-form, .exercise-form {
+.nutrition-form,
+.exercise-form {
   text-align: left;
 }
 
-.nutrition-header, .exercise-header {
+.nutrition-header,
+.exercise-header {
   color: whitesmoke;
   letter-spacing: 1px;
   font-size: 3em;
@@ -234,38 +243,38 @@ textarea::placeholder {
 .tossing {
   width: 180px;
   padding-top: 50px;
-	animation-name: tossing;
-	-webkit-animation-name: tossing;	
+  animation-name: tossing;
+  -webkit-animation-name: tossing;
 
-	animation-duration: 2.5s;	
-	-webkit-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-duration: 2.5s;
 
-	animation-iteration-count: infinite;
-	-webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
 
 @keyframes tossing {
-	0% {
-		transform: rotate(-4deg);	
-	}
-	50% {
-		transform: rotate(4deg);
-	}
-	100% {
-		transform: rotate(-4deg);	
-	}						
+  0% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
 }
 
 @-webkit-keyframes tossing {
-	0% {
-		-webkit-transform: rotate(-4deg);	
-	}
-	50% {
-		-webkit-transform: rotate(4deg);
-	}
-	100% {
-		-webkit-transform: rotate(-4deg);	
-	}				
+  0% {
+    -webkit-transform: rotate(-4deg);
+  }
+  50% {
+    -webkit-transform: rotate(4deg);
+  }
+  100% {
+    -webkit-transform: rotate(-4deg);
+  }
 }
 
 @media (max-width: 400px) {
@@ -275,15 +284,17 @@ textarea::placeholder {
 
   .welcome-header {
     font-size: 4rem;
+    overflow-wrap: break-word;
   }
   h3 {
     font-size: 2rem;
   }
-  
-  .nutrition-page, .exercise-page {
+
+  .nutrition-page,
+  .exercise-page {
     width: 260px;
   }
- 
+
   .food-image {
     left: 40px;
   }
@@ -299,7 +310,7 @@ textarea::placeholder {
 
 @media (min-width: 415px) {
   .exit {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -315,7 +326,8 @@ textarea::placeholder {
     background: whitesmoke;
   }
 
-  .nutrition_total, .exercise_total {
+  .nutrition_total,
+  .exercise_total {
     text-align: left;
     padding: 0 25px 0 25px;
   }
@@ -338,7 +350,8 @@ textarea::placeholder {
     display: none;
   }
 
-  .nutrition-page, .exercise-page {
+  .nutrition-page,
+  .exercise-page {
     display: block;
     margin-left: auto;
     margin-right: auto;
