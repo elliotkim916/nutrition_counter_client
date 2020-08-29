@@ -53,9 +53,9 @@ const Dashboard = ({
       tabs = (
         <div className="nutrition-totals-container">
           <Tabs>
-            <TabList>
-              <Tab style={{ borderWidth: '1px' }}>Nutrition Totals</Tab>
-              <Tab style={{ borderWidth: '1px' }}>Exercise Totals</Tab>
+            <TabList style={{ borderBottom: 'none' }}>
+              <Tab>Nutrition Totals</Tab>
+              <Tab>Exercise Totals</Tab>
             </TabList>
 
             <TabPanel>
