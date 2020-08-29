@@ -36,7 +36,7 @@ const NutritionResults = ({
 
   const nutritionList = useMemo(() => {
     return nutritionResults.map((result, index) => (
-      <NutritionResult index={index} result={result} />
+      <NutritionResult key={index} result={result} />
     ));
   }, [nutritionResults]);
 

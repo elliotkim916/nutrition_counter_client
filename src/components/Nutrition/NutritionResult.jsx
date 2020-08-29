@@ -1,10 +1,10 @@
 import React from 'react';
 
-const NutritionResult = ({ index, result }) => {
+const NutritionResult = ({ result }) => {
   const nutritionTotal = (nutrition) => (nutrition === null ? 0 : nutrition);
 
   return (
-    <li key={index} className="nutrition-list-item">
+    <li className="nutrition-list-item">
       <h3 className="food-name">
         {result.food_name
           .toLowerCase()

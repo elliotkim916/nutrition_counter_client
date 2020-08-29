@@ -82,7 +82,7 @@ const ExerciseResults = ({
 
   const exerciseList = useMemo(() => {
     return exerciseResults.map((result, index) => (
-      <ExerciseResult index={index} result={result} />
+      <ExerciseResult key={index} result={result} />
     ));
   }, [exerciseResults]);
 

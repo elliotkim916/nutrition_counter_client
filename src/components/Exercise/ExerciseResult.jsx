@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ExerciseResult = ({ index, result }) => {
+const ExerciseResult = ({ result }) => {
   return (
-    <li key={index} className="exercise-list-item">
+    <li className="exercise-list-item">
       <h3 className="exercise-name">
         {result.name
           .toLowerCase()
