@@ -3,9 +3,9 @@ import moment from 'moment';
 import '../../index.scss';
 
 const NutritionDashboardListItem = React.memo(
-  ({ index, value, updateIdAndOption, deleteNutrition }) => {
+  ({ value, updateIdAndOption, deleteNutrition }) => {
     return (
-      <div key={index} className="nutrition_total">
+      <div className="nutrition_total">
         <ul className="date">
           <li>{moment(value.created).format('dddd, MMMM Do YYYY')}</li>
           <li>{moment(value.created).format('h:mm a')}</li>

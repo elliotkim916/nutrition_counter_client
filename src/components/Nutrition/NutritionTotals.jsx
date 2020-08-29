@@ -59,7 +59,7 @@ class NutritionTotals extends React.Component {
     if (this.props.nutritionData) {
       return this.props.nutritionData.map((value, index) => (
         <NutritionDashboardListItem
-          index={index}
+          key={index}
           value={value}
           updateIdAndOption={this.updateIdAndOption}
           deleteNutrition={this.props.deleteNutrition}

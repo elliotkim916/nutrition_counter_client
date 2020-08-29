@@ -2,9 +2,9 @@ import React from 'react';
 import moment from 'moment';
 
 const ExerciseDashboardListItem = React.memo(
-  ({ index, value, deleteExercise, updateIdAndOption }) => {
+  ({ value, deleteExercise, updateIdAndOption }) => {
     return (
-      <div key={index} className="exercise_total">
+      <div className="exercise_total">
         <ul className="date">
           <li>{moment(value.created).format('dddd, MMMM Do YYYY')}</li>
           <li>{moment(value.created).format('h:mm a')}</li>

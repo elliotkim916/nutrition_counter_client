@@ -58,8 +58,8 @@ class ExerciseTotals extends React.Component {
     if (this.props.exerciseData) {
       return this.props.exerciseData.map((value, index) => (
         <ExerciseDashboardListItem
+          key={index}
           value={value}
-          index={index}
           deleteExercise={this.props.deleteExercise}
           updateIdAndOption={this.updateIdAndOption}
         />
