@@ -47,8 +47,12 @@ const Dashboard = ({
     } else {
       fullPageTotals = (
         <div className="totals-container">
-          <NutritionTotals deleteNutrition={deleteStart} />
-          <ExerciseTotals deleteExercise={deleteStart} />
+          {nutritionData.length > 0 && (
+            <NutritionTotals deleteNutrition={deleteStart} />
+          )}
+          {exerciseData.length > 0 && (
+            <ExerciseTotals deleteExercise={deleteStart} />
+          )}
         </div>
       );
 
