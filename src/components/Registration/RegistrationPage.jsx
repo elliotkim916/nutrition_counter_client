@@ -23,6 +23,23 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
     });
   };
 
+  if (loading) {
+    return <Loading loadingMessage={'Creating user..'} />;
+  }
+
+  if (createUserError) {
+    return (
+      <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
+        <ErrorCmp
+          errorMessage={
+            'User already exists, please try a different username..'
+          }
+          clearError={clearCreateUserError}
+        />
+      </Suspense>
+    );
+  }
+
   if (loggedIn) {
     return <Redirect to="/dashboard" />;
   }
@@ -39,17 +56,6 @@ const RegistrationPage = ({ history, loggedIn, loading, createUserError }) => {
       >
         Nutrition Counter
       </h3>
-      {loading && <Loading loadingMessage={'Creating user..'} />}
-      {createUserError && (
-        <Suspense fallback={<Loading loadingMessage={'Creating user..'} />}>
-          <ErrorCmp
-            errorMessage={
-              'User already exists, please try a different username..'
-            }
-            clearError={clearCreateUserError}
-          />
-        </Suspense>
-      )}
       <RegistrationForm />
     </div>
   );
